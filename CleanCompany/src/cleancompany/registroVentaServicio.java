@@ -62,7 +62,6 @@ public class registroVentaServicio extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        rSDateChooser1 = new rojeru_san.componentes.RSDateChooser();
 
         jLabel6.setText("Seccion Mantenimiento:");
 
@@ -223,8 +222,6 @@ public class registroVentaServicio extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(44, 44, 44)
                             .addComponent(jLabel16)
-                            .addGap(60, 60, 60)
-                            .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(0, 0, Short.MAX_VALUE)
@@ -277,8 +274,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
+                        .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton4)
                             .addComponent(jButton5))))
@@ -361,6 +357,5 @@ this.setVisible(false);
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     // End of variables declaration//GEN-END:variables
 }
