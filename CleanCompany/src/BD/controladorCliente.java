@@ -5,12 +5,15 @@
  */
 package BD;
 
-import java.awt.List;
+//import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.cliente;
 
 /**
@@ -76,4 +79,64 @@ public class controladorCliente {
         }
         return id;
     }
+   
+   public void actualizarCliente(cliente client) throws Exception{
+       
+   } 
+   
+   public void eliminarCliente(cliente client) throws Exception{
+       
+   }
+  
+   public List<cliente> listaClientesVigentes () throws Exception{
+       String SQL = "SELECT * FROM \"cleanCompany\".cliente";
+       
+        
+        java.util.List<cliente> listaClientes = null;
+        cliente p;
+        ResultSet rset = null;
+       
+        try {
+            Connection conn = conexionPostgres.connectDatabase();
+            PreparedStatement pstm = conn.prepareCall(SQL);
+            rset = pstm.executeQuery();
+           
+            listaClientes = new ArrayList<cliente>();
+            while (rset.next() == true) {
+                p = new cliente();
+                p.nombre = rset.getString(2);
+                p.descripcion = rset.getString(3);
+                p.telefono = rset.getString(4);
+                p.direccion = rset.getString(5);
+               
+                listaClientes.add(p);
+            }
+            
+        } catch (Exception e) {
+            
+            throw e;
+        } finally {
+            if (rset != null) {
+                rset.close();
+                rset = null;
+            }
+        }
+        return listaClientes;
+   }
+   
+//    PreparedStatement pstm = conexion.prepareCall("select * from pg_tables  where schemaname = 'public'");
+//         ResultSet rset = pstm.executeQuery();
+//         while (rset.next())
+//         {
+//             modelo.addRow(new Object[]
+//                    {
+//                        rset.getString(1),
+//                        rset.getString(2),
+//                        rset.getString(3),
+//                        rset.getString(4),
+//                        rset.getString(5),
+//                        rset.getString(6),
+//                        rset.getString(7),
+//                    });
+//         }
 }

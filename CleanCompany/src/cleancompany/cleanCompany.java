@@ -14,7 +14,7 @@ import java.awt.Color;
  * @author etzoy
  */
 public class cleanCompany extends javax.swing.JFrame {
-registroCliente rCliente=new registroCliente(this);
+registroCliente rCliente;
 registroServicio rServicio= new registroServicio(this);
 registroVentaServicio rVentaServicio=new registroVentaServicio(this);
 serviciosPorVencer rServicioPorVencer=new serviciosPorVencer(this);
@@ -123,7 +123,8 @@ serviciosPorVencer rServicioPorVencer=new serviciosPorVencer(this);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       rCliente.setVisible(true);
+        rCliente = new registroCliente(this);
+        rCliente.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
