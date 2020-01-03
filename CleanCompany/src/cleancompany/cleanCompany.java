@@ -19,7 +19,7 @@ registroServicio rServicio= new registroServicio(this);
 registroVentaServicio rVentaServicio=new registroVentaServicio(this);
 serviciosPorVencer rServicioPorVencer=new serviciosPorVencer(this);
   conexion javaPostgreSQLBasic = new conexion();
-  controladorCliente controlCliente=new controladorCliente(this.javaPostgreSQLBasic);
+ public controladorCliente controlCliente=new controladorCliente(this.javaPostgreSQLBasic);
 /**
      * Creates new form cleanCompany
      */

@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 import modelo.cliente;
 
 /**
@@ -22,6 +23,10 @@ import modelo.cliente;
  */
 public class controladorCliente {
     conexion conexionPostgres=null;
+    
+    public controladorCliente(){
+        
+    }
     
    public  controladorCliente (conexion conexionBd){
     conexionPostgres=conexionBd;
@@ -95,6 +100,7 @@ public class controladorCliente {
         java.util.List<cliente> listaClientes = null;
         cliente p;
         ResultSet rset = null;
+       
        
         try {
             Connection conn = conexionPostgres.connectDatabase();

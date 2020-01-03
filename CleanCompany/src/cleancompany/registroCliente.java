@@ -28,9 +28,9 @@ public class registroCliente extends javax.swing.JFrame {
             initComponents();
             this.getContentPane().setBackground(Color.BLACK);
             this.setLocationRelativeTo(null);
-            this.jtblListaClientes.setModel(mtc);
+            //this.jtblListaClientes.setModel(mtc);
         try {
-            mtc.setListaClientes(principal.controlCliente.listaClientesVigentes());
+            mtc.visualizarTabla(this.jtblListaClientes, principal);
         } catch (Exception ex) {
             Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,8 +59,6 @@ public class registroCliente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtblListaClientes = new javax.swing.JTable();
-        jbCliModificar = new javax.swing.JButton();
-        jbCliEliminar = new javax.swing.JButton();
 
         jButton4.setText("Cancelar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -125,40 +123,21 @@ public class registroCliente extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtblListaClientes);
 
-        jbCliModificar.setText("Modificar");
-        jbCliModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCliModificarActionPerformed(evt);
-            }
-        });
-
-        jbCliEliminar.setText("Eliminar");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jbCliModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(jbCliEliminar)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbCliModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCliEliminar))
-                .addGap(22, 22, 22))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,8 +227,8 @@ nuevo.telefono="xxx";
 
     public void actualizar(){
          try {
-            mtc.setListaClientes(principal.controlCliente.listaClientesVigentes());
-            mtc.fireTableDataChanged();
+           mtc.visualizarTabla(this.jtblListaClientes, principal);
+            //mtc.fireTableDataChanged();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en la actualizacion de la base de datos");
         }
@@ -258,10 +237,6 @@ nuevo.telefono="xxx";
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jbCliModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCliModificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbCliModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,8 +256,6 @@ this.setVisible(false);        // TODO add your handling code here:
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JButton jbCliEliminar;
-    private javax.swing.JButton jbCliModificar;
     private javax.swing.JTable jtblListaClientes;
     // End of variables declaration//GEN-END:variables
 }

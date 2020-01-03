@@ -5,6 +5,8 @@
  */
 package modelo;
 
+
+
 /**
  *
  * @author etzoy
@@ -14,4 +16,5 @@ public class cliente {
     public String descripcion;
     public String telefono;
     public String direccion;
+   
 }
