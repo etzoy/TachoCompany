@@ -85,15 +85,51 @@ public class controladorCliente {
         return id;
     }
    
-   public void actualizarCliente(cliente client) throws Exception{
+   public void actualizarCliente(cliente client, cliente update){
        
+  String SQL = "UPDATE \"cleanCompany\".cliente "
+          +"SET nombre='"+update.nombre
+               +"' , descripcion='"+update.descripcion+"', telefono='"+update.telefono
+               +"', direccion='"+update.direccion+"'" 
+          +"WHERE nombre='"+client.nombre
+               +"' and descripcion='"+client.descripcion+"' and telefono='"+client.telefono
+               +"' and direccion='"+client.direccion+"'" ;
+       
+       ResultSet rset = null;
+        try {
+            Connection conn = conexionPostgres.connectDatabase();
+            PreparedStatement pstm = conn.prepareCall(SQL);
+            rset = pstm.executeQuery();
+        } catch (SQLException ex) {
+            
+            System.out.println(ex.getMessage());
+        } finally {
+           
+        }
+        
    } 
    
    public void eliminarCliente(cliente client) throws Exception{
+       String SQL = "DELETE FROM \"cleanCompany\".cliente WHERE nombre='"+client.nombre
+               +"' and descripcion='"+client.descripcion+"' and telefono='"+client.telefono
+               +"' and direccion='"+client.direccion+"'" ;
        
+       ResultSet rset = null;
+        try {
+            Connection conn = conexionPostgres.connectDatabase();
+            PreparedStatement pstm = conn.prepareCall(SQL);
+            rset = pstm.executeQuery();
+        } catch (SQLException ex) {
+            
+            System.out.println(ex.getMessage());
+        } finally {
+           
+        }
+        
+        
    }
   
-   public List<cliente> listaClientesVigentes () throws Exception{
+   public List<cliente> listaClientesVigentes (){
        String SQL = "SELECT * FROM \"cleanCompany\".cliente";
        
         
@@ -118,14 +154,10 @@ public class controladorCliente {
                 listaClientes.add(p);
             }
             
-        } catch (Exception e) {
+        } catch (SQLException ex) {
             
-            throw e;
-        } finally {
-            if (rset != null) {
-                rset.close();
-                rset = null;
-            }
+            System.out.println(ex.getMessage());
+        
         }
         return listaClientes;
    }

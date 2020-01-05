@@ -7,6 +7,7 @@ package cleancompany;
 
 import BD.conexion;
 import BD.controladorCliente;
+import BD.controladorServicio;
 import java.awt.Color;
 
 /**
@@ -15,11 +16,12 @@ import java.awt.Color;
  */
 public class cleanCompany extends javax.swing.JFrame {
 registroCliente rCliente;
-registroServicio rServicio= new registroServicio(this);
+registroServicio rServicio;
 registroVentaServicio rVentaServicio=new registroVentaServicio(this);
 serviciosPorVencer rServicioPorVencer=new serviciosPorVencer(this);
   conexion javaPostgreSQLBasic = new conexion();
  public controladorCliente controlCliente=new controladorCliente(this.javaPostgreSQLBasic);
+ public controladorServicio controlServicio=new controladorServicio(this.javaPostgreSQLBasic);
 /**
      * Creates new form cleanCompany
      */
@@ -128,7 +130,8 @@ serviciosPorVencer rServicioPorVencer=new serviciosPorVencer(this);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       this.rServicio.setVisible(true); // TODO add your handling code here:
+        rServicio= new registroServicio(this);
+        this.rServicio.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
