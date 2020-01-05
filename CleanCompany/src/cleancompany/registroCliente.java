@@ -18,20 +18,22 @@ import modelo.modeloTablaCliente;
  * @author etzoy
  */
 public class registroCliente extends javax.swing.JFrame {
-    cleanCompany principal=null;
+
+    cleanCompany principal = null;
     modeloTablaCliente mtc = new modeloTablaCliente();
-    
+
     int clickTabla = 0;
+
     /**
      * Creates new form registroCliente
      */
     public registroCliente(cleanCompany principalOrigen) {
-        
-            this.principal=principalOrigen;
-            initComponents();
-            this.getContentPane().setBackground(Color.BLACK);
-            this.setLocationRelativeTo(null);
-            //this.jtblListaClientes.setModel(mtc);
+
+        this.principal = principalOrigen;
+        initComponents();
+        this.getContentPane().setBackground(Color.BLACK);
+        this.setLocationRelativeTo(null);
+        //this.jtblListaClientes.setModel(mtc);
         try {
             mtc.visualizarTabla(this.jtblListaClientes, principal);
         } catch (Exception ex) {
@@ -228,120 +230,128 @@ public class registroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-cliente nuevo=new cliente();
-nuevo.nombre=jTextField1.getText();
-nuevo.descripcion=jTextArea1.getText();
-nuevo.direccion=jTextField3.getText();
-nuevo.telefono=jTextField2.getText();
+        cliente nuevo = new cliente();
+        nuevo.nombre = jTextField1.getText();
+        nuevo.descripcion = jTextArea1.getText();
+        nuevo.direccion = jTextField3.getText();
+        nuevo.telefono = jTextField2.getText();
 
         if (!jTextField1.getText().equals("")) {
             if (!jTextField2.getText().equals("")) {
-                 this.principal.controlCliente.insertCliente2(nuevo);
-        jTextField1.setText("");
-        jTextArea1.setText("") ;
-        jTextField3.setText("") ;
-        jTextField2.setText("");
+                this.principal.controlCliente.insertCliente2(nuevo);
+                jTextField1.setText("");
+                jTextArea1.setText("");
+                jTextField3.setText("");
+                jTextField2.setText("");
 
-        actualizar();
-            }else{
+                actualizar();
+            } else {
                 JOptionPane.showMessageDialog(null, "El campo <strong>'telefono'</strong> no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
             }
-        }else{
-           JOptionPane.showMessageDialog(null, "El campo 'nombre' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "El campo 'nombre' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
         }
 //this.setVisible(false);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    public void actualizar(){
-         try {
-           mtc.visualizarTabla(this.jtblListaClientes, principal);
+    public void actualizar() {
+        try {
+            mtc.visualizarTabla(this.jtblListaClientes, principal);
             //mtc.fireTableDataChanged();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en la actualizacion de la base de datos");
         }
     }
-    
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-this.setVisible(false);        // TODO add your handling code here:
+        this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jtblListaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblListaClientesMouseClicked
         // TODO add your handling code here:
-                        
+        boolean prueba = true;
         int column = jtblListaClientes.getColumnModel().getColumnIndexAtX(evt.getX());
-        int row = evt.getY()/jtblListaClientes.getRowHeight();
-        
-        
-        if (row < jtblListaClientes.getRowCount() && row >= 0 && column <jtblListaClientes.getColumnCount() && column >= 0) {
+        int row = evt.getY() / jtblListaClientes.getRowHeight();
+
+        if (row < jtblListaClientes.getRowCount() && row >= 0 && column < jtblListaClientes.getColumnCount() && column >= 0) {
             Object value = jtblListaClientes.getValueAt(row, column);
+
             if (value instanceof JButton) {
-                ((JButton)value).doClick();
+                ((JButton) value).doClick();
                 JButton boton = (JButton) value;
-                
+
                 if (boton.getName().equals("m")) {
-                    System.out.println("Click Boton Modificar"+row+column);
-                    cliente nuevo=new cliente();
-                     nuevo.nombre=jtblListaClientes.getValueAt(row, 0).toString();
-                     nuevo.descripcion=jtblListaClientes.getValueAt(row, 1).toString();
-                     nuevo.telefono=jtblListaClientes.getValueAt(row, 2).toString();
-                     nuevo.direccion=jtblListaClientes.getValueAt(row, 3).toString();
-                     
-                     cliente update=new cliente();
-                    update.nombre=jTextField1.getText();
-                    update.descripcion=jTextArea1.getText();
-                    update.direccion=jTextField3.getText();
-                    update.telefono=jTextField2.getText();
-                    
+                    System.out.println("Click Boton Modificar" + row + column);
+                    cliente nuevo = new cliente();
+                    nuevo.nombre = jtblListaClientes.getValueAt(row, 0).toString();
+                    nuevo.descripcion = jtblListaClientes.getValueAt(row, 1).toString();
+                    nuevo.telefono = jtblListaClientes.getValueAt(row, 2).toString();
+                    nuevo.direccion = jtblListaClientes.getValueAt(row, 3).toString();
+
+                    cliente update = new cliente();
+                    update.nombre = jTextField1.getText();
+                    update.descripcion = jTextArea1.getText();
+                    update.direccion = jTextField3.getText();
+                    update.telefono = jTextField2.getText();
+
                     this.principal.controlCliente.actualizarCliente(nuevo, update);
-                    
+
                     actualizar();
                 }
                 if (boton.getName().equals("e")) {
-                    System.out.println("Click Boton Eliminar"+row+column);
-                    cliente nuevo=new cliente();
-                     nuevo.nombre=jtblListaClientes.getValueAt(row, 0).toString();
-                     nuevo.descripcion=jtblListaClientes.getValueAt(row, 1).toString();
-                     nuevo.telefono=jtblListaClientes.getValueAt(row, 2).toString();
-                     nuevo.direccion=jtblListaClientes.getValueAt(row, 3).toString();
-                    
+                    System.out.println("Click Boton Eliminar" + row + column);
+                    cliente nuevo = new cliente();
+                    nuevo.nombre = jtblListaClientes.getValueAt(row, 0).toString();
+                    nuevo.descripcion = jtblListaClientes.getValueAt(row, 1).toString();
+                    nuevo.telefono = jtblListaClientes.getValueAt(row, 2).toString();
+                    nuevo.direccion = jtblListaClientes.getValueAt(row, 3).toString();
+
                     try {
                         this.principal.controlCliente.eliminarCliente(nuevo);
                     } catch (Exception ex) {
                         Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     actualizar();
+                    prueba = false;
                 }
+
             }
-            
+            if (prueba) {
+                texts(evt);
+            }
+
+        }
+
+        prueba = true;
+
+    }//GEN-LAST:event_jtblListaClientesMouseClicked
+
+    public void texts(java.awt.event.MouseEvent evt) {
+
         clickTabla = this.jtblListaClientes.rowAtPoint(evt.getPoint());
         String nombre = this.jtblListaClientes.getValueAt(clickTabla, 0).toString();
         String descripcion = this.jtblListaClientes.getValueAt(clickTabla, 1).toString();
         String telefono = this.jtblListaClientes.getValueAt(clickTabla, 2).toString();
-        String direccion = this.jtblListaClientes.getValueAt(clickTabla, 3).toString();    
-            
+        String direccion = this.jtblListaClientes.getValueAt(clickTabla, 3).toString();
+
         this.jTextField1.setText(nombre);
         this.jTextField2.setText(telefono);
         this.jTextField3.setText(direccion);
         this.jTextArea1.setText(descripcion);
-        
-        }
-        
-        
-    }//GEN-LAST:event_jtblListaClientesMouseClicked
-
+    }
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        
+
         if (Character.isLetter(valid)) {
             getToolkit().beep();
             evt.consume();
-            
+
             //JOptionPane.showMessageDialog(this, "Ingresar Solo Numeros");
         }
     }//GEN-LAST:event_jTextField2KeyTyped
- 
+
     /**
      * @param args the command line arguments
      */

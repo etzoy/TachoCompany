@@ -8,6 +8,7 @@ package cleancompany;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.modeloTablaServicio;
 import modelo.servicio;
@@ -17,27 +18,31 @@ import modelo.servicio;
  * @author etzoy
  */
 public class registroServicio extends javax.swing.JFrame {
- cleanCompany principal=null;
- modeloTablaServicio mts = new modeloTablaServicio();
+
+    cleanCompany principal = null;
+    modeloTablaServicio mts = new modeloTablaServicio();
+
+    int clickTabla;
+
     /**
      * Creates new form catalogoServicio
      */
     public registroServicio(cleanCompany principalOrigen) {
-               this.principal=principalOrigen;
+        this.principal = principalOrigen;
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
-          this.setLocationRelativeTo(null);
-          
-          try {
+        this.setLocationRelativeTo(null);
+
+        try {
             mts.visualizarTabla(this.jtblListaServicios, principal);
         } catch (Exception ex) {
             Logger.getLogger(registroServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void actualizar(){
-         try {
-           mts.visualizarTabla(this.jtblListaServicios, principal);
+
+    public void actualizar() {
+        try {
+            mts.visualizarTabla(this.jtblListaServicios, principal);
             //mtc.fireTableDataChanged();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en la actualizacion de la base de datos");
@@ -86,6 +91,12 @@ public class registroServicio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Seccion Mantenimiento:");
@@ -175,6 +186,11 @@ public class registroServicio extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtblListaServicios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtblListaServiciosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jtblListaServicios);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -310,23 +326,23 @@ public class registroServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);        // TODO add your handling code here:
+        this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //this.setVisible(false);
-    servicio nuevo = new servicio();
-    
-    nuevo.nombre = jTextField1.getText();
-    nuevo.descripcion = jTextArea1.getText();
-    nuevo.unidad = jTextField3.getText();
-    nuevo.costo = Integer.parseInt(jTextField2.getText());
-    nuevo.cantidadUnidad = Integer.parseInt(jTextField4.getText());
-    
-        if (this.jComboBox1.getSelectedIndex()!= 0) {
+        servicio nuevo = new servicio();
+
+        nuevo.nombre = jTextField1.getText();
+        nuevo.descripcion = jTextArea1.getText();
+        nuevo.unidad = jTextField3.getText();
+        nuevo.costo = Integer.parseInt(jTextField2.getText());
+        nuevo.cantidadUnidad = Integer.parseInt(jTextField4.getText());
+
+        if (this.jComboBox1.getSelectedIndex() != 0) {
             nuevo.tipoUnidad = this.jComboBox1.getSelectedIndex();
             this.principal.controlServicio.insertServicio(nuevo);
-            
+
             actualizar();
         }
         // TODO add your handling code here:
@@ -334,32 +350,126 @@ this.setVisible(false);        // TODO add your handling code here:
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         // TODO add your handling code here:
-         char valid = evt.getKeyChar();
-        
+        char valid = evt.getKeyChar();
+
         if (Character.isLetter(valid)) {
             getToolkit().beep();
             evt.consume();
-            
+
             //JOptionPane.showMessageDialog(this, "Ingresar Solo Numeros");
         }
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
         // TODO add your handling code here:
-         char valid = evt.getKeyChar();
-        
+        char valid = evt.getKeyChar();
+
         if (Character.isLetter(valid)) {
             getToolkit().beep();
             evt.consume();
-            
+
             //JOptionPane.showMessageDialog(this, "Ingresar Solo Numeros");
         }
     }//GEN-LAST:event_jTextField4KeyTyped
 
+    private void jtblListaServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblListaServiciosMouseClicked
+        // TODO add your handling code here:
+        boolean prueba = true;
+        int column = jtblListaServicios.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row = evt.getY() / jtblListaServicios.getRowHeight();
+
+        if (row < jtblListaServicios.getRowCount() && row >= 0 && column < jtblListaServicios.getColumnCount() && column >= 0) {
+            Object value = jtblListaServicios.getValueAt(row, column);
+
+            if (value instanceof JButton) {
+                ((JButton) value).doClick();
+                JButton boton = (JButton) value;
+
+                if (boton.getName().equals("m")) {
+                    System.out.println("Click Boton Modificar" + row + column);
+                    servicio nuevo = new servicio();
+                    nuevo.nombre = jtblListaServicios.getValueAt(row, 0).toString();
+                    nuevo.descripcion = jtblListaServicios.getValueAt(row, 1).toString();
+                    nuevo.unidad = jtblListaServicios.getValueAt(row, 2).toString();
+                    nuevo.costo = Integer.parseInt(jtblListaServicios.getValueAt(row, 3).toString());
+
+                    if (jtblListaServicios.getValueAt(row, 4).toString().equals("Dia")) {
+                        nuevo.tipoUnidad = 1;
+                    } else if (jtblListaServicios.getValueAt(row, 4).toString().equals("Semana")) {
+                        nuevo.tipoUnidad = 2;
+                    } else {
+                        nuevo.tipoUnidad = 3;
+                    }
+                    nuevo.cantidadUnidad = Integer.parseInt(jtblListaServicios.getValueAt(row, 5).toString());
+
+                    servicio update = new servicio();
+                    update.nombre = jTextField1.getText();
+                    update.descripcion = jTextArea1.getText();
+                    update.unidad = jTextField3.getText();
+                    update.costo = Integer.parseInt(jTextField2.getText());
+                    if (this.jComboBox1.getSelectedIndex() != 0) {
+                        update.tipoUnidad = this.jComboBox1.getSelectedIndex();
+                    }
+                    update.cantidadUnidad = Integer.parseInt(jTextField4.getText());
+
+                    this.principal.controlServicio.actualizarServicio(nuevo, update);
+
+                    actualizar();
+                }
+
+                if (boton.getName().equals("e")) {
+                    System.out.println("Click Boton Eliminar" + row + column);
+                    servicio nuevo = new servicio();
+                    nuevo.nombre = jtblListaServicios.getValueAt(row, 0).toString();
+                    nuevo.descripcion = jtblListaServicios.getValueAt(row, 1).toString();
+                    nuevo.unidad = jtblListaServicios.getValueAt(row, 2).toString();
+                    nuevo.costo = Integer.parseInt(jtblListaServicios.getValueAt(row, 3).toString());
+
+                    try {
+                        this.principal.controlServicio.eliminarServicio(nuevo);
+                    } catch (Exception ex) {
+                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    actualizar();
+                    prueba = false;
+                }
+            }
+            if (prueba) {
+                texts(evt);
+            }
+        }
+        prueba = true;
+    }//GEN-LAST:event_jtblListaServiciosMouseClicked
+
+    public void texts(java.awt.event.MouseEvent evt) {
+        clickTabla = this.jtblListaServicios.rowAtPoint(evt.getPoint());
+        String nombre = this.jtblListaServicios.getValueAt(clickTabla, 0).toString();
+        String descripcion = this.jtblListaServicios.getValueAt(clickTabla, 1).toString();
+        String unidad = this.jtblListaServicios.getValueAt(clickTabla, 2).toString();
+        String costo = this.jtblListaServicios.getValueAt(clickTabla, 3).toString();
+        String cantidadUnidad = this.jtblListaServicios.getValueAt(clickTabla, 5).toString();
+
+        this.jTextField1.setText(nombre);
+        this.jTextField2.setText(costo);
+        this.jTextField3.setText(unidad);
+        this.jTextField4.setText(cantidadUnidad);
+        this.jTextArea1.setText(descripcion);
+
+        if (jtblListaServicios.getValueAt(clickTabla, 4).toString().equals("Dia")) {
+            this.jComboBox1.setSelectedIndex(1);
+        } else if (jtblListaServicios.getValueAt(clickTabla, 4).toString().equals("Semana")) {
+            this.jComboBox1.setSelectedIndex(2);
+        } else {
+            this.jComboBox1.setSelectedIndex(3);
+        }
+    }
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
