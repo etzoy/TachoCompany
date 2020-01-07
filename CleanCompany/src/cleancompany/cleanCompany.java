@@ -7,6 +7,7 @@ package cleancompany;
 
 import BD.conexion;
 import BD.controladorCliente;
+import BD.controladorRegistroVentaServicio;
 import BD.controladorServicio;
 import java.awt.Color;
 
@@ -15,23 +16,27 @@ import java.awt.Color;
  * @author etzoy
  */
 public class cleanCompany extends javax.swing.JFrame {
-registroCliente rCliente;
-registroServicio rServicio;
-registroVentaServicio rVentaServicio=new registroVentaServicio(this);
-serviciosPorVencer rServicioPorVencer=new serviciosPorVencer(this);
-  conexion javaPostgreSQLBasic = new conexion();
- public controladorCliente controlCliente=new controladorCliente(this.javaPostgreSQLBasic);
- public controladorServicio controlServicio=new controladorServicio(this.javaPostgreSQLBasic);
-/**
+
+   
+
+    /**
      * Creates new form cleanCompany
      */
     public cleanCompany() {
-        
-  javaPostgreSQLBasic.setCredentialBD("localhost", "5432", "tachoCompany","postgres", "200815238");
+
+        javaPostgreSQLBasic.setCredentialBD("localhost", "5432", "tachoCompany", "postgres", "200815238");
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
     }
+     registroCliente rCliente ;
+    registroServicio rServicio;
+    registroVentaServicio rVentaServicio;
+    serviciosPorVencer rServicioPorVencer = new serviciosPorVencer(this);
+    conexion javaPostgreSQLBasic = new conexion();
+    public controladorCliente controlCliente = new controladorCliente(this.javaPostgreSQLBasic);
+    public controladorServicio controlServicio = new controladorServicio(this.javaPostgreSQLBasic);
+    public controladorRegistroVentaServicio controlRVentaServicio = new controladorRegistroVentaServicio(this.javaPostgreSQLBasic);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,7 +125,8 @@ serviciosPorVencer rServicioPorVencer=new serviciosPorVencer(this);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            this.rVentaServicio.setVisible(true);
+        rVentaServicio  = new registroVentaServicio(this);
+        this.rVentaServicio.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -130,12 +136,12 @@ serviciosPorVencer rServicioPorVencer=new serviciosPorVencer(this);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        rServicio= new registroServicio(this);
+        rServicio = new registroServicio(this);
         this.rServicio.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       this.rServicioPorVencer.setVisible(true);
+        this.rServicioPorVencer.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

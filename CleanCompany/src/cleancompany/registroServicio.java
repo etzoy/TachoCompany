@@ -336,15 +336,40 @@ public class registroServicio extends javax.swing.JFrame {
         nuevo.nombre = jTextField1.getText();
         nuevo.descripcion = jTextArea1.getText();
         nuevo.unidad = jTextField3.getText();
-        nuevo.costo = Integer.parseInt(jTextField2.getText());
-        nuevo.cantidadUnidad = Integer.parseInt(jTextField4.getText());
 
-        if (this.jComboBox1.getSelectedIndex() != 0) {
-            nuevo.tipoUnidad = this.jComboBox1.getSelectedIndex();
-            this.principal.controlServicio.insertServicio(nuevo);
+        if (!this.jTextField1.getText().equals("")) {
+            if (!this.jTextField2.getText().equals("")) {
+                nuevo.costo = Integer.parseInt(jTextField2.getText());
+                if (!this.jTextField4.getText().equals("")) {
+                    nuevo.cantidadUnidad = Integer.parseInt(jTextField4.getText());
 
-            actualizar();
+                    if (this.jComboBox1.getSelectedIndex() != 0) {
+                        nuevo.tipoUnidad = this.jComboBox1.getSelectedIndex();
+                        this.principal.controlServicio.insertServicio(nuevo);
+
+                        jTextField1.setText("");
+                        jTextArea1.setText("");
+                        jTextField3.setText("");
+                        jTextField2.setText("");
+                        jTextField4.setText("");
+                        jComboBox1.setSelectedIndex(0);
+                        actualizar();
+                        this.principal.rVentaServicio.llenarCombos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de unidad.", "Error!", JOptionPane.WARNING_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El campo 'Cantidad de Unidades' no puede quedarvacio.", "Error!", JOptionPane.WARNING_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El campo 'Costo' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "El campo 'Nombre' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
         }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -415,6 +440,7 @@ public class registroServicio extends javax.swing.JFrame {
                     this.principal.controlServicio.actualizarServicio(nuevo, update);
 
                     actualizar();
+                    this.principal.rVentaServicio.llenarCombos();
                 }
 
                 if (boton.getName().equals("e")) {
@@ -431,6 +457,7 @@ public class registroServicio extends javax.swing.JFrame {
                         Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     actualizar();
+                    this.principal.rVentaServicio.llenarCombos();
                     prueba = false;
                 }
             }

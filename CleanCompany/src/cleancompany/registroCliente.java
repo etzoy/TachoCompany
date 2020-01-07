@@ -245,8 +245,9 @@ public class registroCliente extends javax.swing.JFrame {
                 jTextField2.setText("");
 
                 actualizar();
+                this.principal.rVentaServicio.llenarCombos();
             } else {
-                JOptionPane.showMessageDialog(null, "El campo <strong>'telefono'</strong> no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El campo 'telefono' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "El campo 'nombre' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
@@ -298,6 +299,7 @@ public class registroCliente extends javax.swing.JFrame {
                     this.principal.controlCliente.actualizarCliente(nuevo, update);
 
                     actualizar();
+                    this.principal.rVentaServicio.llenarCombos();
                 }
                 if (boton.getName().equals("e")) {
                     System.out.println("Click Boton Eliminar" + row + column);
@@ -313,6 +315,7 @@ public class registroCliente extends javax.swing.JFrame {
                         Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     actualizar();
+                    this.principal.rVentaServicio.llenarCombos();
                     prueba = false;
                 }
 
