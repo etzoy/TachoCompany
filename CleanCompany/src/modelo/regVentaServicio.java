@@ -5,14 +5,14 @@
  */
 package modelo;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Calendar;
 
 /**
  *
  * @author LENOVO
  */
-public class registroVentaServicio {
+public class regVentaServicio {
     public int idCliente;
     public int idServicio;
     public String unidad;

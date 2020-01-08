@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class modeloTablaRegistroServicio {
     cleanCompany principal=null;
-   private registroVentaServicio rVentaServicio;
+   private regVentaServicio rVentaServicio;
    
   
     public void visualizarTabla(JTable tabla, cleanCompany principalOrigen){
@@ -50,10 +50,10 @@ public class modeloTablaRegistroServicio {
         btn_eliminar.setName("e");
 
         
-        rVentaServicio = new registroVentaServicio();
+        rVentaServicio = new regVentaServicio();
         
        try {
-          List<registroVentaServicio> list = principal.controlRVentaServicio.listaRegistrosVigentes();
+          List<regVentaServicio> list = principal.controlRVentaServicio.listaRegistrosVigentes();
        
 
         if(list.size() > 0){

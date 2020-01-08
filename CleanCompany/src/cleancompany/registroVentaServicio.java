@@ -6,12 +6,18 @@
 package cleancompany;
 
 import java.awt.Color;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import modelo.cliente;
 import modelo.modeloTablaRegistroServicio;
 import modelo.servicio;
+import modelo.regVentaServicio;
 
 /**
  *
@@ -22,6 +28,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
     cleanCompany principal = null;
     cliente cliente;
     servicio servicio;
+    int clickTabla = 0;
     modeloTablaRegistroServicio mts = new modeloTablaRegistroServicio();
 
     /**
@@ -73,6 +80,15 @@ public class registroVentaServicio extends javax.swing.JFrame {
         this.jComboBox1.addItem("Seleccione un Cliente");
         this.jComboBox2.removeAllItems();
         this.jComboBox2.addItem("Seleccione un Servicio");
+    }
+
+    public void actualizar() {
+        try {
+            mts.visualizarTabla(this.jtblRegistros, principal);
+            //mtc.fireTableDataChanged();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en la actualizacion de la base de datos");
+        }
     }
 
     /**
@@ -241,6 +257,11 @@ public class registroVentaServicio extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtblRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtblRegistrosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtblRegistros);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -408,8 +429,42 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-        this.setVisible(false);
+        //this.setVisible(false);
 // TODO add your handling code here:
+        regVentaServicio nuevo = new regVentaServicio();
+
+        if (this.jComboBox1.getSelectedIndex() != 0) {
+            if (this.jComboBox2.getSelectedIndex() != 0) {
+                if (this.rSDateChooser1.getDatoFecha() != null) {
+                    nuevo.idCliente = this.principal.controlRVentaServicio.getIdCliente(jComboBox1.getSelectedItem().toString());
+                    nuevo.idServicio = this.principal.controlRVentaServicio.getIdServicio(jComboBox2.getSelectedItem().toString());
+                    nuevo.unidad = this.jTextField5.getText();
+                    nuevo.costo = Integer.parseInt(this.jTextField6.getText());
+                    nuevo.tipoUnidad = this.jComboBox4.getSelectedIndex();
+                    nuevo.cantidadUnidad = Integer.parseInt(this.jTextField7.getText());
+                    java.sql.Date sqlDate = new java.sql.Date(this.rSDateChooser1.getDatoFecha().getTime());
+                    nuevo.fecha = sqlDate;
+                    nuevo.darleSeguimiento = this.jCheckBox1.isSelected();
+
+                    this.principal.controlRVentaServicio.insertVentaServicio(nuevo);
+                    this.jComboBox1.setSelectedIndex(0);
+                    this.jComboBox2.setSelectedIndex(0);
+                    this.jComboBox4.setSelectedIndex(0);
+                    this.jTextField5.setText("");
+                    this.jTextField6.setText("");
+                    this.jTextField7.setText("");
+                    actualizar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una Fecha.", "Error!", JOptionPane.WARNING_MESSAGE);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un Servicio.", "Error!", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un Cliente.", "Error!", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -441,23 +496,169 @@ public class registroVentaServicio extends javax.swing.JFrame {
                     servicio nuevo = new servicio();
                     nuevo = this.principal.controlRVentaServicio.getServicio(selec);
                     seleccion(nuevo);
-                } 
-            }
-        }else {
-                    this.jTextField5.setText("");
-                    this.jTextField6.setText("");
-                    this.jComboBox4.setSelectedIndex(0);
-                    this.jTextField7.setText("");
                 }
-
+            }
+        } else {
+            this.jTextField5.setText("");
+            this.jTextField6.setText("");
+            this.jComboBox4.setSelectedIndex(0);
+            this.jTextField7.setText("");
+        }
 
 
     }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jtblRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblRegistrosMouseClicked
+        // TODO add your handling code here:
+        boolean prueba = true;
+        java.sql.Date sqlDate;
+        int column = jtblRegistros.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row = evt.getY() / jtblRegistros.getRowHeight();
+
+        if (row < jtblRegistros.getRowCount() && row >= 0 && column < jtblRegistros.getColumnCount() && column >= 0) {
+            Object value = jtblRegistros.getValueAt(row, column);
+
+            if (value instanceof JButton) {
+                ((JButton) value).doClick();
+                JButton boton = (JButton) value;
+
+                if (boton.getName().equals("m")) {
+                    System.out.println("Click Boton Modificar" + row + column);
+                    regVentaServicio actual = new regVentaServicio();
+                    actual.idCliente = this.principal.controlRVentaServicio.getIdCliente(jtblRegistros.getValueAt(row, 0).toString());
+                    actual.idServicio = this.principal.controlRVentaServicio.getIdServicio(jtblRegistros.getValueAt(row, 1).toString());
+                    actual.unidad = jtblRegistros.getValueAt(row, 2).toString();
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+                    Date fechaDate = null;
+                    try {
+                        fechaDate = formato.parse(jtblRegistros.getValueAt(row, 6).toString());
+                    } catch (ParseException ex) {
+                        System.out.println(ex);
+                    }
+                    sqlDate = new java.sql.Date(fechaDate.getTime());
+                    actual.fecha = sqlDate;
+
+                    regVentaServicio update = new regVentaServicio();
+                    update.idCliente = this.principal.controlRVentaServicio.getIdCliente(jComboBox1.getSelectedItem().toString());
+                    update.idServicio = this.principal.controlRVentaServicio.getIdServicio(jComboBox2.getSelectedItem().toString());
+                    update.unidad = this.jTextField5.getText();
+                    update.costo = Integer.parseInt(this.jTextField6.getText());
+                    update.tipoUnidad = this.jComboBox4.getSelectedIndex();
+                    update.cantidadUnidad = Integer.parseInt(this.jTextField7.getText());
+                    sqlDate = new java.sql.Date(this.rSDateChooser1.getDatoFecha().getTime());
+                    update.fecha = sqlDate;
+                    update.darleSeguimiento = this.jCheckBox1.isSelected();
+
+                    this.principal.controlRVentaServicio.actualizarRegistro(actual, update);
+
+                    actualizar();
+
+                }
+                if (boton.getName().equals("e")) {
+                    System.out.println("Click Boton Eliminar" + row + column);
+                    regVentaServicio nuevo = new regVentaServicio();
+                    nuevo.idCliente = this.principal.controlRVentaServicio.getIdCliente(jtblRegistros.getValueAt(row, 0).toString());
+                    nuevo.idServicio = this.principal.controlRVentaServicio.getIdServicio(jtblRegistros.getValueAt(row, 1).toString());
+                    nuevo.unidad = jtblRegistros.getValueAt(row, 2).toString();
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+                    Date fechaDate = null;
+                    try {
+                        fechaDate = formato.parse(jtblRegistros.getValueAt(row, 6).toString());
+                    } catch (ParseException ex) {
+                        System.out.println(ex);
+                    }
+                    sqlDate = new java.sql.Date(fechaDate.getTime());
+                    nuevo.fecha = sqlDate;
+
+                    try {
+                        this.principal.controlRVentaServicio.eliminarRegistro(nuevo);
+                    } catch (Exception ex) {
+                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    actualizar();
+
+                    prueba = false;
+                }
+
+            }
+            if (prueba) {
+                texts(evt);
+            }
+
+        }
+
+        prueba = true;
+
+    }//GEN-LAST:event_jtblRegistrosMouseClicked
     private void seleccion(servicio actual) {
         this.jTextField5.setText(actual.unidad);
         this.jTextField6.setText(Integer.toString(actual.costo));
         this.jComboBox4.setSelectedIndex(actual.tipoUnidad);
         this.jTextField7.setText(String.valueOf(actual.cantidadUnidad));
+    }
+
+    public void texts(java.awt.event.MouseEvent evt) {
+
+        clickTabla = this.jtblRegistros.rowAtPoint(evt.getPoint());
+        String unidad = this.jtblRegistros.getValueAt(clickTabla, 2).toString();
+        String costo = this.jtblRegistros.getValueAt(clickTabla, 3).toString();
+        String cantidadUnidades = this.jtblRegistros.getValueAt(clickTabla, 5).toString();
+        this.jComboBox1.setSelectedIndex(busquedaClient(this.jtblRegistros.getValueAt(clickTabla, 0).toString()));
+        this.jComboBox2.setSelectedIndex(busquedaServ(this.jtblRegistros.getValueAt(clickTabla, 1).toString()));
+
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
+        try {
+            fechaDate = formato.parse(this.jtblRegistros.getValueAt(clickTabla, 6).toString());
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+
+        this.jTextField5.setText(unidad);
+        this.jTextField6.setText(costo);
+        this.jTextField7.setText(cantidadUnidades);
+
+        if (jtblRegistros.getValueAt(clickTabla, 4).toString().equals("Dia")) {
+            this.jComboBox4.setSelectedIndex(1);
+        } else if (jtblRegistros.getValueAt(clickTabla, 4).toString().equals("Semana")) {
+            this.jComboBox4.setSelectedIndex(2);
+        } else {
+            this.jComboBox4.setSelectedIndex(3);
+        }
+        this.rSDateChooser1.setDatoFecha(fechaDate);
+        if (this.jtblRegistros.getValueAt(clickTabla, 7).toString().equals("true")) {
+            this.jCheckBox1.setSelected(true);
+        } else {
+            this.jCheckBox1.setSelected(false);
+        }
+
+    }
+
+    public int busquedaClient(String cliente) {
+        int index = 0;
+        int count = this.jComboBox1.getItemCount();
+        for (int i = 0; i <= count; i++) {
+            if (this.jComboBox1.getItemAt(i).toString().equals(cliente)) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
+
+    public int busquedaServ(String servicio) {
+        int index = 0;
+        int count = this.jComboBox2.getItemCount();
+        for (int i = 0; i <= count; i++) {
+            if (this.jComboBox2.getItemAt(i).toString().equals(servicio)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
     /**
      * @param args the command line arguments
