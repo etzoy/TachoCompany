@@ -440,7 +440,11 @@ public class registroServicio extends javax.swing.JFrame {
                     this.principal.controlServicio.actualizarServicio(nuevo, update);
 
                     actualizar();
-                    this.principal.rVentaServicio.llenarCombos();
+                    try {
+                        this.principal.rVentaServicio.llenarCombos();
+                    } catch (Exception ex) {
+                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
 
                 if (boton.getName().equals("e")) {
@@ -457,7 +461,11 @@ public class registroServicio extends javax.swing.JFrame {
                         Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     actualizar();
-                    this.principal.rVentaServicio.llenarCombos();
+                    try {
+                        this.principal.rVentaServicio.llenarCombos();
+                    } catch (Exception ex) {
+                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     prueba = false;
                 }
             }

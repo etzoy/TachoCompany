@@ -39,6 +39,7 @@ public class registroCliente extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.jTextField2.setDocument(new mascara());
     }
 
     /**
@@ -146,8 +147,8 @@ public class registroCliente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,8 +183,8 @@ public class registroCliente extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(28, 28, 28)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +246,12 @@ public class registroCliente extends javax.swing.JFrame {
                 jTextField2.setText("");
 
                 actualizar();
-                this.principal.rVentaServicio.llenarCombos();
+
+                try {
+                    this.principal.rVentaServicio.llenarCombos();
+                } catch (Exception ex) {
+                    Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "El campo 'telefono' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
             }
@@ -299,7 +305,11 @@ public class registroCliente extends javax.swing.JFrame {
                     this.principal.controlCliente.actualizarCliente(nuevo, update);
 
                     actualizar();
-                    this.principal.rVentaServicio.llenarCombos();
+                    try {
+                        this.principal.rVentaServicio.llenarCombos();
+                    } catch (Exception ex) {
+                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 if (boton.getName().equals("e")) {
                     System.out.println("Click Boton Eliminar" + row + column);
@@ -315,7 +325,12 @@ public class registroCliente extends javax.swing.JFrame {
                         Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     actualizar();
-                    this.principal.rVentaServicio.llenarCombos();
+                    try {
+                        this.principal.rVentaServicio.llenarCombos();
+                    } catch (Exception ex) {
+                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     prueba = false;
                 }
 

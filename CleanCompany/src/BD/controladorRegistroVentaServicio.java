@@ -90,7 +90,7 @@ public class controladorRegistroVentaServicio {
 
     public void eliminarRegistro(regVentaServicio delete) {
 
-        String SQL = "DELETE FROM \"cleanCompany\".\"ProgramacionServicio\" "
+        String SQL = "UPDATE  \"cleanCompany\".\"ProgramacionServicio\" SET eliminado = '1'"
                 + "	WHERE \"idServicio\"= '" + delete.idServicio + "' and \"idCliente\" = '" + delete.idCliente + "' and \"unidadCostoServicio\" = '" + delete.unidad
                 + "' and fecha='" + delete.fecha + "'";
 
@@ -106,7 +106,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public List<regVentaServicio> listaRegistrosVigentes() {
-        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\"";
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0')";
 
         java.util.List<regVentaServicio> listaRegistros = null;
 
@@ -143,7 +143,7 @@ public class controladorRegistroVentaServicio {
 
     public String cliente(int idCliente) {
 
-        String SQL = "SELECT nombre FROM \"cleanCompany\".cliente WHERE (\"idCliente\" = '" + idCliente + "')";
+        String SQL = "SELECT nombre FROM \"cleanCompany\".cliente WHERE (eliminado = '0' and \"idCliente\" = '" + idCliente + "')";
         ResultSet rset = null;
         try {
             Connection conn = conexionPostgres.connectDatabase();
@@ -161,7 +161,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public servicio getServicio(String nombreServ) {
-        String SQL = "SELECT * FROM \"cleanCompany\".servicio WHERE ( \"nombre\" = '" + nombreServ + "')";
+        String SQL = "SELECT * FROM \"cleanCompany\".servicio WHERE ( eliminado = '0' and \"nombre\" = '" + nombreServ + "')";
 
         servicio p = null;
         ResultSet rset = null;
@@ -192,7 +192,7 @@ public class controladorRegistroVentaServicio {
 
     public String servicio(int idServicio) {
 
-        String SQL = "SELECT * FROM \"cleanCompany\".servicio WHERE ( \"idServicio\" = '" + idServicio + "')";
+        String SQL = "SELECT * FROM \"cleanCompany\".servicio WHERE ( eliminado =  '0' and \"idServicio\" = '" + idServicio + "')";
 
         ResultSet rset = null;
         try {
@@ -213,7 +213,7 @@ public class controladorRegistroVentaServicio {
 
     public int getIdCliente(String nombre) {
         int id = 0;
-        String SQL = "SELECT \"idCliente\" FROM \"cleanCompany\".cliente WHERE ( nombre = '" + nombre + "')";
+        String SQL = "SELECT \"idCliente\" FROM \"cleanCompany\".cliente WHERE ( eliminado= '0' and nombre = '" + nombre + "')";
         ResultSet rset = null;
         try {
             Connection conn = conexionPostgres.connectDatabase();
@@ -232,7 +232,7 @@ public class controladorRegistroVentaServicio {
 
     public int getIdServicio(String nombre) {
         int id = 0;
-        String SQL = "SELECT * FROM \"cleanCompany\".servicio WHERE ( nombre = '" + nombre + "')";
+        String SQL = "SELECT * FROM \"cleanCompany\".servicio WHERE ( eliminado='0' and nombre = '" + nombre + "')";
 
         ResultSet rset = null;
         try {

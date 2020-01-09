@@ -17,8 +17,6 @@ import java.awt.Color;
  */
 public class cleanCompany extends javax.swing.JFrame {
 
-   
-
     /**
      * Creates new form cleanCompany
      */
@@ -28,11 +26,15 @@ public class cleanCompany extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
+        rServicioPorVencer = new serviciosPorVencer(this);
+        rVentaServicio = new registroVentaServicio(this);
+        rCliente = new registroCliente(this);
+        rServicio = new registroServicio(this);
     }
-     registroCliente rCliente ;
+    registroCliente rCliente;
     registroServicio rServicio;
     registroVentaServicio rVentaServicio;
-    serviciosPorVencer rServicioPorVencer = new serviciosPorVencer(this);
+    serviciosPorVencer rServicioPorVencer;
     conexion javaPostgreSQLBasic = new conexion();
     public controladorCliente controlCliente = new controladorCliente(this.javaPostgreSQLBasic);
     public controladorServicio controlServicio = new controladorServicio(this.javaPostgreSQLBasic);
@@ -125,18 +127,18 @@ public class cleanCompany extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        rVentaServicio  = new registroVentaServicio(this);
+
         this.rVentaServicio.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        rCliente = new registroCliente(this);
+
         rCliente.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        rServicio = new registroServicio(this);
+
         this.rServicio.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 

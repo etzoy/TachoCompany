@@ -85,7 +85,7 @@ public class controladorServicio {
 
     public void eliminarServicio(servicio servicio) {
 
-        String SQL = "DELETE FROM \"cleanCompany\".servicio WHERE nombre='" + servicio.nombre
+        String SQL = "UPDATE \"cleanCompany\".servicio SET eliminado = '1' WHERE nombre='" + servicio.nombre
                 + "' and descripcion='" + servicio.descripcion + "' and \"unidadCostoServicio\"='" + servicio.unidad
                 + "' and \"valorCostoServicio\"='" + servicio.costo + "'";
 
@@ -103,7 +103,7 @@ public class controladorServicio {
     }
 
     public List<servicio> listaServiciosVigentes() {
-        String SQL = "SELECT * FROM \"cleanCompany\".servicio";
+        String SQL = "SELECT * FROM \"cleanCompany\".servicio WHERE (eliminado = '0')";
 
         java.util.List<servicio> listaServicios = null;
         servicio p;

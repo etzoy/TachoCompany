@@ -64,8 +64,8 @@ public class controladorCliente {
  
             pstmt.setString(1, actor.nombre);
             pstmt.setString(2, actor.descripcion);
-            pstmt.setString(3, actor.direccion);
-            pstmt.setString(4, actor.telefono);
+            pstmt.setString(3, actor.telefono);
+            pstmt.setString(4, actor.direccion);
  
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows 
@@ -110,7 +110,7 @@ public class controladorCliente {
    } 
    
    public void eliminarCliente(cliente client) throws Exception{
-       String SQL = "DELETE FROM \"cleanCompany\".cliente WHERE nombre='"+client.nombre
+       String SQL = "UPDATE \"cleanCompany\".cliente SET eliminado = '1' WHERE nombre='"+client.nombre
                +"' and descripcion='"+client.descripcion+"' and telefono='"+client.telefono
                +"' and direccion='"+client.direccion+"'" ;
        
@@ -130,7 +130,7 @@ public class controladorCliente {
    }
   
    public List<cliente> listaClientesVigentes (){
-       String SQL = "SELECT * FROM \"cleanCompany\".cliente";
+       String SQL = "SELECT * FROM \"cleanCompany\".cliente WHERE (eliminado = '0')";
        
         
         java.util.List<cliente> listaClientes = null;
