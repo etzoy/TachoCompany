@@ -55,7 +55,7 @@ public class modeloTablaCliente{
         
        try {
           List<cliente> list = principal.controlCliente.listaClientesVigentes();
-       
+           if (list != null && !list.isEmpty()) {
 
         if(list.size() > 0){
             for(int i=0; i<list.size(); i++){
@@ -69,10 +69,12 @@ public class modeloTablaCliente{
                 fila[5] = btn_eliminar;
                 dt.addRow(fila);
             }
-            tabla.setModel(dt);
+
+        }
+       }
+                   tabla.setModel(dt);
             tabla.setRowHeight(35);
             tabla.setRowSorter(sorter);
-        }
         } catch (Exception ex) {
            Logger.getLogger(modeloTablaCliente.class.getName()).log(Level.SEVERE, null, ex);
        }

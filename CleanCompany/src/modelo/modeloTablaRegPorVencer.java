@@ -62,44 +62,43 @@ public class modeloTablaRegPorVencer {
             List<regVentaServicio> list = principal.controlRVentaServicio.listaRegistrosVigentes();
             if (list != null && !list.isEmpty()) {
                 Collections.sort(list, new Comparator<regVentaServicio>() {
-                public int compare(regVentaServicio p1, regVentaServicio p2) {
-                    return p1.fecha.compareTo(p2.fecha);
-                }
-            });
-            
-
-            if (list.size() > 0) {
-                for (int i = 0; i < list.size(); i++) {
-                    Object fila[] = new Object[10];
-                    rVentaServicio = list.get(i);
-                    fila[0] = principal.controlRVentaServicio.cliente(rVentaServicio.idCliente);
-                    fila[1] = principal.controlRVentaServicio.servicio(rVentaServicio.idServicio);
-                    fila[2] = rVentaServicio.unidad;
-                    fila[3] = rVentaServicio.costo;
-                    if (rVentaServicio.tipoUnidad == 1) {
-                        fila[4] = "Dia";
-                    } else if (rVentaServicio.tipoUnidad == 2) {
-                        fila[4] = "Semana";
-                    } else {
-                        fila[4] = "Mes";
+                    public int compare(regVentaServicio p1, regVentaServicio p2) {
+                        return p1.fecha.compareTo(p2.fecha);
                     }
-                    fila[5] = rVentaServicio.cantidadUnidad;
-                    fila[6] = rVentaServicio.fecha;
-                    if (rVentaServicio.darleSeguimiento) {
-                        fila[7] = "Si";
-                    } else {
-                        fila[7] = "No";
-                    }
-                    fila[8] = btn_modificar;
-                    fila[9] = btn_eliminar;
-                    dt.addRow(fila);
-                }
-                tabla.setModel(dt);
-                tabla.setRowHeight(35);
-                tabla.setRowSorter(sorter);
+                });
 
+                if (list.size() > 0) {
+                    for (int i = 0; i < list.size(); i++) {
+                        Object fila[] = new Object[10];
+                        rVentaServicio = list.get(i);
+                        fila[0] = principal.controlRVentaServicio.cliente(rVentaServicio.idCliente);
+                        fila[1] = principal.controlRVentaServicio.servicio(rVentaServicio.idServicio);
+                        fila[2] = rVentaServicio.unidad;
+                        fila[3] = rVentaServicio.costo;
+                        if (rVentaServicio.tipoUnidad == 1) {
+                            fila[4] = "Dia";
+                        } else if (rVentaServicio.tipoUnidad == 2) {
+                            fila[4] = "Semana";
+                        } else {
+                            fila[4] = "Mes";
+                        }
+                        fila[5] = rVentaServicio.cantidadUnidad;
+                        fila[6] = rVentaServicio.fecha;
+                        if (rVentaServicio.darleSeguimiento) {
+                            fila[7] = "Si";
+                        } else {
+                            fila[7] = "No";
+                        }
+                        fila[8] = btn_modificar;
+                        fila[9] = btn_eliminar;
+                        dt.addRow(fila);
+                    }
+
+                }
             }
-        }
+            tabla.setModel(dt);
+            tabla.setRowHeight(35);
+            tabla.setRowSorter(sorter);
         } catch (Exception ex) {
             Logger.getLogger(modeloTablaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
