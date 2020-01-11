@@ -6,6 +6,8 @@
 package cleancompany;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,11 +42,21 @@ public class registroVentaServicio extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
         llenarCombos();
-        try {
-            mts.visualizarTabla(this.jtblRegistros, principal);
-        } catch (Exception ex) {
-            Logger.getLogger(registroServicio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.setTitle("Registro de Venta");
+//        try {
+//            mts.visualizarTabla(this.jtblRegistros, principal);
+//        } catch (Exception ex) {
+//            Logger.getLogger(registroServicio.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                visiblePrincipal();
+            }
+        });
+    }
+
+    public void visiblePrincipal() {
+        this.principal.setVisible(true);
     }
 
     public void llenarCombos() {
@@ -83,12 +95,12 @@ public class registroVentaServicio extends javax.swing.JFrame {
     }
 
     public void actualizar() {
-        try {
-            mts.visualizarTabla(this.jtblRegistros, principal);
-            //mtc.fireTableDataChanged();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error en la actualizacion de la base de datos");
-        }
+//        try {
+//            mts.visualizarTabla(this.jtblRegistros, principal);
+//            //mtc.fireTableDataChanged();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Error en la actualizacion de la base de datos");
+//        }
     }
 
     /**
@@ -131,11 +143,9 @@ public class registroVentaServicio extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         rSDateChooser1 = new rojeru_san.componentes.RSDateChooser();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtblRegistros = new javax.swing.JTable();
         jLabel17 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel18 = new javax.swing.JLabel();
 
         jLabel6.setText("Seccion Mantenimiento:");
 
@@ -163,20 +173,28 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
         jLabel9.setText("Costo de servicio:");
 
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cliente:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 30, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un Cliente" }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 27, 320, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Nuevo");
+        jButton1.setToolTipText("Crea un nuevo cliente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 26, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Servicio:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 60, -1, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un Servicio" }));
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
@@ -184,229 +202,119 @@ public class registroVentaServicio extends javax.swing.JFrame {
                 jComboBox2ItemStateChanged(evt);
             }
         });
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 61, 320, -1));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Nuevo");
+        jButton2.setToolTipText("Crea un nuevo servicio");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 60, -1, -1));
 
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 271, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Seccion Mantenimiento:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Tipo de unidades");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Valor por unidad:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo Unidad", "Dia", "Semana", "Mes" }));
+        getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 271, -1));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 271, -1));
 
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
             }
         });
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 266, -1));
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Cantidad de unides");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Unidad:");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Costo de servicio:");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Seccion finalizacion de Trabajo:");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Fecha finalizacion");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Cancelar");
+        jButton4.setToolTipText("Cancelar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 601, -1, -1));
 
-        jButton5.setText("Aceptar");
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Crear");
+        jButton5.setToolTipText("Crea una Venta de algun servicio");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
-
-        jtblRegistros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jtblRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtblRegistrosMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jtblRegistros);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 601, -1, -1));
+        getContentPane().add(rSDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, -1));
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Darle Seguimiento");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Si / No");
+        jCheckBox1.setToolTipText("Seleccione si quiere darle seguimiento");
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox2, 0, 320, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jButton2)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(jLabel13))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel10)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel15)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel16))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(rSDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jButton4)
-                                        .addGap(69, 69, 69)
-                                        .addComponent(jButton5))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(jCheckBox1)))))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
-                .addGap(38, 38, 38)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGap(47, 47, 47)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jCheckBox1))
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addGap(67, 67, 67))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/servicio1.png"))); // NOI18N
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -453,6 +361,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
                     this.jTextField5.setText("");
                     this.jTextField6.setText("");
                     this.jTextField7.setText("");
+                    
                     actualizar();
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una Fecha.", "Error!", JOptionPane.WARNING_MESSAGE);
@@ -468,8 +377,8 @@ public class registroVentaServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        registroCliente rCliente = new registroCliente(principal);
-        rCliente.setVisible(true);
+//        registroCliente rCliente = new registroCliente(principal);
+        this.principal.rCliente.setVisible(true);
 
         //llenarCombos();
         // TODO add your handling code here:
@@ -484,6 +393,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.setVisible(false);
+        this.principal.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -508,90 +418,40 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
-    private void jtblRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblRegistrosMouseClicked
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
         // TODO add your handling code here:
-        boolean prueba = true;
-        java.sql.Date sqlDate;
-        int column = jtblRegistros.getColumnModel().getColumnIndexAtX(evt.getX());
-        int row = evt.getY() / jtblRegistros.getRowHeight();
-
-        if (row < jtblRegistros.getRowCount() && row >= 0 && column < jtblRegistros.getColumnCount() && column >= 0) {
-            Object value = jtblRegistros.getValueAt(row, column);
-
-            if (value instanceof JButton) {
-                ((JButton) value).doClick();
-                JButton boton = (JButton) value;
-
-                if (boton.getName().equals("m")) {
-                    System.out.println("Click Boton Modificar" + row + column);
-                    regVentaServicio actual = new regVentaServicio();
-                    actual.idCliente = this.principal.controlRVentaServicio.getIdCliente(jtblRegistros.getValueAt(row, 0).toString());
-                    actual.idServicio = this.principal.controlRVentaServicio.getIdServicio(jtblRegistros.getValueAt(row, 1).toString());
-                    actual.unidad = jtblRegistros.getValueAt(row, 2).toString();
-                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-
-                    Date fechaDate = null;
-                    try {
-                        fechaDate = formato.parse(jtblRegistros.getValueAt(row, 6).toString());
-                    } catch (ParseException ex) {
-                        System.out.println(ex);
-                    }
-                    sqlDate = new java.sql.Date(fechaDate.getTime());
-                    actual.fecha = sqlDate;
-
-                    regVentaServicio update = new regVentaServicio();
-                    update.idCliente = this.principal.controlRVentaServicio.getIdCliente(jComboBox1.getSelectedItem().toString());
-                    update.idServicio = this.principal.controlRVentaServicio.getIdServicio(jComboBox2.getSelectedItem().toString());
-                    update.unidad = this.jTextField5.getText();
-                    update.costo = Integer.parseInt(this.jTextField6.getText());
-                    update.tipoUnidad = this.jComboBox4.getSelectedIndex();
-                    update.cantidadUnidad = Integer.parseInt(this.jTextField7.getText());
-                    sqlDate = new java.sql.Date(this.rSDateChooser1.getDatoFecha().getTime());
-                    update.fecha = sqlDate;
-                    update.darleSeguimiento = this.jCheckBox1.isSelected();
-
-                    this.principal.controlRVentaServicio.actualizarRegistro(actual, update);
-
-                    actualizar();
-
-                }
-                if (boton.getName().equals("e")) {
-                    System.out.println("Click Boton Eliminar" + row + column);
-                    regVentaServicio nuevo = new regVentaServicio();
-                    nuevo.idCliente = this.principal.controlRVentaServicio.getIdCliente(jtblRegistros.getValueAt(row, 0).toString());
-                    nuevo.idServicio = this.principal.controlRVentaServicio.getIdServicio(jtblRegistros.getValueAt(row, 1).toString());
-                    nuevo.unidad = jtblRegistros.getValueAt(row, 2).toString();
-                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-
-                    Date fechaDate = null;
-                    try {
-                        fechaDate = formato.parse(jtblRegistros.getValueAt(row, 6).toString());
-                    } catch (ParseException ex) {
-                        System.out.println(ex);
-                    }
-                    sqlDate = new java.sql.Date(fechaDate.getTime());
-                    nuevo.fecha = sqlDate;
-
-                    try {
-                        this.principal.controlRVentaServicio.eliminarRegistro(nuevo);
-                    } catch (Exception ex) {
-                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    actualizar();
-
-                    prueba = false;
-                }
-
-            }
-            if (prueba) {
-                texts(evt);
-            }
-
+        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 64
+                || evt.getKeyChar() >= 91 && evt.getKeyChar() <= 96
+                || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
+                || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+                || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255) {
+            getToolkit().beep();
+            evt.consume();
         }
+    }//GEN-LAST:event_jTextField5KeyTyped
 
-        prueba = true;
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+        // TODO add your handling code here:
+       char valid = evt.getKeyChar();
+        if (Character.isLetter(valid)) {
+            getToolkit().beep();
+            evt.consume();
 
-    }//GEN-LAST:event_jtblRegistrosMouseClicked
+            //JOptionPane.showMessageDialog(this, "Ingresar Solo Numeros");
+        }
+    }//GEN-LAST:event_jTextField6KeyTyped
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+        // TODO add your handling code here:
+        char valid = evt.getKeyChar();
+
+        if (Character.isLetter(valid)) {
+            getToolkit().beep();
+            evt.consume();
+
+            //JOptionPane.showMessageDialog(this, "Ingresar Solo Numeros");
+        }
+    }//GEN-LAST:event_jTextField7KeyTyped
     private void seleccion(servicio actual) {
         this.jTextField5.setText(actual.unidad);
         this.jTextField6.setText(Integer.toString(actual.costo));
@@ -599,42 +459,42 @@ public class registroVentaServicio extends javax.swing.JFrame {
         this.jTextField7.setText(String.valueOf(actual.cantidadUnidad));
     }
 
-    public void texts(java.awt.event.MouseEvent evt) {
-
-        clickTabla = this.jtblRegistros.rowAtPoint(evt.getPoint());
-        String unidad = this.jtblRegistros.getValueAt(clickTabla, 2).toString();
-        String costo = this.jtblRegistros.getValueAt(clickTabla, 3).toString();
-        String cantidadUnidades = this.jtblRegistros.getValueAt(clickTabla, 5).toString();
-        this.jComboBox1.setSelectedIndex(busquedaClient(this.jtblRegistros.getValueAt(clickTabla, 0).toString()));
-        this.jComboBox2.setSelectedIndex(busquedaServ(this.jtblRegistros.getValueAt(clickTabla, 1).toString()));
-
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(this.jtblRegistros.getValueAt(clickTabla, 6).toString());
-        } catch (ParseException ex) {
-            System.out.println(ex);
-        }
-
-        this.jTextField5.setText(unidad);
-        this.jTextField6.setText(costo);
-        this.jTextField7.setText(cantidadUnidades);
-
-        if (jtblRegistros.getValueAt(clickTabla, 4).toString().equals("Dia")) {
-            this.jComboBox4.setSelectedIndex(1);
-        } else if (jtblRegistros.getValueAt(clickTabla, 4).toString().equals("Semana")) {
-            this.jComboBox4.setSelectedIndex(2);
-        } else {
-            this.jComboBox4.setSelectedIndex(3);
-        }
-        this.rSDateChooser1.setDatoFecha(fechaDate);
-        if (this.jtblRegistros.getValueAt(clickTabla, 7).toString().equals("true")) {
-            this.jCheckBox1.setSelected(true);
-        } else {
-            this.jCheckBox1.setSelected(false);
-        }
-
-    }
+//    public void texts(java.awt.event.MouseEvent evt) {
+//
+//        clickTabla = this.jtblRegistros.rowAtPoint(evt.getPoint());
+//        String unidad = this.jtblRegistros.getValueAt(clickTabla, 2).toString();
+//        String costo = this.jtblRegistros.getValueAt(clickTabla, 3).toString();
+//        String cantidadUnidades = this.jtblRegistros.getValueAt(clickTabla, 5).toString();
+//        this.jComboBox1.setSelectedIndex(busquedaClient(this.jtblRegistros.getValueAt(clickTabla, 0).toString()));
+//        this.jComboBox2.setSelectedIndex(busquedaServ(this.jtblRegistros.getValueAt(clickTabla, 1).toString()));
+//
+//        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+//        Date fechaDate = null;
+//        try {
+//            fechaDate = formato.parse(this.jtblRegistros.getValueAt(clickTabla, 6).toString());
+//        } catch (ParseException ex) {
+//            System.out.println(ex);
+//        }
+//
+//        this.jTextField5.setText(unidad);
+//        this.jTextField6.setText(costo);
+//        this.jTextField7.setText(cantidadUnidades);
+//
+//        if (jtblRegistros.getValueAt(clickTabla, 4).toString().equals("Dia")) {
+//            this.jComboBox4.setSelectedIndex(1);
+//        } else if (jtblRegistros.getValueAt(clickTabla, 4).toString().equals("Semana")) {
+//            this.jComboBox4.setSelectedIndex(2);
+//        } else {
+//            this.jComboBox4.setSelectedIndex(3);
+//        }
+//        this.rSDateChooser1.setDatoFecha(fechaDate);
+//        if (this.jtblRegistros.getValueAt(clickTabla, 7).toString().equals("true")) {
+//            this.jCheckBox1.setSelected(true);
+//        } else {
+//            this.jCheckBox1.setSelected(false);
+//        }
+//
+//    }
 
     public int busquedaClient(String cliente) {
         int index = 0;
@@ -683,6 +543,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -691,15 +552,12 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTable jtblRegistros;
     private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     // End of variables declaration//GEN-END:variables
 }

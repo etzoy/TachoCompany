@@ -17,6 +17,7 @@ import cleancompany.cleanCompany;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.table.TableRowSorter;
 
         
 public class modeloTablaCliente{
@@ -32,6 +33,7 @@ public class modeloTablaCliente{
                 return false;
             }
         };    
+        TableRowSorter sorter = new TableRowSorter(dt);
         dt.addColumn("Nombre");
         dt.addColumn("Descripcion");
         dt.addColumn("Telefono");
@@ -42,9 +44,11 @@ public class modeloTablaCliente{
         JButton btn_modificar = new JButton();
         btn_modificar.setIcon(new ImageIcon("update.png"));
         btn_modificar.setName("m");
+        btn_modificar.setToolTipText("Modifica el Cliente Seleccionado");
         JButton btn_eliminar = new JButton();
         btn_eliminar.setIcon(new ImageIcon("delete.png"));
         btn_eliminar.setName("e");
+        btn_eliminar.setToolTipText("Elimina el Cliente Seleccionado");
 
         
         cliente = new cliente();
@@ -67,6 +71,7 @@ public class modeloTablaCliente{
             }
             tabla.setModel(dt);
             tabla.setRowHeight(35);
+            tabla.setRowSorter(sorter);
         }
         } catch (Exception ex) {
            Logger.getLogger(modeloTablaCliente.class.getName()).log(Level.SEVERE, null, ex);

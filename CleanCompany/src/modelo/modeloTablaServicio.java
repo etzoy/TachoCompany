@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -32,6 +33,8 @@ public class modeloTablaServicio {
                 return false;
             }
         };    
+        
+        TableRowSorter sorter = new TableRowSorter(dt);
         dt.addColumn("Nombre");
         dt.addColumn("Descripcion");
         dt.addColumn("Unidad");
@@ -44,9 +47,11 @@ public class modeloTablaServicio {
         JButton btn_modificar = new JButton();
         btn_modificar.setIcon(new ImageIcon("update.png"));
         btn_modificar.setName("m");
+        btn_modificar.setToolTipText("Modifica el Servicio Seleccionado");
         JButton btn_eliminar = new JButton();
         btn_eliminar.setIcon(new ImageIcon("delete.png"));
         btn_eliminar.setName("e");
+        btn_eliminar.setToolTipText("Elimina el Servicio Seleccionado");
 
         
         servicio = new servicio();
@@ -77,6 +82,7 @@ public class modeloTablaServicio {
             }
             tabla.setModel(dt);
             tabla.setRowHeight(35);
+            tabla.setRowSorter(sorter);
         }
         } catch (Exception ex) {
            Logger.getLogger(modeloTablaCliente.class.getName()).log(Level.SEVERE, null, ex);

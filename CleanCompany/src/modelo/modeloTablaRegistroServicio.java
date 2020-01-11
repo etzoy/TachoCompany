@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -31,6 +32,7 @@ public class modeloTablaRegistroServicio {
                 return false;
             }
         };    
+        TableRowSorter sorter = new TableRowSorter(dt);
         dt.addColumn("Cliente");
         dt.addColumn("Servicio");
         dt.addColumn("Unidad");
@@ -45,9 +47,11 @@ public class modeloTablaRegistroServicio {
         JButton btn_modificar = new JButton();
         btn_modificar.setIcon(new ImageIcon("update.png"));
         btn_modificar.setName("m");
+        btn_modificar.setToolTipText("Modifica la Venta");
         JButton btn_eliminar = new JButton();
         btn_eliminar.setIcon(new ImageIcon("delete.png"));
         btn_eliminar.setName("e");
+        btn_eliminar.setToolTipText("Elimina la Venta");
 
         
         rVentaServicio = new regVentaServicio();
@@ -73,13 +77,19 @@ public class modeloTablaRegistroServicio {
                 }
                 fila[5] = rVentaServicio.cantidadUnidad;
                 fila[6] = rVentaServicio.fecha;
-                fila[7] = rVentaServicio.darleSeguimiento;
+                if (rVentaServicio.darleSeguimiento) {
+                    fila[7] = "Si";
+                } else {
+                    fila[7] = "No";
+                }
+          
                 fila[8] = btn_modificar;
                 fila[9] = btn_eliminar;
                 dt.addRow(fila);
             }
             tabla.setModel(dt);
             tabla.setRowHeight(35);
+            tabla.setRowSorter(sorter);
         }
         } catch (Exception ex) {
            Logger.getLogger(modeloTablaCliente.class.getName()).log(Level.SEVERE, null, ex);

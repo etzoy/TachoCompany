@@ -23,7 +23,6 @@ import modelo.servicio;
 public class controladorRegistroVentaServicio {
 
     conexion conexionPostgres = null;
-    String nombre;
     int idCliente;
     int idServicio;
 
@@ -69,12 +68,11 @@ public class controladorRegistroVentaServicio {
     }
 
     public void actualizarRegistro(regVentaServicio actual, regVentaServicio update) {
-        String SQL = "UPDATE \"cleanCompany\".\"ProgramacionServicio\"\n" +
-"	SET \"idServicio\"='"+update.idServicio+"' , \"idCliente\"='"+update.idCliente+"' , \"unidadCostoServicio\"='"+update.unidad+"', \"valorCostoServicio\"='"+update.costo+"', \"tipoUnidadmantenimiento\"='"+update.tipoUnidad+"', \"cantidadTiempoMantenimiento\"='"+update.cantidadUnidad+"', fecha='"+update.fecha+"', \"darleSeguimiento\"='"+update.darleSeguimiento+"'" +
-"        WHERE \"idServicio\"= '" + actual.idServicio + "' and \"idCliente\" = '" + actual.idCliente + "' and \"unidadCostoServicio\" = '" + actual.unidad
+        String SQL = "UPDATE \"cleanCompany\".\"ProgramacionServicio\"\n"
+                + "	SET \"idServicio\"='" + update.idServicio + "' , \"idCliente\"='" + update.idCliente + "' , \"unidadCostoServicio\"='" + update.unidad + "', \"valorCostoServicio\"='" + update.costo + "', \"tipoUnidadmantenimiento\"='" + update.tipoUnidad + "', \"cantidadTiempoMantenimiento\"='" + update.cantidadUnidad + "', fecha='" + update.fecha + "', \"darleSeguimiento\"='" + update.darleSeguimiento + "'"
+                + "        WHERE \"idServicio\"= '" + actual.idServicio + "' and \"idCliente\" = '" + actual.idCliente + "' and \"unidadCostoServicio\" = '" + actual.unidad
                 + "' and fecha='" + actual.fecha + "'";
-        
-        
+
         ResultSet rset = null;
         try {
             Connection conn = conexionPostgres.connectDatabase();
@@ -142,6 +140,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public String cliente(int idCliente) {
+        String nombre = null;
 
         String SQL = "SELECT nombre FROM \"cleanCompany\".cliente WHERE (eliminado = '0' and \"idCliente\" = '" + idCliente + "')";
         ResultSet rset = null;
@@ -158,6 +157,7 @@ public class controladorRegistroVentaServicio {
 
         }
         return nombre;
+
     }
 
     public servicio getServicio(String nombreServ) {
@@ -191,7 +191,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public String servicio(int idServicio) {
-
+        String nombre = null;
         String SQL = "SELECT * FROM \"cleanCompany\".servicio WHERE ( eliminado =  '0' and \"idServicio\" = '" + idServicio + "')";
 
         ResultSet rset = null;

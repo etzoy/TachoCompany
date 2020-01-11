@@ -6,6 +6,8 @@
 package cleancompany;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -23,6 +25,7 @@ public class registroCliente extends javax.swing.JFrame {
     modeloTablaCliente mtc = new modeloTablaCliente();
 
     int clickTabla = 0;
+    cliente nuevo = new cliente();
 
     /**
      * Creates new form registroCliente
@@ -33,6 +36,8 @@ public class registroCliente extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
+        this.setTitle("Registro de Clientes");
+        this.botonModificar.setVisible(false);
         //this.jtblListaClientes.setModel(mtc);
         try {
             mtc.visualizarTabla(this.jtblListaClientes, principal);
@@ -40,6 +45,17 @@ public class registroCliente extends javax.swing.JFrame {
             Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.jTextField2.setDocument(new mascara());
+
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                visiblePrincipal();
+            }
+        });
+    }
+
+    public void visiblePrincipal() {
+        this.principal.setVisible(true);
+        this.botonModificar.setVisible(false);
     }
 
     /**
@@ -65,30 +81,45 @@ public class registroCliente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtblListaClientes = new javax.swing.JTable();
+        botonModificar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Cancelar");
+        jButton4.setToolTipText("Cancelar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Crear");
+        jButton5.setToolTipText("Crea un nuevo cliente");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 86, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 29, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Descripcion:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 79, -1, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 236, 271, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 61, 284, 62));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,18 +131,27 @@ public class registroCliente extends javax.swing.JFrame {
                 jTextField2KeyTyped(evt);
             }
         });
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 198, 271, -1));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("telefono");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 201, -1, -1));
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Direccion:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 236, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 26, 272, -1));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -158,66 +198,20 @@ public class registroCliente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jButton4)
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(28, 28, 28)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel2)
-                                .addGap(30, 30, 30))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(169, 169, 169)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 11, -1, -1));
+
+        botonModificar.setBackground(new java.awt.Color(255, 255, 255));
+        botonModificar.setText("Modificar");
+        botonModificar.setToolTipText("Modifica el registro seleccionado");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, 35));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/clientes.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -273,6 +267,13 @@ public class registroCliente extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.setVisible(false);        // TODO add your handling code here:
+        this.principal.setVisible(true);
+        this.botonModificar.setVisible(false);
+        jTextField1.setText("");
+        jTextArea1.setText("");
+        jTextField3.setText("");
+        jTextField2.setText("");
+       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jtblListaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblListaClientesMouseClicked
@@ -290,26 +291,13 @@ public class registroCliente extends javax.swing.JFrame {
 
                 if (boton.getName().equals("m")) {
                     System.out.println("Click Boton Modificar" + row + column);
-                    cliente nuevo = new cliente();
-                    nuevo.nombre = jtblListaClientes.getValueAt(row, 0).toString();
-                    nuevo.descripcion = jtblListaClientes.getValueAt(row, 1).toString();
-                    nuevo.telefono = jtblListaClientes.getValueAt(row, 2).toString();
-                    nuevo.direccion = jtblListaClientes.getValueAt(row, 3).toString();
 
-                    cliente update = new cliente();
-                    update.nombre = jTextField1.getText();
-                    update.descripcion = jTextArea1.getText();
-                    update.direccion = jTextField3.getText();
-                    update.telefono = jTextField2.getText();
+                    this.nuevo.nombre = jtblListaClientes.getValueAt(row, 0).toString();
+                    this.nuevo.descripcion = jtblListaClientes.getValueAt(row, 1).toString();
+                    this.nuevo.telefono = jtblListaClientes.getValueAt(row, 2).toString();
+                    this.nuevo.direccion = jtblListaClientes.getValueAt(row, 3).toString();
 
-                    this.principal.controlCliente.actualizarCliente(nuevo, update);
-
-                    actualizar();
-                    try {
-                        this.principal.rVentaServicio.llenarCombos();
-                    } catch (Exception ex) {
-                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    this.botonModificar.setVisible(true);
                 }
                 if (boton.getName().equals("e")) {
                     System.out.println("Click Boton Eliminar" + row + column);
@@ -319,18 +307,20 @@ public class registroCliente extends javax.swing.JFrame {
                     nuevo.telefono = jtblListaClientes.getValueAt(row, 2).toString();
                     nuevo.direccion = jtblListaClientes.getValueAt(row, 3).toString();
 
-                    try {
-                        this.principal.controlCliente.eliminarCliente(nuevo);
-                    } catch (Exception ex) {
-                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    if (JOptionPane.showConfirmDialog(rootPane, "Se eliminará el registro, ¿desea continuar?",
+                            "Eliminar Registro", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        try {
+                            this.principal.controlCliente.eliminarCliente(nuevo);
+                        } catch (Exception ex) {
+                            Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        actualizar();
+                        try {
+                            this.principal.rVentaServicio.llenarCombos();
+                        } catch (Exception ex) {
+                            Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                    actualizar();
-                    try {
-                        this.principal.rVentaServicio.llenarCombos();
-                    } catch (Exception ex) {
-                        Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
                     prueba = false;
                 }
 
@@ -370,15 +360,64 @@ public class registroCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField2KeyTyped
 
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Boton Modificar");
+        cliente update = new cliente();
+        update.nombre = jTextField1.getText();
+        update.descripcion = jTextArea1.getText();
+        update.direccion = jTextField3.getText();
+        update.telefono = jTextField2.getText();
+        if (!jTextField1.getText().equals("")) {
+            if (!jTextField2.getText().equals("")) {
+                this.principal.controlCliente.actualizarCliente(nuevo, update);
+
+                actualizar();
+                try {
+                    this.principal.rVentaServicio.llenarCombos();
+                } catch (Exception ex) {
+                    Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                this.nuevo = null;
+                this.botonModificar.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "El campo 'telefono' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El campo 'nombre' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+
+        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 64
+                || evt.getKeyChar() >= 91 && evt.getKeyChar() <= 96
+                || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
+                || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+                || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255) {
+            getToolkit().beep();
+            evt.consume();
+        }
+//        if (Character.isDigit(validar)) {
+//            getToolkit().beep();
+//            evt.consume();
+//        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonModificar;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
