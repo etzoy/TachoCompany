@@ -63,26 +63,28 @@ public class registroVentaServicio extends javax.swing.JFrame {
         cliente = new cliente();
         List<cliente> list = principal.controlCliente.listaClientesVigentes();
         removeCombos();
+        if (list != null && !list.isEmpty()) {
+            if (list.size() > 0) {
+                for (int i = 0; i < list.size(); i++) {
 
-        if (list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
+                    cliente = list.get(i);
+                    this.jComboBox1.addItem(cliente.nombre);
 
-                cliente = list.get(i);
-                this.jComboBox1.addItem(cliente.nombre);
+                }
 
             }
-
         }
 
         servicio = new servicio();
         List<servicio> list1 = principal.controlServicio.listaServiciosVigentes();
+        if (list1 != null && !list1.isEmpty()) {
+            if (list1.size() > 0) {
+                for (int i = 0; i < list1.size(); i++) {
+                    servicio = list1.get(i);
+                    this.jComboBox2.addItem(servicio.nombre);
+                }
 
-        if (list1.size() > 0) {
-            for (int i = 0; i < list1.size(); i++) {
-                servicio = list1.get(i);
-                this.jComboBox2.addItem(servicio.nombre);
             }
-
         }
 
     }
@@ -361,7 +363,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
                     this.jTextField5.setText("");
                     this.jTextField6.setText("");
                     this.jTextField7.setText("");
-                    
+
                     actualizar();
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una Fecha.", "Error!", JOptionPane.WARNING_MESSAGE);
@@ -432,7 +434,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
         // TODO add your handling code here:
-       char valid = evt.getKeyChar();
+        char valid = evt.getKeyChar();
         if (Character.isLetter(valid)) {
             getToolkit().beep();
             evt.consume();
@@ -495,7 +497,6 @@ public class registroVentaServicio extends javax.swing.JFrame {
 //        }
 //
 //    }
-
     public int busquedaClient(String cliente) {
         int index = 0;
         int count = this.jComboBox1.getItemCount();
