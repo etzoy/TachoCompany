@@ -66,7 +66,7 @@ public class modeloTablaRegPorVencer {
                     return p1.fecha.compareTo(p2.fecha);
                 }
             });
-            }
+            
 
             if (list.size() > 0) {
                 for (int i = 0; i < list.size(); i++) {
@@ -99,6 +99,7 @@ public class modeloTablaRegPorVencer {
                 tabla.setRowSorter(sorter);
 
             }
+        }
         } catch (Exception ex) {
             Logger.getLogger(modeloTablaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
