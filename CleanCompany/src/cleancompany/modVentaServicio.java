@@ -30,7 +30,7 @@ public class modVentaServicio extends javax.swing.JFrame {
 
     cleanCompany principal = null;
     regVentaServicio actual = null;
-    String nombreCliente=null;
+    String nombreCliente = null;
     String nombreServicio = null;
     JTable tabla = null;
     cliente cliente;
@@ -44,7 +44,7 @@ public class modVentaServicio extends javax.swing.JFrame {
     public modVentaServicio(cleanCompany principalOrigen, regVentaServicio actual, String nombreCliente, String nombreServicio, JTable tabla) {
         this.principal = principalOrigen;
         this.actual = actual;
-        this.nombreCliente= nombreCliente;
+        this.nombreCliente = nombreCliente;
         this.nombreServicio = nombreServicio;
         this.tabla = tabla;
         initComponents();
@@ -57,15 +57,15 @@ public class modVentaServicio extends javax.swing.JFrame {
 //        } catch (Exception ex) {
 //            Logger.getLogger(registroServicio.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-texts();
+        texts();
     }
-public void texts() {
 
-        
+    public void texts() {
+
         String unidad = this.actual.unidad;
         String costo = Integer.toString(this.actual.costo);
         String cantidadUnidades = Integer.toString(this.actual.cantidadUnidad);
-        
+
         this.jComboBox1.setSelectedIndex(busquedaClient(this.nombreCliente));
         this.jComboBox2.setSelectedIndex(busquedaServ(this.nombreServicio));
 
@@ -76,14 +76,12 @@ public void texts() {
 //        } catch (ParseException ex) {
 //            System.out.println(ex);
 //        }
-
         this.jTextField5.setText(unidad);
         this.jTextField6.setText(costo);
         this.jTextField7.setText(cantidadUnidades);
 
-        
-            this.jComboBox4.setSelectedIndex(this.actual.tipoUnidad);
-        
+        this.jComboBox4.setSelectedIndex(this.actual.tipoUnidad);
+
         this.rSDateChooser1.setDatoFecha(actual.fecha);
         if (this.actual.darleSeguimiento) {
             this.jCheckBox1.setSelected(true);
@@ -117,34 +115,34 @@ public void texts() {
         }
         return index;
     }
-   
 
     public void llenarCombos() {
         cliente = new cliente();
         List<cliente> list = principal.controlCliente.listaClientesVigentes();
         removeCombos();
+        if (list != null && !list.isEmpty()) {
+            if (list.size() > 0) {
+                for (int i = 0; i < list.size(); i++) {
 
-        if (list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
+                    cliente = list.get(i);
+                    this.jComboBox1.addItem(cliente.nombre);
 
-                cliente = list.get(i);
-                this.jComboBox1.addItem(cliente.nombre);
+                }
 
             }
-
         }
-
         servicio = new servicio();
         List<servicio> list1 = principal.controlServicio.listaServiciosVigentes();
+        if (list1 != null && !list1.isEmpty()) {
+            if (list1.size() > 0) {
+                for (int i = 0; i < list1.size(); i++) {
+                    servicio = list1.get(i);
+                    this.jComboBox2.addItem(servicio.nombre);
+                }
 
-        if (list1.size() > 0) {
-            for (int i = 0; i < list1.size(); i++) {
-                servicio = list1.get(i);
-                this.jComboBox2.addItem(servicio.nombre);
             }
 
         }
-
     }
 
     private void removeCombos() {
@@ -497,12 +495,11 @@ public void texts() {
                     java.sql.Date sqlDate = new java.sql.Date(this.rSDateChooser1.getDatoFecha().getTime());
                     nuevo.fecha = sqlDate;
                     nuevo.darleSeguimiento = this.jCheckBox1.isSelected();
-                    
+
                     this.principal.controlRVentaServicio.actualizarRegistro(actual, nuevo);
                     this.principal.agenda.actualizar();
                     this.principal.rServicioPorVencer.actualizar();
                     this.setVisible(false);
-                    
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una Fecha.", "Error!", JOptionPane.WARNING_MESSAGE);
@@ -635,7 +632,6 @@ public void texts() {
 //        }
 //
 //    }
-
     /**
      * @param args the command line arguments
      */
