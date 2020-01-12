@@ -195,7 +195,7 @@ public class agenda extends javax.swing.JFrame {
                     }
 
                     modificar(actual, nombreCliente, nombreServicio, jTable1);
-
+                    this.setVisible(false);
                 }
                 if (boton.getName().equals("e")) {
                     System.out.println("Click Boton Eliminar" + row + column);

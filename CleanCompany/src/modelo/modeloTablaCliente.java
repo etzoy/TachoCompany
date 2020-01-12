@@ -44,7 +44,7 @@ public class modeloTablaCliente{
         JButton btn_modificar = new JButton();
         btn_modificar.setIcon(new ImageIcon("update.png"));
         btn_modificar.setName("m");
-        btn_modificar.setToolTipText("Modifica el Cliente Seleccionado");
+        btn_modificar.setToolTipText("Habilita la Modificacion del Cliente Seleccionado");
         JButton btn_eliminar = new JButton();
         btn_eliminar.setIcon(new ImageIcon("delete.png"));
         btn_eliminar.setName("e");

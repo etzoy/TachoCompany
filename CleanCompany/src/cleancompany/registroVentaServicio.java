@@ -381,14 +381,16 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        registroCliente rCliente = new registroCliente(principal);
         this.principal.rCliente.setVisible(true);
+        this.setVisible(false);
 
         //llenarCombos();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        registroServicio rServicio = new registroServicio(principal);
-        rServicio.setVisible(true);
+        
+        this.principal.rServicio.setVisible(true);
+        this.setVisible(false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

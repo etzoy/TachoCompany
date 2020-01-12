@@ -47,7 +47,7 @@ public class modeloTablaServicio {
         JButton btn_modificar = new JButton();
         btn_modificar.setIcon(new ImageIcon("update.png"));
         btn_modificar.setName("m");
-        btn_modificar.setToolTipText("Modifica el Servicio Seleccionado");
+        btn_modificar.setToolTipText("Habilita la Modificacion del Servicio Seleccionado");
         JButton btn_eliminar = new JButton();
         btn_eliminar.setIcon(new ImageIcon("delete.png"));
         btn_eliminar.setName("e");

@@ -25,16 +25,16 @@ public class mascara extends PlainDocument{
           switch(arg0)
           {
               /* si está vacía insertamos el (  */
-              case 0: 
+              case 1: 
                    super.insertString(arg0,"("+ arg1, arg2);
                    break;
-              case 4: 
+              case 5: 
                    super.insertString(arg0, ") "+arg1, arg2);
                    break;
-              case 9:
+              case 10:
                    super.insertString(arg0, "-"+arg1, arg2);
                    break;
-              case 14:/* si es 13 entonces no permitimos que sea ingresado el valor*/
+              case 16:/* si es 13 entonces no permitimos que sea ingresado el valor*/
                    return;
               default:
                   super.insertString(arg0, arg1, arg2);

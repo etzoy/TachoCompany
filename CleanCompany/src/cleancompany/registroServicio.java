@@ -37,6 +37,7 @@ public class registroServicio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Registro de Servicios");
         this.botonModificar.setVisible(false);
+        this.jButton4.setVisible(false);
 
         try {
             mts.visualizarTabla(this.jtblListaServicios, principal);
@@ -53,6 +54,8 @@ public class registroServicio extends javax.swing.JFrame {
     public void visiblePrincipal() {
         this.principal.setVisible(true);
         this.botonModificar.setVisible(false);
+        this.getContentPane().setBackground(Color.BLACK);
+        vaciarCampos();
     }
 
     public void actualizar() {
@@ -97,6 +100,8 @@ public class registroServicio extends javax.swing.JFrame {
         jtblListaServicios = new javax.swing.JTable();
         botonModificar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,19 +126,19 @@ public class registroServicio extends javax.swing.JFrame {
                 jTextField3KeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 271, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 180, 271, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Seccion Mantenimiento:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 270, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Tipo de unidades");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 310, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo Unidad", "Dia", "Semana", "Mes" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 271, -1));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 310, 271, -1));
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,21 +150,21 @@ public class registroServicio extends javax.swing.JFrame {
                 jTextField4KeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 266, -1));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 350, 266, -1));
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Cantidad de unides");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 350, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Costo de servicio:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 140, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Servicio Nuevo");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 11, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 10, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,25 +176,25 @@ public class registroServicio extends javax.swing.JFrame {
                 jTextField1KeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 272, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 30, 272, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 34, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 40, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Descripcion:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 84, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 90, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 284, 62));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 60, 284, 62));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Valor por unidad:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 230, -1, -1));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,11 +206,11 @@ public class registroServicio extends javax.swing.JFrame {
                 jTextField2KeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 271, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 230, 271, -1));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Unidad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 180, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cancelar");
@@ -215,7 +220,7 @@ public class registroServicio extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 550, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Crear");
@@ -225,7 +230,7 @@ public class registroServicio extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 550, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 550, 80, -1));
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -253,7 +258,7 @@ public class registroServicio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -264,7 +269,7 @@ public class registroServicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 11, -1, 570));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 890, 570));
 
         botonModificar.setBackground(new java.awt.Color(255, 255, 255));
         botonModificar.setText("Modificar");
@@ -274,10 +279,29 @@ public class registroServicio extends javax.swing.JFrame {
                 botonModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 540, -1, 37));
+        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 540, -1, 37));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/servicios1.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 410, -1, -1));
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Limpiar");
+        jButton3.setToolTipText("Limpia los campos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 550, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Nuevo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 550, 80, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -295,9 +319,11 @@ public class registroServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.getContentPane().setBackground(Color.BLACK);
         this.setVisible(false);        // TODO add your handling code here:
         this.principal.setVisible(true);
         this.botonModificar.setVisible(false);
+        vaciarCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -318,12 +344,7 @@ public class registroServicio extends javax.swing.JFrame {
                         nuevo.tipoUnidad = this.jComboBox1.getSelectedIndex();
                         this.principal.controlServicio.insertServicio(nuevo);
 
-                        jTextField1.setText("");
-                        jTextArea1.setText("");
-                        jTextField3.setText("");
-                        jTextField2.setText("");
-                        jTextField4.setText("");
-                        jComboBox1.setSelectedIndex(0);
+                        vaciarCampos();
                         actualizar();
                         this.principal.rVentaServicio.llenarCombos();
                     } else {
@@ -397,8 +418,11 @@ public class registroServicio extends javax.swing.JFrame {
                         this.nuevo.tipoUnidad = 3;
                     }
                     this.nuevo.cantidadUnidad = Integer.parseInt(jtblListaServicios.getValueAt(row, 5).toString());
-                    
+
+                    this.getContentPane().setBackground(Color.ORANGE);
                     this.botonModificar.setVisible(true);
+                    this.jButton2.setVisible(false);
+                    this.jButton4.setVisible(true);
 
                 }
 
@@ -456,6 +480,15 @@ public class registroServicio extends javax.swing.JFrame {
             this.jComboBox1.setSelectedIndex(3);
         }
     }
+
+    public void vaciarCampos() {
+        jTextField1.setText("");
+        jTextArea1.setText("");
+        jTextField3.setText("");
+        jTextField2.setText("");
+        jTextField4.setText("");
+        jComboBox1.setSelectedIndex(0);
+    }
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
@@ -487,7 +520,7 @@ public class registroServicio extends javax.swing.JFrame {
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
-        
+
         if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 64
                 || evt.getKeyChar() >= 91 && evt.getKeyChar() <= 96
                 || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
@@ -510,6 +543,20 @@ public class registroServicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField3KeyTyped
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        vaciarCampos();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.getContentPane().setBackground(Color.BLACK);
+        this.botonModificar.setVisible(false);
+        this.jButton4.setVisible(false);
+        this.jButton2.setVisible(true);
+        vaciarCampos();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -518,6 +565,8 @@ public class registroServicio extends javax.swing.JFrame {
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

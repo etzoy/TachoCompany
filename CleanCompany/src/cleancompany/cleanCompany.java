@@ -66,6 +66,7 @@ public class cleanCompany extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cliente menu.png"))); // NOI18N
         jButton2.setText("registrar un nuevo cliente");
         jButton2.setToolTipText("Permite registrar un nuevo cliente");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -73,10 +74,11 @@ public class cleanCompany extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 230, 32));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 382, 230, 40));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/registro menu.jpg"))); // NOI18N
         jButton3.setText("registrar un nuevo trabajo");
         jButton3.setToolTipText("Registra un trabajo nuevo");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -84,10 +86,11 @@ public class cleanCompany extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 232, 34));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 44, 232, 40));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/serv menu.png"))); // NOI18N
         jButton4.setText("registrar un nuevo servicio");
         jButton4.setToolTipText("Permite registrar un nuevo servicio");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -95,34 +98,40 @@ public class cleanCompany extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 232, 33));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 453, 232, 40));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton5.setText("Alertas");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/alertas menu.png"))); // NOI18N
+        jButton5.setText("               Alertas");
         jButton5.setToolTipText("Muestra las alertas ");
+        jButton5.setAlignmentX(0.2F);
+        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 240, 35));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 215, 240, 40));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Otras operacioens");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, 16));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Agenda");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agenda menu1.png"))); // NOI18N
+        jButton1.setText("              Agenda");
         jButton1.setToolTipText("Muestra los trabajos registrados");
+        jButton1.setHideActionText(true);
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 240, 35));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 136, 240, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 530));

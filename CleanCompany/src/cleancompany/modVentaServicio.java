@@ -58,6 +58,14 @@ public class modVentaServicio extends javax.swing.JFrame {
 //            Logger.getLogger(registroServicio.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         texts();
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                visiblePrincipal();
+            }
+        });
+    }
+     public void visiblePrincipal() {
+        this.principal.agenda.setVisible(true);
     }
 
     public void texts() {
@@ -517,20 +525,23 @@ public class modVentaServicio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        registroCliente rCliente = new registroCliente(principal);
         this.principal.rCliente.setVisible(true);
+        this.setVisible(false);
 
         //llenarCombos();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        registroServicio rServicio = new registroServicio(principal);
-        rServicio.setVisible(true);
+        
+        this.principal.rServicio.setVisible(true);
+        this.setVisible(false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
+        this.principal.agenda.setVisible(true);
 //        this.principal.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed

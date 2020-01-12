@@ -6,7 +6,7 @@ CREATE TABLE "cleanCompany"."cliente" (
 "descripcion" varchar(250),
 "telefono" varchar(100),
 "direccion" varchar(250),
-"eliminado" int8 DEFAULT '0',
+"eliminado" boolean DEFAULT 'false',
 PRIMARY KEY ("idCliente") 
 )
 WITHOUT OIDS;
@@ -20,7 +20,7 @@ CREATE TABLE "cleanCompany"."servicio" (
 "valorCostoServicio" int8,
 "tipoUnidadMantenimiento" int8,
 "cantidadTiempoMantenimiento" int8,
-"eliminado" int8 DEFAULT '0',
+"eliminado" boolean DEFAULT 'false',
 PRIMARY KEY ("idServicio") 
 )
 WITHOUT OIDS;
@@ -34,7 +34,7 @@ CREATE TABLE "cleanCompany"."ProgramacionServicio" (
 "cantidadTiempoMantenimiento" int8,
 "fecha" date,
 "darleSeguimiento" bool,
-"eliminado" int8 DEFAULT '0'
+"eliminado" boolean DEFAULT 'false'
 )
 WITHOUT OIDS;
  drop table if exists tiempo;
