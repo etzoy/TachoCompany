@@ -507,6 +507,8 @@ public class modVentaServicio extends javax.swing.JFrame {
                     this.principal.controlRVentaServicio.actualizarRegistro(actual, nuevo);
                     this.principal.agenda.actualizar();
                     this.principal.rServicioPorVencer.actualizar();
+                    JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!",JOptionPane.INFORMATION_MESSAGE);
+
                     this.setVisible(false);
 
                 } else {
@@ -593,7 +595,7 @@ public class modVentaServicio extends javax.swing.JFrame {
     private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        if (Character.isLetter(valid)) {
+        if (Character.isLetter(valid)|| valid==32) {
             getToolkit().beep();
             evt.consume();
 

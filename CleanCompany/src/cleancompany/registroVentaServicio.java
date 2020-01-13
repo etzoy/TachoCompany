@@ -365,6 +365,8 @@ public class registroVentaServicio extends javax.swing.JFrame {
                     this.jTextField7.setText("");
 
                     actualizar();
+                    JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!",JOptionPane.INFORMATION_MESSAGE);
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una Fecha.", "Error!", JOptionPane.WARNING_MESSAGE);
 

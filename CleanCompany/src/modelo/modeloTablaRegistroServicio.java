@@ -56,7 +56,7 @@ public class modeloTablaRegistroServicio {
         rVentaServicio = new regVentaServicio();
 
         try {
-            List<regVentaServicio> list = principal.controlRVentaServicio.listaRegistrosVigentes();
+            List<regVentaServicio> list = principal.controlRVentaServicio.listaAgenda();
 
             if (list != null && !list.isEmpty()) {
 

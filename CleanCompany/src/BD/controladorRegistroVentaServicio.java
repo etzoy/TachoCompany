@@ -139,6 +139,42 @@ public class controladorRegistroVentaServicio {
         return listaRegistros;
     }
 
+     public List<regVentaServicio> listaAgenda() {
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha >= current_date)";
+
+        java.util.List<regVentaServicio> listaRegistros = null;
+
+        regVentaServicio p;
+        ResultSet rset = null;
+
+        try {
+            Connection conn = conexionPostgres.connectDatabase();
+            PreparedStatement pstm = conn.prepareCall(SQL);
+            rset = pstm.executeQuery();
+
+            listaRegistros = new ArrayList<regVentaServicio>();
+            while (rset.next() == true) {
+                p = new regVentaServicio();
+                p.idServicio = rset.getInt(1);
+                p.idCliente = rset.getInt(2);
+                p.unidad = rset.getString(3);
+                p.costo = rset.getInt(4);
+                p.tipoUnidad = rset.getInt(5);
+                p.cantidadUnidad = rset.getInt(6);
+                p.fecha = rset.getDate(7);
+                p.darleSeguimiento = rset.getBoolean(8);
+
+                listaRegistros.add(p);
+            }
+
+        } catch (SQLException ex) {
+
+            System.out.println(ex.getMessage());
+
+        }
+        return listaRegistros;
+    }
+     
     public String cliente(int idCliente) {
         String nombre = null;
 

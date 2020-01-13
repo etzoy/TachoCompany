@@ -219,7 +219,7 @@ public class agenda extends javax.swing.JFrame {
                         try {
                             this.principal.controlRVentaServicio.eliminarRegistro(nuevo);
                         } catch (Exception ex) {
-                            Logger.getLogger(registroCliente.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(nuevoCliente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         actualizar();
                         this.principal.rServicioPorVencer.actualizar();

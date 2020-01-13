@@ -10,6 +10,7 @@ import BD.controladorCliente;
 import BD.controladorRegistroVentaServicio;
 import BD.controladorServicio;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +27,7 @@ public class cleanCompany extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
-        this.setTitle("Main Menu");
+        this.setTitle("Menu Principal");
         rServicioPorVencer = new serviciosPorVencer(this);
         rVentaServicio = new registroVentaServicio(this);
         rCliente = new registroCliente(this);
