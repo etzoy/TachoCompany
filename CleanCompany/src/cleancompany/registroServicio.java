@@ -250,6 +250,7 @@ public class registroServicio extends javax.swing.JFrame {
                     nuevoServicio.botonModificar.setVisible(true);
                     nuevoServicio.jButton2.setVisible(false);
                     nuevoServicio.texts(nombre, costo, unidad, cantidadUnidad, descripcion, combo);
+                    nuevoServicio.nuevo =nuevo;
                     this.setVisible(false);
 //                    this.botonModificar.setVisible(true);
 //                    this.jButton2.setVisible(false);

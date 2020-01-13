@@ -37,7 +37,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Registro de Servicios");
         this.botonModificar.setVisible(false);
-       // this.jButton4.setVisible(false);
+        // this.jButton4.setVisible(false);
 
 //        try {
 //            mts.visualizarTabla(this.jtblListaServicios, principal);
@@ -319,7 +319,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
 
-        if (Character.isLetter(valid)) {
+        if (Character.isLetter(valid) || valid == 32) {
             getToolkit().beep();
             evt.consume();
 
@@ -378,7 +378,8 @@ public class nuevoServicio extends javax.swing.JFrame {
         update.cantidadUnidad = Integer.parseInt(jTextField4.getText());
 
         this.principal.controlServicio.actualizarServicio(nuevo, update);
-
+        JOptionPane.showMessageDialog(null, "Servicio actualizado con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+        
         actualizar();
         try {
             this.principal.rVentaServicio.llenarCombos();
@@ -386,7 +387,9 @@ public class nuevoServicio extends javax.swing.JFrame {
             Logger.getLogger(nuevoCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.nuevo = null;
-        this.botonModificar.setVisible(false);
+        this.setVisible(false);
+        this.principal.rServicio.setVisible(true);
+        //this.botonModificar.setVisible(false);
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
