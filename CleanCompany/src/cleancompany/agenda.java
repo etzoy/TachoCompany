@@ -222,7 +222,7 @@ public class agenda extends javax.swing.JFrame {
                             Logger.getLogger(nuevoCliente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         actualizar();
-                        this.principal.rServicioPorVencer.actualizar();
+                        this.principal.alertas.actualizar();
 
                     }
                     prueba = false;

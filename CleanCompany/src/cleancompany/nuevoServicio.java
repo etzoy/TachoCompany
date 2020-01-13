@@ -8,24 +8,28 @@ package cleancompany;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import modelo.cliente;
 import modelo.modeloTablaServicio;
 import modelo.servicio;
+import modelo.tiempo;
 
 /**
  *
  * @author etzoy
  */
 public class nuevoServicio extends javax.swing.JFrame {
-
+    
     cleanCompany principal = null;
     modeloTablaServicio mts = new modeloTablaServicio();
-
+    
     int clickTabla;
     servicio nuevo = new servicio();
+    tiempo tiempo;
 
     /**
      * Creates new form catalogoServicio
@@ -38,6 +42,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         this.setTitle("Registro de Servicios");
         this.botonModificar.setVisible(false);
         // this.jButton4.setVisible(false);
+        llenarCombo();
 
 //        try {
 //            mts.visualizarTabla(this.jtblListaServicios, principal);
@@ -50,7 +55,7 @@ public class nuevoServicio extends javax.swing.JFrame {
             }
         });
     }
-
+    
     public void visiblePrincipal() {
         this.principal.rServicio.setVisible(true);
         this.botonModificar.setVisible(false);
@@ -58,6 +63,25 @@ public class nuevoServicio extends javax.swing.JFrame {
         vaciarCampos();
     }
 
+    public void llenarCombo() {
+        
+        tiempo = new tiempo();
+        List<tiempo> list = this.principal.controlTiempo.listaTiempo();
+        
+        if (list != null && !list.isEmpty()) {
+            if (list.size() > 0) {
+                this.jComboBox1.addItem("Tipo Unidad");
+                for (int i = 0; i < list.size(); i++) {
+                    
+                    tiempo = list.get(i);
+                    this.jComboBox1.addItem(tiempo.nombre);
+                    
+                }
+                
+            }
+        }
+    }
+    
     public void actualizar() {
 //        try {
 //            mts.visualizarTabla(this.jtblListaServicios, principal);
@@ -132,8 +156,6 @@ public class nuevoServicio extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Tipo de unidades");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo Unidad", "Dia", "Semana", "Mes" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 271, -1));
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -277,37 +299,37 @@ public class nuevoServicio extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //this.setVisible(false);
         servicio nuevo = new servicio();
-
+        
         nuevo.nombre = jTextField1.getText();
         nuevo.descripcion = jTextArea1.getText();
         nuevo.unidad = jTextField3.getText();
-
+        
         if (!this.jTextField1.getText().equals("")) {
             if (!this.jTextField2.getText().equals("")) {
                 nuevo.costo = Integer.parseInt(jTextField2.getText());
                 if (!this.jTextField4.getText().equals("")) {
                     nuevo.cantidadUnidad = Integer.parseInt(jTextField4.getText().trim());
-
+                    
                     if (this.jComboBox1.getSelectedIndex() != 0) {
                         nuevo.tipoUnidad = this.jComboBox1.getSelectedIndex();
                         this.principal.controlServicio.insertServicio(nuevo);
-
+                        
                         vaciarCampos();
                         actualizar();
                         this.principal.rVentaServicio.llenarCombos();
                         JOptionPane.showMessageDialog(null, "Servicio creado con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-
+                        
                     } else {
                         JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de unidad.", "Error!", JOptionPane.WARNING_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "El campo 'Cantidad de Unidades' no puede quedarvacio.", "Error!", JOptionPane.WARNING_MESSAGE);
                 }
-
+                
             } else {
                 JOptionPane.showMessageDialog(null, "El campo 'Costo' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
             }
-
+            
         } else {
             JOptionPane.showMessageDialog(null, "El campo 'Nombre' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
         }
@@ -318,7 +340,7 @@ public class nuevoServicio extends javax.swing.JFrame {
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-
+        
         if (Character.isLetter(valid) || valid == 32) {
             getToolkit().beep();
             evt.consume();
@@ -330,7 +352,7 @@ public class nuevoServicio extends javax.swing.JFrame {
     private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-
+        
         if (Character.isLetter(valid) || valid == 32) {
             getToolkit().beep();
             evt.consume();
@@ -339,19 +361,19 @@ public class nuevoServicio extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jTextField4KeyTyped
-
+    
     public void texts(String nombre, String costo, String unidad, String cantidadUnidad, String descripcion, int combo) {
-
+        
         this.jTextField1.setText(nombre);
         this.jTextField2.setText(costo);
         this.jTextField3.setText(unidad);
         this.jTextField4.setText(cantidadUnidad);
         this.jTextArea1.setText(descripcion);
-
+        
         this.jComboBox1.setSelectedIndex(combo);
-
+        
     }
-
+    
     public void vaciarCampos() {
         jTextField1.setText("");
         jTextArea1.setText("");
@@ -376,7 +398,7 @@ public class nuevoServicio extends javax.swing.JFrame {
             update.tipoUnidad = this.jComboBox1.getSelectedIndex();
         }
         update.cantidadUnidad = Integer.parseInt(jTextField4.getText());
-
+        
         this.principal.controlServicio.actualizarServicio(nuevo, update);
         JOptionPane.showMessageDialog(null, "Servicio actualizado con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
         

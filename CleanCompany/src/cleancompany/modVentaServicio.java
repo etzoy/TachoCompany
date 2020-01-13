@@ -21,6 +21,7 @@ import modelo.cliente;
 import modelo.modeloTablaRegistroServicio;
 import modelo.servicio;
 import modelo.regVentaServicio;
+import modelo.tiempo;
 
 /**
  *
@@ -35,6 +36,7 @@ public class modVentaServicio extends javax.swing.JFrame {
     JTable tabla = null;
     cliente cliente;
     servicio servicio;
+    tiempo tiempo;
     int clickTabla = 0;
     modeloTablaRegistroServicio mts = new modeloTablaRegistroServicio();
 
@@ -64,8 +66,10 @@ public class modVentaServicio extends javax.swing.JFrame {
             }
         });
     }
-     public void visiblePrincipal() {
+
+    public void visiblePrincipal() {
         this.principal.agenda.setVisible(true);
+        vaciarCampos();
     }
 
     public void texts() {
@@ -149,6 +153,21 @@ public class modVentaServicio extends javax.swing.JFrame {
                 }
 
             }
+            tiempo = new tiempo();
+            List<tiempo> list2 = this.principal.controlTiempo.listaTiempo();
+
+            if (list2 != null && !list2.isEmpty()) {
+                if (list2.size() > 0) {
+                    this.jComboBox4.addItem("Tipo Unidad");
+                    for (int i = 0; i < list2.size(); i++) {
+
+                        tiempo = list2.get(i);
+                        this.jComboBox4.addItem(tiempo.nombre);
+
+                    }
+
+                }
+            }
 
         }
     }
@@ -159,7 +178,17 @@ public class modVentaServicio extends javax.swing.JFrame {
         this.jComboBox2.removeAllItems();
         this.jComboBox2.addItem("Seleccione un Servicio");
     }
-
+ public void vaciarCampos() {
+        this.jComboBox1.setSelectedIndex(0);
+        this.jCheckBox1.setSelected(false);
+        this.jComboBox2.setSelectedIndex(0);
+        this.jComboBox4.setSelectedIndex(0);
+        
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        this.rSDateChooser1.setDatoFecha(null);
+    }
     public void actualizar() {
         try {
             mts.visualizarTabla(this.tabla, principal);
@@ -287,8 +316,6 @@ public class modVentaServicio extends javax.swing.JFrame {
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Valor por unidad:");
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo Unidad", "Dia", "Semana", "Mes" }));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -455,7 +482,7 @@ public class modVentaServicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jCheckBox1))
@@ -506,8 +533,8 @@ public class modVentaServicio extends javax.swing.JFrame {
 
                     this.principal.controlRVentaServicio.actualizarRegistro(actual, nuevo);
                     this.principal.agenda.actualizar();
-                    this.principal.rServicioPorVencer.actualizar();
-                    JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!",JOptionPane.INFORMATION_MESSAGE);
+                    this.principal.alertas.actualizar();
+                    JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
 
                     this.setVisible(false);
 
@@ -534,7 +561,7 @@ public class modVentaServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         this.principal.rServicio.setVisible(true);
         this.setVisible(false);
 
@@ -544,6 +571,7 @@ public class modVentaServicio extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
         this.principal.agenda.setVisible(true);
+        vaciarCampos();
 //        this.principal.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -562,7 +590,7 @@ public class modVentaServicio extends javax.swing.JFrame {
         } else {
             this.jTextField5.setText("");
             this.jTextField6.setText("");
-            this.jComboBox4.setSelectedIndex(0);
+            //this.jComboBox4.setSelectedIndex(0);
             this.jTextField7.setText("");
         }
 
@@ -595,7 +623,7 @@ public class modVentaServicio extends javax.swing.JFrame {
     private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        if (Character.isLetter(valid)|| valid==32) {
+        if (Character.isLetter(valid) || valid == 32) {
             getToolkit().beep();
             evt.consume();
 

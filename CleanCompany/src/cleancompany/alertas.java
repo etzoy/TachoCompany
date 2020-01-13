@@ -16,55 +16,46 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import modelo.modeloTablaRegPorVencer;
+import modelo.modeloTablaRegistroServicio;
 import modelo.regVentaServicio;
 
 /**
  *
- * @author etzoy
+ * @author LENOVO
  */
-public class serviciosPorVencer extends javax.swing.JFrame {
-    
-    cleanCompany principal = null;
-    modeloTablaRegPorVencer mts = new modeloTablaRegPorVencer();
-// TableRowSorter<modeloTablaRegPorVencer> elQueOrdena = new TableRowSorter<modeloTablaRegPorVencer>(mts);
+public class alertas extends javax.swing.JFrame {
 
     /**
-     * Creates new form serviciosPorVencer
+     * Creates new form agenda
      */
-    public serviciosPorVencer(cleanCompany principalOrigen) {
+    modeloTablaRegPorVencer mts = new modeloTablaRegPorVencer();
+    cleanCompany principal = null;
+
+    public alertas(cleanCompany principalOrigen) {
+
         this.principal = principalOrigen;
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
-        this.setTitle("Alertas");
-        
+        this.setTitle("alertas");
+
         try {
-            mts.visualizarTabla(this.jTable2, principal);
+            mts.visualizarTabla(this.jTable1, principal);
         } catch (Exception ex) {
             Logger.getLogger(registroServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //jTable2.setRowSorter(elQueOrdena);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
                 visiblePrincipal();
             }
         });
     }
-    
+
     public void visiblePrincipal() {
         this.principal.setVisible(true);
     }
 
-    public void actualizar(){
-        try {
-            mts.visualizarTabla(this.jTable2, principal);
-        } catch (Exception ex) {
-            Logger.getLogger(registroServicio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,12 +65,12 @@ public class serviciosPorVencer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,36 +83,12 @@ public class serviciosPorVencer extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Aceptar");
-        jButton5.setToolTipText("Cierra la ventana");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                jTable1MouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,16 +96,25 @@ public class serviciosPorVencer extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1207, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Aceptar");
+        jButton1.setToolTipText("Cierra la ventana");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,33 +126,31 @@ public class serviciosPorVencer extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addGap(374, 374, 374))
+                .addComponent(jButton1)
+                .addGap(564, 564, 564))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
-                .addGap(18, 18, 18))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         this.setVisible(false);
         this.principal.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        // TODO add your handling code here:
-         boolean prueba = true;
+        boolean prueba = true;
         java.sql.Date sqlDate;
         int column = jTable1.getColumnModel().getColumnIndexAtX(evt.getX());
         int row = evt.getY() / jTable1.getRowHeight();
@@ -222,7 +196,7 @@ public class serviciosPorVencer extends javax.swing.JFrame {
                     }
 
                     modificar(actual, nombreCliente, nombreServicio, jTable1);
-
+                    this.setVisible(false);
                 }
                 if (boton.getName().equals("e")) {
                     System.out.println("Click Boton Eliminar" + row + column);
@@ -249,7 +223,7 @@ public class serviciosPorVencer extends javax.swing.JFrame {
                             Logger.getLogger(nuevoCliente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         actualizar();
-                        this.principal.rServicioPorVencer.actualizar();
+                        this.principal.alertas.actualizar();
 
                     }
                     prueba = false;
@@ -261,19 +235,27 @@ public class serviciosPorVencer extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_jTable2MouseClicked
-public void modificar(regVentaServicio actual, String nombreCliente, String nombreServicio, JTable tabla) {
-        modVentaServicio ven = new modVentaServicio(this.principal, actual, nombreCliente, nombreServicio, tabla);
+    }//GEN-LAST:event_jTable1MouseClicked
+    public void actualizar() {
+        try {
+            mts.visualizarTabla(this.jTable1, principal);
+            //mtc.fireTableDataChanged();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en la actualizacion de la base de datos");
+        }
+    }
+
+    public void modificar(regVentaServicio actual, String nombreCliente, String nombreServicio, JTable tabla) {
+        modAlertas ven = new modAlertas(this.principal, actual, nombreCliente, nombreServicio, tabla);
         ven.setVisible(true);
 
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

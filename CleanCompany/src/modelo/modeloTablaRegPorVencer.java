@@ -36,7 +36,7 @@ public class modeloTablaRegPorVencer {
                 return false;
             }
         };
-        TableRowSorter sorter = new TableRowSorter(dt);
+        //TableRowSorter sorter = new TableRowSorter(dt);
 
         dt.addColumn("Cliente");
         dt.addColumn("Servicio");
@@ -98,7 +98,7 @@ public class modeloTablaRegPorVencer {
             }
             tabla.setModel(dt);
             tabla.setRowHeight(35);
-            tabla.setRowSorter(sorter);
+            //tabla.setRowSorter(sorter);
         } catch (Exception ex) {
             Logger.getLogger(modeloTablaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }

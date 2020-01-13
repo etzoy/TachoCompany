@@ -51,3 +51,14 @@ ALTER TABLE "cleanCompany"."ProgramacionServicio" ADD CONSTRAINT "fk_cliente_Pro
 ALTER TABLE "cleanCompany"."servicio" ADD CONSTRAINT "fk_tiempo_servicio_1" FOREIGN KEY ("tipoUnidadMantenimiento") REFERENCES "cleanCompany"."tiempo" ("idTiempo");
 ALTER TABLE "cleanCompany"."ProgramacionServicio" ADD CONSTRAINT "fk_ProgramacionServicio_tiempo_1" FOREIGN KEY ("tipoUnidadmantenimiento") REFERENCES  "cleanCompany"."tiempo" ("idTiempo");
 
+INSERT INTO "cleanCompany".tiempo(
+	dias, nombre)
+	VALUES ( '1', 'dia');
+
+ INSERT INTO "cleanCompany".tiempo(
+	dias, nombre)
+	VALUES ( '7', 'semana');
+
+INSERT INTO "cleanCompany".tiempo(
+	dias, nombre)
+	VALUES ( '30', 'mes');   

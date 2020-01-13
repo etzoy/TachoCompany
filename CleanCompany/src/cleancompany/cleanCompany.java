@@ -9,6 +9,7 @@ import BD.conexion;
 import BD.controladorCliente;
 import BD.controladorRegistroVentaServicio;
 import BD.controladorServicio;
+import BD.controladorTiempo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -28,8 +29,8 @@ public class cleanCompany extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
         this.setTitle("Menu Principal");
-        rServicioPorVencer = new serviciosPorVencer(this);
         rVentaServicio = new registroVentaServicio(this);
+        alertas = new alertas(this);
         rCliente = new registroCliente(this);
         rServicio = new registroServicio(this);
         agenda = new agenda(this);
@@ -37,12 +38,14 @@ public class cleanCompany extends javax.swing.JFrame {
     registroCliente rCliente;
     registroServicio rServicio;
     registroVentaServicio rVentaServicio;
-    serviciosPorVencer rServicioPorVencer;
+
+    alertas alertas;
     agenda agenda;
     conexion javaPostgreSQLBasic = new conexion();
     public controladorCliente controlCliente = new controladorCliente(this.javaPostgreSQLBasic);
     public controladorServicio controlServicio = new controladorServicio(this.javaPostgreSQLBasic);
     public controladorRegistroVentaServicio controlRVentaServicio = new controladorRegistroVentaServicio(this.javaPostgreSQLBasic);
+    public controladorTiempo controlTiempo = new controladorTiempo(this.javaPostgreSQLBasic);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -160,8 +163,12 @@ public class cleanCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        rServicioPorVencer.actualizar();
-        this.rServicioPorVencer.setVisible(true);
+//        rServicioPorVencer.actualizar();
+//        this.rServicioPorVencer.setVisible(true);
+//        this.setVisible(false);
+
+        alertas.actualizar();
+        this.alertas.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 

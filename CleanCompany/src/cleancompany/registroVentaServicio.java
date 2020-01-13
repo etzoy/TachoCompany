@@ -20,6 +20,7 @@ import modelo.cliente;
 import modelo.modeloTablaRegistroServicio;
 import modelo.servicio;
 import modelo.regVentaServicio;
+import modelo.tiempo;
 
 /**
  *
@@ -30,6 +31,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
     cleanCompany principal = null;
     cliente cliente;
     servicio servicio;
+    tiempo tiempo;
     int clickTabla = 0;
     modeloTablaRegistroServicio mts = new modeloTablaRegistroServicio();
 
@@ -57,6 +59,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     public void visiblePrincipal() {
         this.principal.setVisible(true);
+        vaciarCampos();
     }
 
     public void llenarCombos() {
@@ -86,6 +89,21 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
             }
         }
+        tiempo = new tiempo();
+        List<tiempo> list2 = this.principal.controlTiempo.listaTiempo();
+
+        if (list2 != null && !list2.isEmpty()) {
+            if (list2.size() > 0) {
+                this.jComboBox4.addItem("Tipo Unidad");
+                for (int i = 0; i < list2.size(); i++) {
+
+                    tiempo = list2.get(i);
+                    this.jComboBox4.addItem(tiempo.nombre);
+
+                }
+
+            }
+        }
 
     }
 
@@ -96,13 +114,16 @@ public class registroVentaServicio extends javax.swing.JFrame {
         this.jComboBox2.addItem("Seleccione un Servicio");
     }
 
-    public void actualizar() {
-//        try {
-//            mts.visualizarTabla(this.jtblRegistros, principal);
-//            //mtc.fireTableDataChanged();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, "Error en la actualizacion de la base de datos");
-//        }
+    public void vaciarCampos() {
+        this.jComboBox1.setSelectedIndex(0);
+        this.jCheckBox1.setSelected(false);
+        this.jComboBox2.setSelectedIndex(0);
+        this.jComboBox4.setSelectedIndex(0);
+        
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        this.rSDateChooser1.setDatoFecha(null);
     }
 
     /**
@@ -236,7 +257,6 @@ public class registroVentaServicio extends javax.swing.JFrame {
         jLabel4.setText("Valor por unidad:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo Unidad", "Dia", "Semana", "Mes" }));
         getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 271, -1));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -364,8 +384,8 @@ public class registroVentaServicio extends javax.swing.JFrame {
                     this.jTextField6.setText("");
                     this.jTextField7.setText("");
 
-                    actualizar();
-                    JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!",JOptionPane.INFORMATION_MESSAGE);
+                    
+                    JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una Fecha.", "Error!", JOptionPane.WARNING_MESSAGE);
@@ -390,7 +410,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         this.principal.rServicio.setVisible(true);
         this.setVisible(false);
 
@@ -400,6 +420,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.setVisible(false);
         this.principal.setVisible(true);
+        vaciarCampos();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -417,7 +438,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
         } else {
             this.jTextField5.setText("");
             this.jTextField6.setText("");
-            this.jComboBox4.setSelectedIndex(0);
+            //this.jComboBox4.setSelectedIndex(0);
             this.jTextField7.setText("");
         }
 
