@@ -35,13 +35,13 @@ public class cleanCompany extends javax.swing.JFrame {
         rServicio = new registroServicio(this);
         agenda = new agenda(this);
     }
-    registroCliente rCliente;
-    registroServicio rServicio;
+    public registroCliente rCliente;
+    public registroServicio rServicio;
     registroVentaServicio rVentaServicio;
 
-    alertas alertas;
+    public alertas alertas;
     agenda agenda;
-    conexion javaPostgreSQLBasic = new conexion();
+    public conexion javaPostgreSQLBasic = new conexion();
     public controladorCliente controlCliente = new controladorCliente(this.javaPostgreSQLBasic);
     public controladorServicio controlServicio = new controladorServicio(this.javaPostgreSQLBasic);
     public controladorRegistroVentaServicio controlRVentaServicio = new controladorRegistroVentaServicio(this.javaPostgreSQLBasic);

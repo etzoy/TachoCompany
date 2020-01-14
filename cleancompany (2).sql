@@ -1,7 +1,13 @@
+drop database if exists "tachoCompany";
+CREATE DATABASE "tachoCompany";
+
+   
+CREATE SCHEMA "cleanCompany"
+    AUTHORIZATION postgres;
 
  drop table if exists cliente;
 CREATE TABLE "cleanCompany"."cliente" (
-"idCliente" int8 NOT NULL,
+"idCliente" bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
 "nombre" varchar(150),
 "descripcion" varchar(250),
 "telefono" varchar(100),
@@ -13,7 +19,7 @@ WITHOUT OIDS;
 
  drop table if exists servicio;
 CREATE TABLE "cleanCompany"."servicio" (
-"idServicio" int8 NOT NULL,
+"idServicio" bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
 "nombre" varchar(150),
 "descripcion" varchar(250),
 "unidadCostoServicio" varchar(150),
@@ -39,7 +45,7 @@ CREATE TABLE "cleanCompany"."ProgramacionServicio" (
 WITHOUT OIDS;
  drop table if exists tiempo;
 CREATE TABLE "cleanCompany"."tiempo" (
-"idTiempo" int8 NOT NULL,
+"idTiempo" bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
 "dias" int8,
 "nombre" varchar(150),
 PRIMARY KEY ("idTiempo") 

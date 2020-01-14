@@ -5,6 +5,7 @@
  */
 package cleancompany;
 
+import Reportes.generarReportes;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -157,6 +158,11 @@ public class registroCliente extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Imprimir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,6 +307,13 @@ public class registroCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         actualizar();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        generarReportes rep = new generarReportes();
+        rep.reporteClientes(principal);
+        //this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void texts(java.awt.event.MouseEvent evt) {
 
