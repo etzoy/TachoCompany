@@ -11,6 +11,7 @@ import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.cliente;
 import modelo.modeloTablaCliente;
@@ -26,17 +27,20 @@ public class nuevoCliente extends javax.swing.JFrame {
 
     int clickTabla = 0;
     cliente nuevo = new cliente();
+    registroCliente anteriorRegCli = null;
 
     /**
      * Creates new form registroCliente
      */
-    public nuevoCliente(cleanCompany principalOrigen) {
+    public nuevoCliente(cleanCompany principalOrigen, registroCliente anterior) {
 
         this.principal = principalOrigen;
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
         this.setTitle("Nuevo Cliente");
+        anteriorRegCli = anterior;
+
 //        this.botonModificar.setVisible(false);
         //this.jButton2.setVisible(false);
         //this.jtblListaClientes.setModel(mtc);
@@ -45,7 +49,6 @@ public class nuevoCliente extends javax.swing.JFrame {
 //        } catch (Exception ex) {
 //            Logger.getLogger(nuevoCliente.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
                 visiblePrincipal();
@@ -195,7 +198,7 @@ public class nuevoCliente extends javax.swing.JFrame {
         nuevo.telefono = jFormattedTextField1.getText();
 
         if (!jTextField1.getText().equals("")) {
-            if (!jFormattedTextField1.getText().equals("")) {
+            if (!jFormattedTextField1.getText().equals("+1(   )   -    ")) {
                 this.principal.controlCliente.insertCliente2(nuevo);
                 vaciarCampos();
                 JOptionPane.showMessageDialog(null, "Cliente creado con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
@@ -228,15 +231,18 @@ public class nuevoCliente extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.getContentPane().setBackground(Color.BLACK);
         this.setVisible(false);        // TODO add your handling code here:
-        this.principal.rCliente.setVisible(true);
+
+        if (this.anteriorRegCli != null) {
+            this.principal.rCliente.setVisible(true);
+        } else {
+            this.principal.rVentaServicio.setVisible(true);
+        }
         this.botonModificar.setVisible(false);
         vaciarCampos();
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    public void texts(String nombre, String descripcion,String telefono,String direccion) {
-
-       
+    public void texts(String nombre, String descripcion, String telefono, String direccion) {
 
         this.jTextField1.setText(nombre);
         this.jFormattedTextField1.setText(telefono);
@@ -255,7 +261,7 @@ public class nuevoCliente extends javax.swing.JFrame {
             if (!jFormattedTextField1.getText().equals("")) {
                 this.principal.controlCliente.actualizarCliente(nuevo, update);
                 JOptionPane.showMessageDialog(null, "Se actualizo el registro con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-            
+
                 //actualizar();
                 try {
                     this.principal.rVentaServicio.llenarCombos();
@@ -264,7 +270,7 @@ public class nuevoCliente extends javax.swing.JFrame {
                 }
 
                 this.nuevo = null;
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "El campo 'telefono' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
             }
@@ -277,7 +283,8 @@ public class nuevoCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         char validar = evt.getKeyChar();
 
-        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 64
+        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
+                || evt.getKeyChar() >= 58 && evt.getKeyChar() <= 64
                 || evt.getKeyChar() >= 91 && evt.getKeyChar() <= 96
                 || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
                 || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240

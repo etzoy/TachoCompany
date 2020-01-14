@@ -35,6 +35,8 @@ public class registroVentaServicio extends javax.swing.JFrame {
     int clickTabla = 0;
     modeloTablaRegistroServicio mts = new modeloTablaRegistroServicio();
 
+    nuevoCliente nuevoCliente;
+    nuevoServicio nuevoServicio;
     /**
      * Creates new form registroVentaServicio
      */
@@ -169,6 +171,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel18 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         jLabel6.setText("Seccion Mantenimiento:");
 
@@ -313,7 +316,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 601, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 600, -1, -1));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Crear");
@@ -323,7 +326,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 601, -1, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 600, -1, -1));
         getContentPane().add(rSDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, -1));
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -337,6 +340,15 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/servicio1.png"))); // NOI18N
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, -1, -1));
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Limpiar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 600, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -402,8 +414,10 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        registroCliente rCliente = new registroCliente(principal);
-        this.principal.rCliente.setVisible(true);
         this.setVisible(false);
+        nuevoCliente = new nuevoCliente(principal,null);
+        nuevoCliente.setVisible(true);
+        nuevoCliente.botonModificar.setVisible(false);
 
         //llenarCombos();
         // TODO add your handling code here:
@@ -411,8 +425,10 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        this.principal.rServicio.setVisible(true);
-        this.setVisible(false);
+         this.setVisible(false);
+        nuevoServicio = new nuevoServicio(principal, null);
+        nuevoServicio.setVisible(true);
+        nuevoServicio.botonModificar.setVisible(false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -479,6 +495,11 @@ public class registroVentaServicio extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(this, "Ingresar Solo Numeros");
         }
     }//GEN-LAST:event_jTextField7KeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        vaciarCampos();
+    }//GEN-LAST:event_jButton3ActionPerformed
     private void seleccion(servicio actual) {
         this.jTextField5.setText(actual.unidad);
         this.jTextField6.setText(Integer.toString(actual.costo));
@@ -553,6 +574,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;

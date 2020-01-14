@@ -29,10 +29,8 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author LENOVO
  */
 public class generarReportes {
-    
 
     public void reporteClientes(cleanCompany principal) {
-        
 
 //        try {
 //            JasperReport reporte = (JasperReport) JRLoader.loadObject("reporteClientes.jasper");
@@ -45,10 +43,9 @@ public class generarReportes {
 //        } catch (Exception e) {
 //            JOptionPane.showMessageDialog(null, "Error al mostrar el Reporte "+e);
 //        }
-    
-		// descarga dentro del mismo proyecto
-                try {
-                    
+        // descarga dentro del mismo proyecto
+        try {
+
 //                    JasperPrint jasperPrint = JasperFillManager.fillReport(
 //				"reporteClientes.jasper", null,
 //				principal.javaPostgreSQLBasic.connectDatabase());
@@ -58,24 +55,21 @@ public class generarReportes {
 //		SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
 //		exp.setConfiguration(conf);
 //		exp.exportReport();
- 
-		// se muestra en una ventana aparte para su descarga
-		JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-				"reporteClientes.jasper", null,
-				principal.javaPostgreSQLBasic.connectDatabase());
-		JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow,false);
-                jasperViewer.setTitle("Reporte Clientes");
-		jasperViewer.setVisible(true);
-                
-                
-            
+            // se muestra en una ventana aparte para su descarga
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                    "reporteClientes.jasper", null,
+                    principal.javaPostgreSQLBasic.connectDatabase());
+            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
+            jasperViewer.setTitle("Reporte Clientes");
+            jasperViewer.setVisible(true);
+
         } catch (Exception e) {
-            System.out.print("error "+e);
+            System.out.print("error " + e);
         }
-		
+
     }
+
     public void reporteServicios(cleanCompany principal) {
-        
 
 //        try {
 //            JasperReport reporte = (JasperReport) JRLoader.loadObject("reporteClientes.jasper");
@@ -88,10 +82,9 @@ public class generarReportes {
 //        } catch (Exception e) {
 //            JOptionPane.showMessageDialog(null, "Error al mostrar el Reporte "+e);
 //        }
-    
-		// descarga dentro del mismo proyecto
-                try {
-                    
+        // descarga dentro del mismo proyecto
+        try {
+
 //                    JasperPrint jasperPrint = JasperFillManager.fillReport(
 //				"reporteClientes.jasper", null,
 //				principal.javaPostgreSQLBasic.connectDatabase());
@@ -101,24 +94,20 @@ public class generarReportes {
 //		SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
 //		exp.setConfiguration(conf);
 //		exp.exportReport();
- 
-		// se muestra en una ventana aparte para su descarga
-		JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-				"reporteServicios.jasper", null,
-				principal.javaPostgreSQLBasic.connectDatabase());
-		JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow,false);
-                jasperViewer.setTitle("Reporte Servicios");
-		jasperViewer.setVisible(true);
-                
-                
-            
+            // se muestra en una ventana aparte para su descarga
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                    "reporteServicios.jasper", null,
+                    principal.javaPostgreSQLBasic.connectDatabase());
+            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
+            jasperViewer.setTitle("Reporte Servicios");
+            jasperViewer.setVisible(true);
+
         } catch (Exception e) {
-            System.out.print("error "+e);
+            System.out.print("error " + e);
         }
     }
-                
+
     public void reporteAgenda(cleanCompany principal) {
-        
 
 //        try {
 //            JasperReport reporte = (JasperReport) JRLoader.loadObject("reporteClientes.jasper");
@@ -131,10 +120,9 @@ public class generarReportes {
 //        } catch (Exception e) {
 //            JOptionPane.showMessageDialog(null, "Error al mostrar el Reporte "+e);
 //        }
-    
-		// descarga dentro del mismo proyecto
-                try {
-                    
+        // descarga dentro del mismo proyecto
+        try {
+
 //                    JasperPrint jasperPrint = JasperFillManager.fillReport(
 //				"reporteClientes.jasper", null,
 //				principal.javaPostgreSQLBasic.connectDatabase());
@@ -144,22 +132,56 @@ public class generarReportes {
 //		SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
 //		exp.setConfiguration(conf);
 //		exp.exportReport();
- 
-		// se muestra en una ventana aparte para su descarga
-		JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-				"reporteAgenda.jasper", null,
-				principal.javaPostgreSQLBasic.connectDatabase());
-		JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow,false);
-                jasperViewer.setTitle("Reporte Agenda");
-		jasperViewer.setVisible(true);
-                
-                
-            
+            // se muestra en una ventana aparte para su descarga
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                    "reporteAgenda.jasper", null,
+                    principal.javaPostgreSQLBasic.connectDatabase());
+            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
+            jasperViewer.setTitle("Reporte Agenda");
+            jasperViewer.setVisible(true);
+
         } catch (Exception e) {
-            System.out.print("error "+e);
+            System.out.print("error " + e);
         }
-		
+
     }
-    
+    public void reporteAlertas(cleanCompany principal) {
+
+//        try {
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject("reporteClientes.jasper");
+//            Map parametros = new HashMap();
+//            JasperPrint print = JasperFillManager.fillReport(reporte, null, principal.javaPostgreSQLBasic.connectDatabase());
+//            JasperViewer jv = new JasperViewer(print,false);
+//            jv.setTitle("Reporte Clientes");
+//            jv.setVisible(true);
+//            
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "Error al mostrar el Reporte "+e);
+//        }
+        // descarga dentro del mismo proyecto
+        try {
+
+//                    JasperPrint jasperPrint = JasperFillManager.fillReport(
+//				"reporteClientes.jasper", null,
+//				principal.javaPostgreSQLBasic.connectDatabase());
+//		JRPdfExporter exp = new JRPdfExporter();
+//		exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+//		exp.setExporterOutput(new SimpleOutputStreamExporterOutput("reporteClientes.pdf"));
+//		SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+//		exp.setConfiguration(conf);
+//		exp.exportReport();
+            // se muestra en una ventana aparte para su descarga
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                    "reporteAlertas.jasper", null,
+                    principal.javaPostgreSQLBasic.connectDatabase());
+            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
+            jasperViewer.setTitle("Reporte Alertas");
+            jasperViewer.setVisible(true);
+
+        } catch (Exception e) {
+            System.out.print("error " + e);
+        }
+
+    }
 
 }

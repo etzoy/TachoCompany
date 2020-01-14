@@ -88,11 +88,11 @@
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="475" y="2" width="100" height="20" uuid="3747f227-8521-4a61-b6ab-6f834bc0c2f3"/>
+				<reportElement x="475" y="2" width="100" height="32" uuid="3747f227-8521-4a61-b6ab-6f834bc0c2f3"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[fecha]]></text>
+				<text><![CDATA[ Fecha Finalizacion]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="114" y="2" width="100" height="20" uuid="4b933933-ddad-4dd3-acfb-7644068edc5f"/>

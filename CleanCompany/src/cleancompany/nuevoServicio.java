@@ -30,17 +30,19 @@ public class nuevoServicio extends javax.swing.JFrame {
     int clickTabla;
     servicio nuevo = new servicio();
     tiempo tiempo;
+    registroServicio anterior;
 
     /**
      * Creates new form catalogoServicio
      */
-    public nuevoServicio(cleanCompany principalOrigen) {
+    public nuevoServicio(cleanCompany principalOrigen, registroServicio anterior) {
         this.principal = principalOrigen;
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
         this.setTitle("Registro de Servicios");
         this.botonModificar.setVisible(false);
+        this.anterior=anterior;
         // this.jButton4.setVisible(false);
         llenarCombo();
 
@@ -291,7 +293,11 @@ public class nuevoServicio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.getContentPane().setBackground(Color.BLACK);
         this.setVisible(false);        // TODO add your handling code here:
-        this.principal.rServicio.setVisible(true);
+        if (this.anterior != null) {
+            this.principal.rServicio.setVisible(true);
+        }else{
+            this.principal.rVentaServicio.setVisible(true);
+        }
         this.botonModificar.setVisible(false);
         vaciarCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -417,7 +423,8 @@ public class nuevoServicio extends javax.swing.JFrame {
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
 
-        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 64
+        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
+                || evt.getKeyChar() >= 58 && evt.getKeyChar() <= 64
                 || evt.getKeyChar() >= 91 && evt.getKeyChar() <= 96
                 || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
                 || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240

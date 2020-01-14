@@ -104,7 +104,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public List<regVentaServicio> listaRegistrosVigentes() {
-        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0')";
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha <= current_date)";
 
         java.util.List<regVentaServicio> listaRegistros = null;
 

@@ -42,8 +42,8 @@
               <Component id="jButton5" min="-2" pref="190" max="-2" attributes="0"/>
               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace pref="443" max="32767" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="134" max="-2" attributes="0"/>
+              <EmptySpace pref="432" max="32767" attributes="0"/>
+              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jButton3" min="-2" pref="139" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -64,8 +64,8 @@
                       <Component id="jButton5" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jButton2" alignment="1" pref="52" max="32767" attributes="0"/>
                   <Component id="jButton3" max="32767" attributes="0"/>
+                  <Component id="jButton2" alignment="1" pref="52" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Component id="jPanel2" max="32767" attributes="0"/>
@@ -79,6 +79,9 @@
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Img/eliminar (3).png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
         <Property name="toolTipText" type="java.lang.String" value="Cancelar"/>
@@ -146,6 +149,9 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Img/serv menu.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Crear un nuevo servicio"/>
       </Properties>
       <Events>
@@ -157,6 +163,9 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Img/actualizar.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Actualizar tabla"/>
       </Properties>
       <Events>
@@ -167,6 +176,9 @@
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Img/imprimir.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Imprimir"/>
       </Properties>

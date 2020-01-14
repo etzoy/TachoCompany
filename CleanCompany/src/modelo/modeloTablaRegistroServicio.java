@@ -39,7 +39,7 @@ public class modeloTablaRegistroServicio {
         dt.addColumn("Costo Unidad");
         dt.addColumn("Tipo Unidad");
         dt.addColumn("Cantidad Unidad");
-        dt.addColumn("Fecha");
+        dt.addColumn("Fecha de Finalizacion");
         dt.addColumn("Darle Seguimiento");
         dt.addColumn("Modificar");
         dt.addColumn("Eliminar");

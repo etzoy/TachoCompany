@@ -530,13 +530,15 @@ public class modAlertas extends javax.swing.JFrame {
                     java.sql.Date sqlDate = new java.sql.Date(this.rSDateChooser1.getDatoFecha().getTime());
                     nuevo.fecha = sqlDate;
                     nuevo.darleSeguimiento = this.jCheckBox1.isSelected();
-
-                    this.principal.controlRVentaServicio.actualizarRegistro(actual, nuevo);
+                    
+                    this.principal.controlRVentaServicio.eliminarRegistro(actual);
+                    this.principal.controlRVentaServicio.insertVentaServicio(nuevo);
                     this.principal.agenda.actualizar();
                     this.principal.alertas.actualizar();
                     JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
 
                     this.setVisible(false);
+                    this.principal.alertas.setVisible(true);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una Fecha.", "Error!", JOptionPane.WARNING_MESSAGE);
