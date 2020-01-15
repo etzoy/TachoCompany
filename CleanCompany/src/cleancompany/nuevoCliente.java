@@ -99,16 +99,18 @@ public class nuevoCliente extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Cancelar");
-        jButton4.setToolTipText("Cancelar");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar (3).png"))); // NOI18N
+        jButton4.setText("Regresar");
+        jButton4.setToolTipText("Regresa a la pantalla anterior");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, -1, 30));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, 40));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/anadir.png"))); // NOI18N
         jButton5.setText("Crear");
         jButton5.setToolTipText("Crea un nuevo cliente");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -116,9 +118,10 @@ public class nuevoCliente extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 86, 30));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 100, 40));
 
         botonModificar.setBackground(new java.awt.Color(255, 255, 255));
+        botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/actualizar.png"))); // NOI18N
         botonModificar.setText("Modificar");
         botonModificar.setToolTipText("Modifica el registro seleccionado");
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -126,9 +129,10 @@ public class nuevoCliente extends javax.swing.JFrame {
                 botonModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, -1, 30));
+        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/limpiar.png"))); // NOI18N
         jButton1.setText("Limpiar");
         jButton1.setToolTipText("Limpia los campos ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -136,12 +140,13 @@ public class nuevoCliente extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, -1, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, -1, 40));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
+        jTextField1.setToolTipText("Nombre del nuevo cliente");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -160,6 +165,7 @@ public class nuevoCliente extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setToolTipText("Descripcion del nuevo cliente");
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 284, 62));
@@ -169,15 +175,18 @@ public class nuevoCliente extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("+1(###)###-####")));
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("+#(###)###-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField1.setToolTipText("Telefono del nuevo cliente");
         getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 270, -1));
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Direccion:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+
+        jTextField3.setToolTipText("Direccion del nuevo cliente");
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 271, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/clientes.png"))); // NOI18N
@@ -198,7 +207,7 @@ public class nuevoCliente extends javax.swing.JFrame {
         nuevo.telefono = jFormattedTextField1.getText();
 
         if (!jTextField1.getText().equals("")) {
-            if (!jFormattedTextField1.getText().equals("+1(   )   -    ")) {
+            if (!jFormattedTextField1.getText().equals("+ (   )   -    ")) {
                 this.principal.controlCliente.insertCliente2(nuevo);
                 vaciarCampos();
                 JOptionPane.showMessageDialog(null, "Cliente creado con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);

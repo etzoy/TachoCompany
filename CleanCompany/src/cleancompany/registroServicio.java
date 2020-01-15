@@ -100,8 +100,8 @@ public class registroServicio extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar (3).png"))); // NOI18N
-        jButton1.setText("Cancelar");
-        jButton1.setToolTipText("Cancelar");
+        jButton1.setText("Regresar");
+        jButton1.setToolTipText("Regresa al menu principal");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -148,6 +148,7 @@ public class registroServicio extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/serv menu.png"))); // NOI18N
         jButton5.setText("Crear un nuevo servicio");
+        jButton5.setToolTipText("Crea un nuevo servicio");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -157,6 +158,7 @@ public class registroServicio extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/actualizar.png"))); // NOI18N
         jButton2.setText("Actualizar tabla");
+        jButton2.setToolTipText("Actualiza la tabla servicios");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -166,6 +168,7 @@ public class registroServicio extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/imprimir.png"))); // NOI18N
         jButton3.setText("Imprimir");
+        jButton3.setToolTipText("Imprimir la tabla servicios");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

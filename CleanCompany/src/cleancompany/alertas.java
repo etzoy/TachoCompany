@@ -39,7 +39,7 @@ public class alertas extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
-        this.setTitle("alertas");
+        this.setTitle("Alertas");
 
         try {
             mts.visualizarTabla(this.jTable1, principal);
@@ -110,8 +110,9 @@ public class alertas extends javax.swing.JFrame {
         );
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Aceptar");
-        jButton1.setToolTipText("Cierra la ventana");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/aceptar.png"))); // NOI18N
+        jButton1.setText("  Aceptar");
+        jButton1.setToolTipText("Regresa al menu principal");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -121,6 +122,7 @@ public class alertas extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/imprimir.png"))); // NOI18N
         jButton2.setText("Imprimir");
+        jButton2.setToolTipText("Imprimir las alertas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

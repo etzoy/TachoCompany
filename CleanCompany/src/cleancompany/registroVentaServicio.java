@@ -309,16 +309,18 @@ public class registroVentaServicio extends javax.swing.JFrame {
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Cancelar");
-        jButton4.setToolTipText("Cancelar");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar (3).png"))); // NOI18N
+        jButton4.setText("Regresar");
+        jButton4.setToolTipText("Regresa al menu principal");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 600, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 590, -1, 40));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/serv menu.png"))); // NOI18N
         jButton5.setText("Crear");
         jButton5.setToolTipText("Crea una Venta de algun servicio");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -326,7 +328,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 600, -1, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 590, -1, 40));
         getContentPane().add(rSDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, -1));
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -342,13 +344,15 @@ public class registroVentaServicio extends javax.swing.JFrame {
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/limpiar.png"))); // NOI18N
         jButton3.setText("Limpiar");
+        jButton3.setToolTipText("Limpia los campos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 600, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 590, -1, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

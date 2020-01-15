@@ -233,16 +233,18 @@ public class nuevoServicio extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cancelar");
-        jButton1.setToolTipText("Cancelar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar (3).png"))); // NOI18N
+        jButton1.setText("Regresar");
+        jButton1.setToolTipText("Regresa a la pantalla anterior");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, -1, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, -1, 40));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/serv menu.png"))); // NOI18N
         jButton2.setText("Crear");
         jButton2.setToolTipText("Crea un nuevo servicio");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -250,9 +252,10 @@ public class nuevoServicio extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 550, 80, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 550, 90, 40));
 
         botonModificar.setBackground(new java.awt.Color(255, 255, 255));
+        botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/actualizar.png"))); // NOI18N
         botonModificar.setText("Modificar");
         botonModificar.setToolTipText("Modifica el  registro seleccionado");
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -260,12 +263,13 @@ public class nuevoServicio extends javax.swing.JFrame {
                 botonModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 550, -1, 30));
+        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 550, -1, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/servicios1.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/limpiar.png"))); // NOI18N
         jButton3.setText("Limpiar");
         jButton3.setToolTipText("Limpia los campos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -273,7 +277,7 @@ public class nuevoServicio extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 550, -1, 30));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, -1, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

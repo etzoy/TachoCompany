@@ -30,7 +30,7 @@ public class modeloTablaRegPorVencer {
 
     public void visualizarTabla(JTable tabla, cleanCompany principalOrigen) {
         this.principal = principalOrigen;
-        tabla.setDefaultRenderer(Object.class, new render());
+        tabla.setDefaultRenderer(Object.class, new renderAlertas());
         DefaultTableModel dt = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
                 return false;

@@ -109,8 +109,9 @@ public class agenda extends javax.swing.JFrame {
         );
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Aceptar");
-        jButton1.setToolTipText("Cierra la ventana");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/aceptar.png"))); // NOI18N
+        jButton1.setText("  Aceptar");
+        jButton1.setToolTipText("Regresa al menu principal");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -120,6 +121,7 @@ public class agenda extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/imprimir.png"))); // NOI18N
         jButton2.setText("Imprimir");
+        jButton2.setToolTipText("Imprimir la agenda");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
