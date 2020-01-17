@@ -41,11 +41,12 @@ public class modeloTablaRegPorVencer {
         dt.addColumn("Cliente");
         dt.addColumn("Servicio");
         dt.addColumn("Unidad");
-        dt.addColumn("Costo Unidad");
+        
         dt.addColumn("Tipo Unidad");
         dt.addColumn("Cantidad Unidad");
         dt.addColumn("Fecha de Finalizacion");
         dt.addColumn("Darle Seguimiento");
+        dt.addColumn("Fecha Mantenimiento");
         dt.addColumn("Atender");
         dt.addColumn("Descartar");
 
@@ -74,21 +75,22 @@ public class modeloTablaRegPorVencer {
                         fila[0] = principal.controlRVentaServicio.cliente(rVentaServicio.idCliente);
                         fila[1] = principal.controlRVentaServicio.servicio(rVentaServicio.idServicio);
                         fila[2] = rVentaServicio.unidad;
-                        fila[3] = rVentaServicio.costo;
+                        
                         if (rVentaServicio.tipoUnidad == 1) {
-                            fila[4] = "Dia";
+                            fila[3] = "Dia";
                         } else if (rVentaServicio.tipoUnidad == 2) {
-                            fila[4] = "Semana";
+                            fila[3] = "Semana";
                         } else {
-                            fila[4] = "Mes";
+                            fila[3] = "Mes";
                         }
-                        fila[5] = rVentaServicio.cantidadUnidad;
-                        fila[6] = rVentaServicio.fecha;
+                        fila[4] = rVentaServicio.cantidadUnidad;
+                        fila[5] = rVentaServicio.fecha;
                         if (rVentaServicio.darleSeguimiento) {
-                            fila[7] = "Si";
+                            fila[6] = "Si";
                         } else {
-                            fila[7] = "No";
+                            fila[6] = "No";
                         }
+                        fila[7] = rVentaServicio.fechaMantenimiento;
                         fila[8] = btn_modificar;
                         fila[9] = btn_eliminar;
                         dt.addRow(fila);

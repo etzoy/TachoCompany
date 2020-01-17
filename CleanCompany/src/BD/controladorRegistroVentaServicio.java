@@ -6,6 +6,7 @@
 package BD;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,6 +37,7 @@ public class controladorRegistroVentaServicio {
         String SQL = "INSERT INTO \"cleanCompany\".\"ProgramacionServicio\"("
                 + "	\"idServicio\", \"idCliente\", \"unidadCostoServicio\", \"valorCostoServicio\", \"tipoUnidadmantenimiento\", \"cantidadTiempoMantenimiento\", fecha, \"darleSeguimiento\", \"horaInicio\", \"horaFin\")"
                 + "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        
 
         long id = 0;
         try (Connection conn = conexionPostgres.connectDatabase();
@@ -52,7 +54,7 @@ public class controladorRegistroVentaServicio {
             pstmt.setBoolean(8, insert.darleSeguimiento);
             pstmt.setTime(9, insert.horaInicio);
             pstmt.setTime(10, insert.horaFin);
-
+            
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows 
             if (affectedRows > 0) {
@@ -65,12 +67,50 @@ public class controladorRegistroVentaServicio {
                     System.out.println(ex.getMessage());
                 }
             }
+            String fechaMant = "UPDATE \"cleanCompany\".\"ProgramacionServicio\""
+                + "	SET \"fechaMantenimiento\"='" + fechaFin(insert)+"'" 
+                + "        WHERE \"idServicio\"= '" + insert.idServicio + "' and \"idCliente\" = '" + insert.idCliente + "' and \"unidadCostoServicio\" = '" + insert.unidad
+                + "' and fecha='" + insert.fecha + "'";
+         ResultSet rset = null;
+        try {
+            
+            PreparedStatement pstm = conn.prepareCall(fechaMant);
+            rset = pstm.executeQuery();
+        } catch (SQLException ex) {
+
+            System.out.println(ex.getMessage());
+        } finally {
+
+        }
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return id;
     }
+    public Date fechaFin(regVentaServicio consulta){
+        
+        Date fecha = null;
+       // String SQL = "SELECT * FROM \"cleanCompany\".servicio WHERE ( eliminado='0' and nombre = '" + nombre + "')";
+        String Sql1 = "SELECT  fecha + (\"cantidadTiempoMantenimiento\" * t.dias || ' days')::interval From \"cleanCompany\".\"ProgramacionServicio\"  inner join \"cleanCompany\".\"tiempo\" t on \"cleanCompany\".\"ProgramacionServicio\".\"tipoUnidadmantenimiento\" = t.\"idTiempo\""
+                + "WHERE ( \"idServicio\"= '" + consulta.idServicio + "' and \"idCliente\" = '" + consulta.idCliente + "' and \"unidadCostoServicio\" = '" + consulta.unidad+"'and fecha='" + consulta.fecha + "')";
+                
+        ResultSet rset = null;
+        try {
+            Connection conn = conexionPostgres.connectDatabase();
+            PreparedStatement pstm = conn.prepareCall(Sql1);
+            rset = pstm.executeQuery();
 
+            while (rset.next() == true) {
+
+                fecha = rset.getDate(1);
+
+            }
+        } catch (SQLException ex) {
+
+        }
+        return fecha;
+    }
     public void actualizarRegistro(regVentaServicio actual, regVentaServicio update) {
         String SQL = "UPDATE \"cleanCompany\".\"ProgramacionServicio\"\n"
                 + "	SET \"idServicio\"='" + update.idServicio + "' , \"idCliente\"='" + update.idCliente + "' , \"unidadCostoServicio\"='" + update.unidad + "', \"valorCostoServicio\"='" + update.costo + "', \"tipoUnidadmantenimiento\"='" + update.tipoUnidad + "', \"cantidadTiempoMantenimiento\"='" + update.cantidadUnidad + "', fecha='" + update.fecha + "', \"darleSeguimiento\"='" + update.darleSeguimiento + "'"
@@ -82,6 +122,16 @@ public class controladorRegistroVentaServicio {
         try {
             Connection conn = conexionPostgres.connectDatabase();
             PreparedStatement pstm = conn.prepareCall(SQL);
+            rset = pstm.executeQuery();
+        
+        String fechaMant = "UPDATE \"cleanCompany\".\"ProgramacionServicio\""
+                + "	SET \"fechaMantenimiento\"='" + fechaFin(update)+"'" 
+                + "        WHERE \"idServicio\"= '" + update.idServicio + "' and \"idCliente\" = '" + update.idCliente + "' and \"unidadCostoServicio\" = '" + update.unidad
+                + "' and fecha='" + update.fecha + "'";
+          rset = null;
+        
+            
+             pstm = conn.prepareCall(fechaMant);
             rset = pstm.executeQuery();
         } catch (SQLException ex) {
 
@@ -109,7 +159,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public List<regVentaServicio> listaRegistrosVigentes() {
-        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha <= current_date) order by fecha";
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha <= current_date) order by \"fechaMantenimiento\"";
 
         java.util.List<regVentaServicio> listaRegistros = null;
 
@@ -132,6 +182,7 @@ public class controladorRegistroVentaServicio {
                 p.cantidadUnidad = rset.getInt(6);
                 p.fecha = rset.getDate(7);
                 p.darleSeguimiento = rset.getBoolean(8);
+                p.fechaMantenimiento = rset.getDate(12);
 
                 listaRegistros.add(p);
             }

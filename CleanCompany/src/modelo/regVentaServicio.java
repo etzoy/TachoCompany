@@ -25,5 +25,6 @@ public class regVentaServicio {
     public Time horaInicio;
     public Time horaFin;
     public boolean darleSeguimiento;
+    public Date fechaMantenimiento;
     
 }
