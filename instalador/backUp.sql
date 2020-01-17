@@ -5,7 +5,7 @@
 -- Dumped from database version 12.1
 -- Dumped by pg_dump version 12.1
 
--- Started on 2020-01-14 14:36:37
+-- Started on 2020-01-17 09:55:36
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -46,7 +46,9 @@ CREATE TABLE "cleanCompany"."ProgramacionServicio" (
     "cantidadTiempoMantenimiento" bigint,
     fecha date,
     "darleSeguimiento" boolean,
-    eliminado bigint DEFAULT 0 NOT NULL
+    eliminado bigint DEFAULT 0 NOT NULL,
+    "horaInicio" time without time zone,
+    "horaFin" time without time zone
 );
 
 
@@ -155,8 +157,6 @@ ALTER TABLE "cleanCompany".tiempo ALTER COLUMN "idTiempo" ADD GENERATED ALWAYS A
 --
 
 
-
-
 --
 -- TOC entry 2845 (class 0 OID 16395)
 -- Dependencies: 203
@@ -170,6 +170,7 @@ ALTER TABLE "cleanCompany".tiempo ALTER COLUMN "idTiempo" ADD GENERATED ALWAYS A
 -- Dependencies: 204
 -- Data for Name: servicio; Type: TABLE DATA; Schema: cleanCompany; Owner: postgres
 --
+
 
 
 
@@ -192,7 +193,7 @@ COPY "cleanCompany".tiempo ("idTiempo", dias, nombre) FROM stdin;
 -- Name: cliente_idCliente_seq; Type: SEQUENCE SET; Schema: cleanCompany; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"cleanCompany"."cliente_idCliente_seq"', 47, true);
+SELECT pg_catalog.setval('"cleanCompany"."cliente_idCliente_seq"', 50, true);
 
 
 --
@@ -276,7 +277,7 @@ ALTER TABLE ONLY "cleanCompany".servicio
     ADD CONSTRAINT fk_tiempo_servicio_1 FOREIGN KEY ("tipoUnidadMantenimiento") REFERENCES "cleanCompany".tiempo("idTiempo");
 
 
--- Completed on 2020-01-14 14:36:37
+-- Completed on 2020-01-17 09:55:40
 
 --
 -- PostgreSQL database dump complete

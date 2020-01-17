@@ -682,7 +682,8 @@ public class modVentaServicio extends javax.swing.JFrame {
 
     private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
         // TODO add your handling code here:
-        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 64
+        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
+                || evt.getKeyChar() >= 58 && evt.getKeyChar() <= 64
                 || evt.getKeyChar() >= 91 && evt.getKeyChar() <= 96
                 || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
                 || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
