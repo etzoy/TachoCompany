@@ -61,11 +61,11 @@ public class modeloTablaRegPorVencer {
         try {
             List<regVentaServicio> list = principal.controlRVentaServicio.listaRegistrosVigentes();
             if (list != null && !list.isEmpty()) {
-                Collections.sort(list, new Comparator<regVentaServicio>() {
-                    public int compare(regVentaServicio p1, regVentaServicio p2) {
-                        return p1.fecha.compareTo(p2.fecha);
-                    }
-                });
+//                Collections.sort(list, new Comparator<regVentaServicio>() {
+//                    public int compare(regVentaServicio p1, regVentaServicio p2) {
+//                        return p1.fecha.compareTo(p2.fecha);
+//                    }
+//                });
 
                 if (list.size() > 0) {
                     for (int i = 0; i < list.size(); i++) {

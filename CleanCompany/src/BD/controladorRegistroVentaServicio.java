@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.cliente;
@@ -32,8 +34,8 @@ public class controladorRegistroVentaServicio {
 
     public long insertVentaServicio(regVentaServicio insert) {
         String SQL = "INSERT INTO \"cleanCompany\".\"ProgramacionServicio\"("
-                + "	\"idServicio\", \"idCliente\", \"unidadCostoServicio\", \"valorCostoServicio\", \"tipoUnidadmantenimiento\", \"cantidadTiempoMantenimiento\", fecha, \"darleSeguimiento\")"
-                + "	VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+                + "	\"idServicio\", \"idCliente\", \"unidadCostoServicio\", \"valorCostoServicio\", \"tipoUnidadmantenimiento\", \"cantidadTiempoMantenimiento\", fecha, \"darleSeguimiento\", \"horaInicio\", \"horaFin\")"
+                + "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         long id = 0;
         try (Connection conn = conexionPostgres.connectDatabase();
@@ -48,6 +50,8 @@ public class controladorRegistroVentaServicio {
             pstmt.setInt(6, insert.cantidadUnidad);
             pstmt.setDate(7, insert.fecha);
             pstmt.setBoolean(8, insert.darleSeguimiento);
+            pstmt.setTime(9, insert.horaInicio);
+            pstmt.setTime(10, insert.horaFin);
 
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows 
@@ -70,6 +74,7 @@ public class controladorRegistroVentaServicio {
     public void actualizarRegistro(regVentaServicio actual, regVentaServicio update) {
         String SQL = "UPDATE \"cleanCompany\".\"ProgramacionServicio\"\n"
                 + "	SET \"idServicio\"='" + update.idServicio + "' , \"idCliente\"='" + update.idCliente + "' , \"unidadCostoServicio\"='" + update.unidad + "', \"valorCostoServicio\"='" + update.costo + "', \"tipoUnidadmantenimiento\"='" + update.tipoUnidad + "', \"cantidadTiempoMantenimiento\"='" + update.cantidadUnidad + "', fecha='" + update.fecha + "', \"darleSeguimiento\"='" + update.darleSeguimiento + "'"
+                + " , \"horaInicio\"='"+ update.horaInicio +"', \"horaFin\"='"+update.horaFin+"'"
                 + "        WHERE \"idServicio\"= '" + actual.idServicio + "' and \"idCliente\" = '" + actual.idCliente + "' and \"unidadCostoServicio\" = '" + actual.unidad
                 + "' and fecha='" + actual.fecha + "'";
 
@@ -104,7 +109,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public List<regVentaServicio> listaRegistrosVigentes() {
-        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha <= current_date)";
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha <= current_date) order by fecha";
 
         java.util.List<regVentaServicio> listaRegistros = null;
 
@@ -139,8 +144,8 @@ public class controladorRegistroVentaServicio {
         return listaRegistros;
     }
 
-     public List<regVentaServicio> listaAgenda() {
-        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha >= current_date)";
+    public List<regVentaServicio> listaAgenda() {
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha >= current_date) order by (fecha,  \"horaInicio\")";
 
         java.util.List<regVentaServicio> listaRegistros = null;
 
@@ -163,6 +168,8 @@ public class controladorRegistroVentaServicio {
                 p.cantidadUnidad = rset.getInt(6);
                 p.fecha = rset.getDate(7);
                 p.darleSeguimiento = rset.getBoolean(8);
+                p.horaInicio = (Time) rset.getObject(10);
+                p.horaFin = rset.getTime(11);
 
                 listaRegistros.add(p);
             }
@@ -174,7 +181,7 @@ public class controladorRegistroVentaServicio {
         }
         return listaRegistros;
     }
-     
+
     public String cliente(int idCliente) {
         String nombre = null;
 

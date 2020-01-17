@@ -6,6 +6,8 @@
 package modelo;
 
 import cleancompany.cleanCompany;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +42,8 @@ public class modeloTablaRegistroServicio {
         dt.addColumn("Tipo Unidad");
         dt.addColumn("Cantidad Unidad");
         dt.addColumn("Fecha de Finalizacion");
+        dt.addColumn("Hora Inicio");
+        dt.addColumn("Hora Fin");
         dt.addColumn("Darle Seguimiento");
         dt.addColumn("Modificar");
         dt.addColumn("Eliminar");
@@ -59,10 +63,11 @@ public class modeloTablaRegistroServicio {
             List<regVentaServicio> list = principal.controlRVentaServicio.listaAgenda();
 
             if (list != null && !list.isEmpty()) {
+                
 
                 if (list.size() > 0) {
                     for (int i = 0; i < list.size(); i++) {
-                        Object fila[] = new Object[10];
+                        Object fila[] = new Object[12];
                         rVentaServicio = list.get(i);
                         fila[0] = principal.controlRVentaServicio.cliente(rVentaServicio.idCliente);
                         fila[1] = principal.controlRVentaServicio.servicio(rVentaServicio.idServicio);
@@ -78,13 +83,19 @@ public class modeloTablaRegistroServicio {
                         fila[5] = rVentaServicio.cantidadUnidad;
                         fila[6] = rVentaServicio.fecha;
                         if (rVentaServicio.darleSeguimiento) {
-                            fila[7] = "Si";
+                            fila[9] = "Si";
                         } else {
-                            fila[7] = "No";
+                            fila[9] = "No";
                         }
-
-                        fila[8] = btn_modificar;
-                        fila[9] = btn_eliminar;
+                        try {
+                            String[] horas = rVentaServicio.horaInicio.toString().split("-");
+                            fila[7] = horas[0];
+                            horas = rVentaServicio.horaFin.toString().split("-");
+                            fila[8] = horas[0];
+                        } catch (Exception e) {
+                        }
+                        fila[10] = btn_modificar;
+                        fila[11] = btn_eliminar;
                         dt.addRow(fila);
                     }
 

@@ -214,6 +214,18 @@ public class agenda extends javax.swing.JFrame {
                     } else {
                         actual.darleSeguimiento = false;
                     }
+                    SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
+                    try {
+                        Date convertido = hora.parse(jTable1.getValueAt(row, 7).toString());
+		    java.sql.Time sqlTime = new java.sql.Time(convertido.getTime());
+                    actual.horaInicio = sqlTime;
+                    
+                    convertido= hora.parse(jTable1.getValueAt(row, 8).toString());
+                    sqlTime = new java.sql.Time(convertido.getTime());
+                    actual.horaFin = sqlTime;
+                    } catch (Exception e) {
+                    }
+			
 
                     modificar(actual, nombreCliente, nombreServicio, jTable1);
                     this.setVisible(false);

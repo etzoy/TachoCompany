@@ -6,6 +6,7 @@
 package modelo;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.Calendar;
 
 /**
@@ -21,6 +22,8 @@ public class regVentaServicio {
     public int tipoUnidad;
     public int cantidadUnidad;
     public Date fecha;
+    public Time horaInicio;
+    public Time horaFin;
     public boolean darleSeguimiento;
     
 }

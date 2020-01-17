@@ -8,6 +8,8 @@ package cleancompany;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -121,6 +123,8 @@ public class registroVentaServicio extends javax.swing.JFrame {
         this.jCheckBox1.setSelected(false);
         this.jComboBox2.setSelectedIndex(0);
         this.jComboBox4.setSelectedIndex(0);
+        this.jFormattedTextField1.setText("");
+        this.jFormattedTextField2.setText("");
         
         jTextField5.setText("");
         jTextField6.setText("");
@@ -172,6 +176,10 @@ public class registroVentaServicio extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel18 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
 
         jLabel6.setText("Seccion Mantenimiento:");
 
@@ -317,7 +325,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 590, -1, 40));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 620, -1, 40));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/serv menu.png"))); // NOI18N
@@ -328,20 +336,20 @@ public class registroVentaServicio extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 590, -1, 40));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 620, -1, 40));
         getContentPane().add(rSDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, -1));
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Darle Seguimiento");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, -1, -1));
 
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Si / No");
         jCheckBox1.setToolTipText("Seleccione si quiere darle seguimiento");
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, -1, -1));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/servicio1.png"))); // NOI18N
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, -1, -1));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 110, 100));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/limpiar.png"))); // NOI18N
@@ -352,7 +360,36 @@ public class registroVentaServicio extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 590, -1, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 620, -1, 40));
+
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Hora inicio");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
+
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField1.setToolTipText("Ingrese hora en formato 24hrs");
+        jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField1KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 100, 25));
+
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Hora finalizacion");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, -1, -1));
+
+        try {
+            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField2.setToolTipText("Ingrese hora en formato 24hrs");
+        getContentPane().add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 100, 25));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -391,14 +428,28 @@ public class registroVentaServicio extends javax.swing.JFrame {
                     java.sql.Date sqlDate = new java.sql.Date(this.rSDateChooser1.getDatoFecha().getTime());
                     nuevo.fecha = sqlDate;
                     nuevo.darleSeguimiento = this.jCheckBox1.isSelected();
+                    try {
+                        String horaInicio = jFormattedTextField1.getText() + ":00";
+                        String [] times = horaInicio.split(":");
+                        java.sql.Time time = new java.sql.Time(Integer.valueOf(times[0]), Integer.valueOf(times[1]), Integer.valueOf(times[2]));
+                        nuevo.horaInicio = time;
+                        
+			
+                        
+                        String horaFin = jFormattedTextField2.getText() + ":00";
+                        times = horaFin.split(":");
+			time = new java.sql.Time(Integer.valueOf(times[0]), Integer.valueOf(times[1]), Integer.valueOf(times[2]));
+                        
+			nuevo.horaFin = time;
+                        
+                    } catch (Exception e) {
+                    }
+                           
+                    
+                    
 
                     this.principal.controlRVentaServicio.insertVentaServicio(nuevo);
-                    this.jComboBox1.setSelectedIndex(0);
-                    this.jComboBox2.setSelectedIndex(0);
-                    this.jComboBox4.setSelectedIndex(0);
-                    this.jTextField5.setText("");
-                    this.jTextField6.setText("");
-                    this.jTextField7.setText("");
+                    vaciarCampos();
 
                     
                     JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
@@ -504,6 +555,11 @@ public class registroVentaServicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         vaciarCampos();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jFormattedTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jFormattedTextField1KeyTyped
     private void seleccion(servicio actual) {
         this.jTextField5.setText(actual.unidad);
         this.jTextField6.setText(Integer.toString(actual.costo));
@@ -586,6 +642,8 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -596,7 +654,9 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
