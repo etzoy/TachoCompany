@@ -180,19 +180,21 @@ public class modVentaServicio extends javax.swing.JFrame {
         this.jComboBox2.removeAllItems();
         this.jComboBox2.addItem("Seleccione un Servicio");
     }
- public void vaciarCampos() {
+
+    public void vaciarCampos() {
         this.jComboBox1.setSelectedIndex(0);
         this.jCheckBox1.setSelected(false);
         this.jComboBox2.setSelectedIndex(0);
         this.jComboBox4.setSelectedIndex(0);
         this.jFormattedTextField1.setText("");
         this.jFormattedTextField2.setText("");
-        
+
         jTextField5.setText("");
         jTextField6.setText("");
         jTextField7.setText("");
         this.rSDateChooser1.setDatoFecha(null);
     }
+
     public void actualizar() {
         try {
             mts.visualizarTabla(this.tabla, principal);
@@ -576,29 +578,31 @@ public class modVentaServicio extends javax.swing.JFrame {
                     nuevo.darleSeguimiento = this.jCheckBox1.isSelected();
                     try {
                         String horaInicio = jFormattedTextField1.getText() + ":00";
-                        String [] times = horaInicio.split(":");
+                        String[] times = horaInicio.split(":");
                         java.sql.Time time = new java.sql.Time(Integer.valueOf(times[0]), Integer.valueOf(times[1]), Integer.valueOf(times[2]));
                         nuevo.horaInicio = time;
-                        
-			
-                        
+
                         String horaFin = jFormattedTextField2.getText() + ":00";
                         times = horaFin.split(":");
-			time = new java.sql.Time(Integer.valueOf(times[0]), Integer.valueOf(times[1]), Integer.valueOf(times[2]));
-                        
-			nuevo.horaFin = time;
-                        
+                        time = new java.sql.Time(Integer.valueOf(times[0]), Integer.valueOf(times[1]), Integer.valueOf(times[2]));
+
+                        nuevo.horaFin = time;
+
                     } catch (Exception e) {
                     }
-                    
-                    this.principal.controlRVentaServicio.actualizarRegistro(actual, nuevo);
-                    this.principal.agenda.actualizar();
-                    this.principal.alertas.actualizar();
-                    JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
 
-                    this.setVisible(false);
-                    this.principal.agenda.setVisible(true);
+                    if (validarHora(jFormattedTextField1.getText()) && validarHora(jFormattedTextField2.getText())) {
+                        this.principal.controlRVentaServicio.actualizarRegistro(actual, nuevo);
+                        this.principal.agenda.actualizar();
+                        this.principal.alertas.actualizar();
+                        JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
 
+                        this.setVisible(false);
+                        this.principal.agenda.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe ingresar una hora correcta.", "Error!", JOptionPane.WARNING_MESSAGE);
+
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una Fecha.", "Error!", JOptionPane.WARNING_MESSAGE);
 
@@ -612,6 +616,24 @@ public class modVentaServicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    public boolean validarHora(String hora) {
+        boolean b;
+        char[] a = hora.toString().toCharArray();
+        String[] c = hora.split(":");
+        if ((a[0] == ' ') || (a[1] == ' ') || (a[2] == ' ')
+                || (a[3] == ' ') || (a[4] == ' ')
+                || (getInteger(c[0]) > 24) || (getInteger(c[1]) > 59)) {
+            b = false;
+        } else {
+            b = true;
+        }
+        return b;
+    }
+
+    public int getInteger(String valor) {
+        int integer = Integer.parseInt(valor);
+        return integer;
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        registroCliente rCliente = new registroCliente(principal);
         this.principal.rCliente.setVisible(true);

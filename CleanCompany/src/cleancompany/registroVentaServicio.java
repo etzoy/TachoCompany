@@ -39,6 +39,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     nuevoCliente nuevoCliente;
     nuevoServicio nuevoServicio;
+
     /**
      * Creates new form registroVentaServicio
      */
@@ -125,7 +126,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
         this.jComboBox4.setSelectedIndex(0);
         this.jFormattedTextField1.setText("");
         this.jFormattedTextField2.setText("");
-        
+
         jTextField5.setText("");
         jTextField6.setText("");
         jTextField7.setText("");
@@ -430,29 +431,29 @@ public class registroVentaServicio extends javax.swing.JFrame {
                     nuevo.darleSeguimiento = this.jCheckBox1.isSelected();
                     try {
                         String horaInicio = jFormattedTextField1.getText() + ":00";
-                        String [] times = horaInicio.split(":");
+                        String[] times = horaInicio.split(":");
                         java.sql.Time time = new java.sql.Time(Integer.valueOf(times[0]), Integer.valueOf(times[1]), Integer.valueOf(times[2]));
                         nuevo.horaInicio = time;
-                        
-			
-                        
+
                         String horaFin = jFormattedTextField2.getText() + ":00";
                         times = horaFin.split(":");
-			time = new java.sql.Time(Integer.valueOf(times[0]), Integer.valueOf(times[1]), Integer.valueOf(times[2]));
-                        
-			nuevo.horaFin = time;
-                        
+                        time = new java.sql.Time(Integer.valueOf(times[0]), Integer.valueOf(times[1]), Integer.valueOf(times[2]));
+
+                        nuevo.horaFin = time;
+
                     } catch (Exception e) {
                     }
-                           
-                    
-                    
 
-                    this.principal.controlRVentaServicio.insertVentaServicio(nuevo);
-                    vaciarCampos();
+                    if (validarHora(jFormattedTextField1.getText()) && validarHora(jFormattedTextField2.getText())) {
+                        this.principal.controlRVentaServicio.insertVentaServicio(nuevo);
+                        vaciarCampos();
 
-                    
-                    JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe ingresar una hora correcta.", "Error!", JOptionPane.WARNING_MESSAGE);
+
+                    }
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una Fecha.", "Error!", JOptionPane.WARNING_MESSAGE);
@@ -466,11 +467,28 @@ public class registroVentaServicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un Cliente.", "Error!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+    public boolean validarHora(String hora) {
+        boolean b;
+        char[] a = hora.toString().toCharArray();
+        String[] c = hora.split(":");
+        if ((a[0] == ' ') || (a[1] == ' ') || (a[2] == ' ')
+                || (a[3] == ' ') || (a[4] == ' ')
+                || (getInteger(c[0]) > 24) || (getInteger(c[1]) > 59)) {
+            b = false;
+        } else {
+            b = true;
+        }
+        return b;
+    }
 
+    public int getInteger(String valor) {
+        int integer = Integer.parseInt(valor);
+        return integer;
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        registroCliente rCliente = new registroCliente(principal);
         this.setVisible(false);
-        nuevoCliente = new nuevoCliente(principal,null);
+        nuevoCliente = new nuevoCliente(principal, null);
         nuevoCliente.setVisible(true);
         nuevoCliente.botonModificar.setVisible(false);
 
@@ -480,7 +498,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-         this.setVisible(false);
+        this.setVisible(false);
         nuevoServicio = new nuevoServicio(principal, null);
         nuevoServicio.setVisible(true);
         nuevoServicio.botonModificar.setVisible(false);
@@ -558,7 +576,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
 
     private void jFormattedTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyTyped
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jFormattedTextField1KeyTyped
     private void seleccion(servicio actual) {
         this.jTextField5.setText(actual.unidad);
