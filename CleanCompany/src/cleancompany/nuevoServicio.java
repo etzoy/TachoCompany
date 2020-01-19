@@ -11,6 +11,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.cliente;
@@ -42,6 +43,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Registro de Servicios");
         this.botonModificar.setVisible(false);
+        this.setIconImage(new ImageIcon(getClass().getResource("/Img/LogoApp.png")).getImage());
         this.anterior=anterior;
         // this.jButton4.setVisible(false);
         llenarCombo();

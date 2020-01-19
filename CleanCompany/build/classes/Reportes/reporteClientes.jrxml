@@ -50,6 +50,10 @@
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Tacho Company]]></text>
 			</staticText>
+			<image>
+				<reportElement positionType="Float" x="398" y="0" width="130" height="67" uuid="b65e42cd-6b22-4eee-9081-8fd39c5b0d62"/>
+				<imageExpression><![CDATA["Logo.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

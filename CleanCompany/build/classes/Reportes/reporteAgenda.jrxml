@@ -57,6 +57,10 @@ order by (fecha,  "horaInicio")
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Tacho Company]]></text>
 			</staticText>
+			<image>
+				<reportElement positionType="Float" x="398" y="0" width="130" height="67" uuid="f47b70a3-2a47-4d42-ac65-c63b94354bde"/>
+				<imageExpression><![CDATA["Logo.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

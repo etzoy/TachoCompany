@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.cliente;
@@ -50,6 +51,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         llenarCombos();
         this.setTitle("Registro de Venta");
+        this.setIconImage(new ImageIcon(getClass().getResource("/Img/LogoApp.png")).getImage());
 //        try {
 //            mts.visualizarTabla(this.jtblRegistros, principal);
 //        } catch (Exception ex) {

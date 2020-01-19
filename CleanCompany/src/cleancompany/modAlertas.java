@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -53,6 +54,7 @@ public class modAlertas extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
         this.setTitle("Modificacion de Venta");
+        this.setIconImage(new ImageIcon(getClass().getResource("/Img/LogoApp.png")).getImage());
         llenarCombos();
 //        try {
 //            mts.visualizarTabla(this.jtblRegistros, principal);

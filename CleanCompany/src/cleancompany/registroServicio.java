@@ -11,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.modeloTablaServicio;
@@ -38,6 +39,7 @@ public class registroServicio extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
         this.setTitle("Registro de Servicios");
+        this.setIconImage(new ImageIcon(getClass().getResource("/Img/LogoApp.png")).getImage());
 //        this.botonModificar.setVisible(false);
 //        this.jButton4.setVisible(false);
 

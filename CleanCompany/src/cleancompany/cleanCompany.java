@@ -11,6 +11,7 @@ import BD.controladorRegistroVentaServicio;
 import BD.controladorServicio;
 import BD.controladorTiempo;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +30,7 @@ public class cleanCompany extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
         this.setTitle("Menu Principal");
+        this.setIconImage(new ImageIcon(getClass().getResource("/Img/LogoApp.png")).getImage());
         rVentaServicio = new registroVentaServicio(this);
         alertas = new alertas(this);
         rCliente = new registroCliente(this);

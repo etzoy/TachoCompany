@@ -41,8 +41,12 @@
 	<title>
 		<band height="70" splitType="Stretch">
 			<image>
-				<reportElement x="-20" y="0" width="595" height="64" uuid="91555e30-6a46-47f8-9e43-2823e424fad0"/>
+				<reportElement mode="Transparent" x="-20" y="0" width="595" height="64" uuid="91555e30-6a46-47f8-9e43-2823e424fad0"/>
 				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement positionType="Float" x="398" y="0" width="130" height="67" uuid="60c84f4f-20ee-4c78-82f7-72dd8a550a39"/>
+				<imageExpression><![CDATA["Logo.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="460f7829-4092-4235-9c48-4a6264a12383"/>

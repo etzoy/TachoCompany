@@ -55,6 +55,10 @@ Order By t.fecha ASC
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Tacho Company]]></text>
 			</staticText>
+			<image>
+				<reportElement positionType="Float" x="398" y="0" width="130" height="67" uuid="a2776fbb-5e58-43cd-afea-50a2d6b775de"/>
+				<imageExpression><![CDATA["Logo.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
