@@ -39,7 +39,7 @@ public class renderAlertas extends DefaultTableCellRenderer {
             }
             return btn;
         }
-        int dif = difMes(table.getValueAt(row, 7).toString());
+        int dif = difMes(table.getValueAt(row, 8).toString());
         if (dif<=1) {
             setBackground(Color.red);
         }else if (dif <=3) {

@@ -551,7 +551,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        if (Character.isLetter(valid)) {
+        if (Character.isLetter(valid)|| valid ==32 || valid == 46) {
             getToolkit().beep();
             evt.consume();
 

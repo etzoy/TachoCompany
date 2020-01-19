@@ -120,7 +120,7 @@ public class cleanCompany extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Otras operacioens");
+        jLabel1.setText("Otras operaciones");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, 16));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));

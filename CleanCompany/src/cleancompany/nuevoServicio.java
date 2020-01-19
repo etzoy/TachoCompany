@@ -160,6 +160,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 271, -1));
 
+        jTextField4.setToolTipText("ingrese solo numeros");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -216,6 +217,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         jLabel3.setText("Valor por unidad:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
+        jTextField2.setToolTipText("Ingrese solo numeros");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -351,7 +353,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
         
-        if (Character.isLetter(valid) || valid == 32) {
+        if (Character.isLetter(valid) || valid == 32 || valid == 46) {
             getToolkit().beep();
             evt.consume();
 
