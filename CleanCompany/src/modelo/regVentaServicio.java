@@ -18,7 +18,7 @@ public class regVentaServicio {
     public int idServicio;
     public String unidad;
     
-    public int costo;
+    public double costo;
     public int tipoUnidad;
     public int cantidadUnidad;
     public Date fecha;

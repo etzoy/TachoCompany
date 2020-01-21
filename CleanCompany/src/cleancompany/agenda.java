@@ -209,9 +209,9 @@ public class agenda extends javax.swing.JFrame {
                     } else {
                         actual.tipoUnidad = 3;
                     }
-                    actual.costo = Integer.valueOf(jTable1.getValueAt(row, 3).toString());
+                    actual.costo = Double.valueOf(jTable1.getValueAt(row, 3).toString());
                     actual.cantidadUnidad = Integer.valueOf(jTable1.getValueAt(row, 5).toString());
-                    if (jTable1.getValueAt(row, 7).toString().equals("Si")) {
+                    if (jTable1.getValueAt(row, 9).toString().equals("Si")) {
                         actual.darleSeguimiento = true;
                     } else {
                         actual.darleSeguimiento = false;

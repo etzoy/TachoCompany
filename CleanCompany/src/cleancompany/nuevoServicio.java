@@ -24,10 +24,10 @@ import modelo.tiempo;
  * @author etzoy
  */
 public class nuevoServicio extends javax.swing.JFrame {
-    
+
     cleanCompany principal = null;
     modeloTablaServicio mts = new modeloTablaServicio();
-    
+
     int clickTabla;
     servicio nuevo = new servicio();
     tiempo tiempo;
@@ -44,7 +44,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         this.setTitle("Registro de Servicios");
         this.botonModificar.setVisible(false);
         this.setIconImage(new ImageIcon(getClass().getResource("/Img/LogoApp.png")).getImage());
-        this.anterior=anterior;
+        this.anterior = anterior;
         // this.jButton4.setVisible(false);
         llenarCombo();
 
@@ -59,7 +59,7 @@ public class nuevoServicio extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public void visiblePrincipal() {
         this.principal.rServicio.setVisible(true);
         this.botonModificar.setVisible(false);
@@ -68,24 +68,24 @@ public class nuevoServicio extends javax.swing.JFrame {
     }
 
     public void llenarCombo() {
-        
+
         tiempo = new tiempo();
         List<tiempo> list = this.principal.controlTiempo.listaTiempo();
-        
+
         if (list != null && !list.isEmpty()) {
             if (list.size() > 0) {
                 this.jComboBox1.addItem("Tipo Unidad");
                 for (int i = 0; i < list.size(); i++) {
-                    
+
                     tiempo = list.get(i);
                     this.jComboBox1.addItem(tiempo.nombre);
-                    
+
                 }
-                
+
             }
         }
     }
-    
+
     public void actualizar() {
 //        try {
 //            mts.visualizarTabla(this.jtblListaServicios, principal);
@@ -119,13 +119,13 @@ public class nuevoServicio extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -219,19 +219,6 @@ public class nuevoServicio extends javax.swing.JFrame {
         jLabel3.setText("Valor por unidad:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
-        jTextField2.setToolTipText("Ingrese solo numeros");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
-            }
-        });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 271, -1));
-
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Unidad:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
@@ -283,6 +270,9 @@ public class nuevoServicio extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, -1, 40));
 
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####0.##"))));
+        getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 270, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -294,16 +284,12 @@ public class nuevoServicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.getContentPane().setBackground(Color.BLACK);
         this.setVisible(false);        // TODO add your handling code here:
         if (this.anterior != null) {
             this.principal.rServicio.setVisible(true);
-        }else{
+        } else {
             this.principal.rVentaServicio.setVisible(true);
         }
         this.botonModificar.setVisible(false);
@@ -313,37 +299,37 @@ public class nuevoServicio extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //this.setVisible(false);
         servicio nuevo = new servicio();
-        
+
         nuevo.nombre = jTextField1.getText();
         nuevo.descripcion = jTextArea1.getText();
         nuevo.unidad = jTextField3.getText();
-        
+
         if (!this.jTextField1.getText().equals("")) {
-            if (!this.jTextField2.getText().equals("")) {
-                nuevo.costo = Integer.parseInt(jTextField2.getText());
+            if (!this.jFormattedTextField1.getText().equals("")) {
+                nuevo.costo = Double.parseDouble(jFormattedTextField1.getText());
                 if (!this.jTextField4.getText().equals("")) {
                     nuevo.cantidadUnidad = Integer.parseInt(jTextField4.getText().trim());
-                    
+
                     if (this.jComboBox1.getSelectedIndex() != 0) {
                         nuevo.tipoUnidad = this.jComboBox1.getSelectedIndex();
                         this.principal.controlServicio.insertServicio(nuevo);
-                        
+
                         vaciarCampos();
                         actualizar();
                         this.principal.rVentaServicio.llenarCombos();
                         JOptionPane.showMessageDialog(null, "Servicio creado con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-                        
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de unidad.", "Error!", JOptionPane.WARNING_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "El campo 'Cantidad de Unidades' no puede quedarvacio.", "Error!", JOptionPane.WARNING_MESSAGE);
                 }
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "El campo 'Costo' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "El campo 'Nombre' no puede quedar vacio.", "Error!", JOptionPane.WARNING_MESSAGE);
         }
@@ -351,23 +337,15 @@ public class nuevoServicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        // TODO add your handling code here:
-        char valid = evt.getKeyChar();
-        
-        if (Character.isLetter(valid) || valid == 32 || valid == 46) {
-            getToolkit().beep();
-            evt.consume();
-
-            //JOptionPane.showMessageDialog(this, "Ingresar Solo Numeros");
-        }
-    }//GEN-LAST:event_jTextField2KeyTyped
-
     private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        
-        if (Character.isLetter(valid) || valid == 32) {
+
+        if (Character.isLetter(valid) || evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
+                || evt.getKeyChar() >= 58 && evt.getKeyChar() <= 96
+                || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
+                || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+                || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255) {
             getToolkit().beep();
             evt.consume();
 
@@ -375,24 +353,24 @@ public class nuevoServicio extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jTextField4KeyTyped
-    
+
     public void texts(String nombre, String costo, String unidad, String cantidadUnidad, String descripcion, int combo) {
-        
+
         this.jTextField1.setText(nombre);
-        this.jTextField2.setText(costo);
+        this.jFormattedTextField1.setText(costo);
         this.jTextField3.setText(unidad);
         this.jTextField4.setText(cantidadUnidad);
         this.jTextArea1.setText(descripcion);
-        
+
         this.jComboBox1.setSelectedIndex(combo);
-        
+
     }
-    
+
     public void vaciarCampos() {
         jTextField1.setText("");
         jTextArea1.setText("");
         jTextField3.setText("");
-        jTextField2.setText("");
+        jFormattedTextField1.setText("");
         jTextField4.setText("");
         jComboBox1.setSelectedIndex(0);
     }
@@ -407,15 +385,15 @@ public class nuevoServicio extends javax.swing.JFrame {
         update.nombre = jTextField1.getText();
         update.descripcion = jTextArea1.getText();
         update.unidad = jTextField3.getText();
-        update.costo = Integer.parseInt(jTextField2.getText());
+        update.costo = Integer.parseInt(jFormattedTextField1.getText());
         if (this.jComboBox1.getSelectedIndex() != 0) {
             update.tipoUnidad = this.jComboBox1.getSelectedIndex();
         }
         update.cantidadUnidad = Integer.parseInt(jTextField4.getText());
-        
+
         this.principal.controlServicio.actualizarServicio(nuevo, update);
         JOptionPane.showMessageDialog(null, "Servicio actualizado con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-        
+
         actualizar();
         try {
             this.principal.rVentaServicio.llenarCombos();
@@ -469,6 +447,7 @@ public class nuevoServicio extends javax.swing.JFrame {
     public javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -483,7 +462,6 @@ public class nuevoServicio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables

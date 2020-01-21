@@ -47,7 +47,7 @@ public class controladorRegistroVentaServicio {
             pstmt.setInt(1, insert.idServicio);
             pstmt.setInt(2, insert.idCliente);
             pstmt.setString(3, insert.unidad);
-            pstmt.setInt(4, insert.costo);
+            pstmt.setDouble(4, insert.costo);
             pstmt.setInt(5, insert.tipoUnidad);
             pstmt.setInt(6, insert.cantidadUnidad);
             pstmt.setDate(7, insert.fecha);
@@ -159,7 +159,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public List<regVentaServicio> listaRegistrosVigentes() {
-        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha <= current_date) order by \"fechaMantenimiento\"";
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha <= current_date and \"darleSeguimiento\"='true') order by \"fechaMantenimiento\"";
 
         java.util.List<regVentaServicio> listaRegistros = null;
 
@@ -196,7 +196,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public List<regVentaServicio> listaAgenda() {
-        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha >= current_date) order by (fecha,  \"horaInicio\")";
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha >= current_date and \"darleSeguimiento\"='true') order by (fecha,  \"horaInicio\")";
 
         java.util.List<regVentaServicio> listaRegistros = null;
 
@@ -270,7 +270,7 @@ public class controladorRegistroVentaServicio {
                 p.nombre = rset.getString(2);
                 p.descripcion = rset.getString(3);
                 p.unidad = rset.getString(4);
-                p.costo = rset.getInt(5);
+                p.costo = rset.getDouble(5);
                 p.tipoUnidad = rset.getInt(6);
                 p.cantidadUnidad = rset.getInt(7);
 
@@ -343,5 +343,47 @@ public class controladorRegistroVentaServicio {
 
         }
         return id;
+    }
+    public Time getHoraInicio(int idServicio, int idCliente, Date fecha){
+        Time hora = null;
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE ( eliminado='0' and \"idServicio\" = '" + idServicio + "' and \"idCliente\" ='"+idCliente+"' and fecha ='"+fecha+"')";
+
+         ResultSet rset = null;
+        try {
+            Connection conn = conexionPostgres.connectDatabase();
+            PreparedStatement pstm = conn.prepareCall(SQL);
+            rset = pstm.executeQuery();
+
+            while (rset.next() == true) {
+
+                hora = rset.getTime(10);
+
+            }
+        } catch (SQLException ex) {
+
+        }
+        return hora;
+        
+    }
+    public Time getHoraFin(int idServicio, int idCliente, Date fecha){
+        Time hora = null;
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE ( eliminado='0' and \"idServicio\" = '" + idServicio + "' and \"idCliente\" ='"+idCliente+"' and fecha ='"+fecha+"')";
+
+         ResultSet rset = null;
+        try {
+            Connection conn = conexionPostgres.connectDatabase();
+            PreparedStatement pstm = conn.prepareCall(SQL);
+            rset = pstm.executeQuery();
+
+            while (rset.next() == true) {
+
+                hora = rset.getTime(11);
+
+            }
+        } catch (SQLException ex) {
+
+        }
+        return hora;
+        
     }
 }

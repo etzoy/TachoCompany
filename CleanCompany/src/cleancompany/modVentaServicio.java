@@ -77,7 +77,7 @@ public class modVentaServicio extends javax.swing.JFrame {
     public void texts() {
 
         String unidad = this.actual.unidad;
-        String costo = Integer.toString(this.actual.costo);
+        String costo = Double.toString(this.actual.costo);
         String cantidadUnidades = Integer.toString(this.actual.cantidadUnidad);
 
         this.jComboBox1.setSelectedIndex(busquedaClient(this.nombreCliente));
@@ -91,7 +91,7 @@ public class modVentaServicio extends javax.swing.JFrame {
 //            System.out.println(ex);
 //        }
         this.jTextField5.setText(unidad);
-        this.jTextField6.setText(costo);
+        this.jFormattedTextField3.setText(costo);
         this.jTextField7.setText(cantidadUnidades);
         this.jFormattedTextField1.setText(actual.horaInicio.toString());
         this.jFormattedTextField2.setText(actual.horaFin.toString());
@@ -192,7 +192,7 @@ public class modVentaServicio extends javax.swing.JFrame {
         this.jFormattedTextField2.setText("");
 
         jTextField5.setText("");
-        jTextField6.setText("");
+        jFormattedTextField3.setText("");
         jTextField7.setText("");
         this.rSDateChooser1.setDatoFecha(null);
     }
@@ -236,7 +236,6 @@ public class modVentaServicio extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox();
-        jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -252,6 +251,7 @@ public class modVentaServicio extends javax.swing.JFrame {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel20 = new javax.swing.JLabel();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
 
         jLabel6.setText("Seccion Mantenimiento:");
 
@@ -329,17 +329,6 @@ public class modVentaServicio extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Valor por unidad:");
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField6KeyTyped(evt);
-            }
-        });
-
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -410,6 +399,8 @@ public class modVentaServicio extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####0.##"))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -442,9 +433,9 @@ public class modVentaServicio extends javax.swing.JFrame {
                                         .addComponent(jLabel13))
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel10)
                             .addComponent(jLabel15)
                             .addGroup(layout.createSequentialGroup()
@@ -505,10 +496,10 @@ public class modVentaServicio extends javax.swing.JFrame {
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addComponent(jLabel10)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -534,7 +525,7 @@ public class modVentaServicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jCheckBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
@@ -552,10 +543,6 @@ public class modVentaServicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
@@ -572,7 +559,7 @@ public class modVentaServicio extends javax.swing.JFrame {
                     nuevo.idCliente = this.principal.controlRVentaServicio.getIdCliente(jComboBox1.getSelectedItem().toString());
                     nuevo.idServicio = this.principal.controlRVentaServicio.getIdServicio(jComboBox2.getSelectedItem().toString());
                     nuevo.unidad = this.jTextField5.getText();
-                    nuevo.costo = Integer.parseInt(this.jTextField6.getText());
+                    nuevo.costo = Double.parseDouble(this.jFormattedTextField3.getText());
                     nuevo.tipoUnidad = this.jComboBox4.getSelectedIndex();
                     nuevo.cantidadUnidad = Integer.parseInt(this.jTextField7.getText());
                     java.sql.Date sqlDate = new java.sql.Date(this.rSDateChooser1.getDatoFecha().getTime());
@@ -674,7 +661,7 @@ public class modVentaServicio extends javax.swing.JFrame {
             }
         } else {
             this.jTextField5.setText("");
-            this.jTextField6.setText("");
+            this.jFormattedTextField3.setText("");
             //this.jComboBox4.setSelectedIndex(0);
             this.jTextField7.setText("");
         }
@@ -695,21 +682,14 @@ public class modVentaServicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField5KeyTyped
 
-    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
-        // TODO add your handling code here:
-        char valid = evt.getKeyChar();
-        if (Character.isLetter(valid)|| valid ==32 || valid == 46) {
-            getToolkit().beep();
-            evt.consume();
-
-            //JOptionPane.showMessageDialog(this, "Ingresar Solo Numeros");
-        }
-    }//GEN-LAST:event_jTextField6KeyTyped
-
     private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        if (Character.isLetter(valid) || valid == 32) {
+        if (Character.isLetter(valid) || evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
+                || evt.getKeyChar() >= 58 && evt.getKeyChar() <= 96
+                || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
+                || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+                || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255) {
             getToolkit().beep();
             evt.consume();
 
@@ -718,7 +698,7 @@ public class modVentaServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7KeyTyped
     private void seleccion(servicio actual) {
         this.jTextField5.setText(actual.unidad);
-        this.jTextField6.setText(Integer.toString(actual.costo));
+        this.jFormattedTextField3.setText(Double.toString(actual.costo));
         this.jComboBox4.setSelectedIndex(actual.tipoUnidad);
         this.jTextField7.setText(String.valueOf(actual.cantidadUnidad));
     }
@@ -775,6 +755,7 @@ public class modVentaServicio extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -798,7 +779,6 @@ public class modVentaServicio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     // End of variables declaration//GEN-END:variables

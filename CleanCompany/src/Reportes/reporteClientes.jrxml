@@ -46,9 +46,8 @@
 				<text><![CDATA[Clientes]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="11a5bbfb-0577-4129-a311-3e16b8959ecf"/>
-				<textElement textAlignment="Right"/>
-				<text><![CDATA[Tacho Company]]></text>
+				<reportElement style="SubTitle" x="63" y="39" width="257" height="22" forecolor="#FFFFFF" uuid="11a5bbfb-0577-4129-a311-3e16b8959ecf"/>
+				<text><![CDATA[URBAN CLEANING SERVICES]]></text>
 			</staticText>
 			<image>
 				<reportElement positionType="Float" x="398" y="0" width="130" height="67" uuid="b65e42cd-6b22-4eee-9081-8fd39c5b0d62"/>

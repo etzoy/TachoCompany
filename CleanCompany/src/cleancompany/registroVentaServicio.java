@@ -130,7 +130,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
         this.jFormattedTextField2.setText("");
 
         jTextField5.setText("");
-        jTextField6.setText("");
+        jFormattedTextField3.setText("");
         jTextField7.setText("");
         this.rSDateChooser1.setDatoFecha(null);
     }
@@ -165,7 +165,6 @@ public class registroVentaServicio extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox();
-        jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -183,6 +182,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel20 = new javax.swing.JLabel();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
 
         jLabel6.setText("Seccion Mantenimiento:");
 
@@ -272,18 +272,6 @@ public class registroVentaServicio extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 271, -1));
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField6KeyTyped(evt);
-            }
-        });
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 271, -1));
 
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,6 +382,9 @@ public class registroVentaServicio extends javax.swing.JFrame {
         jFormattedTextField2.setToolTipText("Ingrese hora en formato 24hrs");
         getContentPane().add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 100, 25));
 
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####0.##"))));
+        getContentPane().add(jFormattedTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 270, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -404,10 +395,6 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
@@ -425,7 +412,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
                     nuevo.idCliente = this.principal.controlRVentaServicio.getIdCliente(jComboBox1.getSelectedItem().toString());
                     nuevo.idServicio = this.principal.controlRVentaServicio.getIdServicio(jComboBox2.getSelectedItem().toString());
                     nuevo.unidad = this.jTextField5.getText();
-                    nuevo.costo = Integer.parseInt(this.jTextField6.getText());
+                    nuevo.costo = Double.parseDouble(this.jFormattedTextField3.getText());
                     nuevo.tipoUnidad = this.jComboBox4.getSelectedIndex();
                     nuevo.cantidadUnidad = Integer.parseInt(this.jTextField7.getText());
                     java.sql.Date sqlDate = new java.sql.Date(this.rSDateChooser1.getDatoFecha().getTime());
@@ -528,7 +515,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
             }
         } else {
             this.jTextField5.setText("");
-            this.jTextField6.setText("");
+            this.jFormattedTextField3.setText("");
             //this.jComboBox4.setSelectedIndex(0);
             this.jTextField7.setText("");
         }
@@ -550,22 +537,15 @@ public class registroVentaServicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTextField5KeyTyped
 
-    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
-        // TODO add your handling code here:
-        char valid = evt.getKeyChar();
-        if (Character.isLetter(valid)|| valid ==32 || valid == 46) {
-            getToolkit().beep();
-            evt.consume();
-
-            //JOptionPane.showMessageDialog(this, "Ingresar Solo Numeros");
-        }
-    }//GEN-LAST:event_jTextField6KeyTyped
-
     private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
 
-        if (Character.isLetter(valid)) {
+        if (Character.isLetter(valid)|| evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
+                || evt.getKeyChar() >= 58 && evt.getKeyChar() <= 96
+                || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
+                || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+                || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255) {
             getToolkit().beep();
             evt.consume();
 
@@ -584,7 +564,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField1KeyTyped
     private void seleccion(servicio actual) {
         this.jTextField5.setText(actual.unidad);
-        this.jTextField6.setText(Integer.toString(actual.costo));
+        this.jFormattedTextField3.setText(Double.toString(actual.costo));
         this.jComboBox4.setSelectedIndex(actual.tipoUnidad);
         this.jTextField7.setText(String.valueOf(actual.cantidadUnidad));
     }
@@ -666,6 +646,7 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -690,7 +671,6 @@ public class registroVentaServicio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     // End of variables declaration//GEN-END:variables

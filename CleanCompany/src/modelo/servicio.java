@@ -13,7 +13,7 @@ public class servicio {
     public String nombre;
     public String descripcion;
     public String unidad;
-    public int costo;
+    public double costo;
     public int tipoUnidad;
     public int cantidadUnidad;
 }

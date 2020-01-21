@@ -39,7 +39,7 @@ public class controladorServicio {
             pstmt.setString(1, actor.nombre);
             pstmt.setString(2, actor.descripcion);
             pstmt.setString(3, actor.unidad);
-            pstmt.setInt(4, actor.costo);
+            pstmt.setDouble(4, actor.costo);
             pstmt.setInt(5, actor.tipoUnidad);
             pstmt.setInt(6, actor.cantidadUnidad);
 

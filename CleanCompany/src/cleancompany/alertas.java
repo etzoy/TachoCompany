@@ -217,6 +217,8 @@ public class alertas extends javax.swing.JFrame {
                     } else {
                         actual.darleSeguimiento = false;
                     }
+                    actual.horaInicio=this.principal.controlRVentaServicio.getHoraInicio(actual.idServicio, actual.idCliente, actual.fecha);
+                    actual.horaFin = this.principal.controlRVentaServicio.getHoraFin(actual.idServicio, actual.idCliente, actual.fecha);        
 
                     modificar(actual, nombreCliente, nombreServicio, jTable1);
                     this.setVisible(false);
@@ -231,7 +233,7 @@ public class alertas extends javax.swing.JFrame {
 
                     Date fechaDate = null;
                     try {
-                        fechaDate = formato.parse(jTable1.getValueAt(row, 5).toString());
+                        fechaDate = formato.parse(jTable1.getValueAt(row, 6).toString());
                     } catch (ParseException ex) {
                         System.out.println(ex);
                     }
