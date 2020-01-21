@@ -177,7 +177,7 @@ public class controladorRegistroVentaServicio {
                 p.idServicio = rset.getInt(1);
                 p.idCliente = rset.getInt(2);
                 p.unidad = rset.getString(3);
-                p.costo = rset.getInt(4);
+                p.costo = rset.getDouble(4);
                 p.tipoUnidad = rset.getInt(5);
                 p.cantidadUnidad = rset.getInt(6);
                 p.fecha = rset.getDate(7);
@@ -214,7 +214,7 @@ public class controladorRegistroVentaServicio {
                 p.idServicio = rset.getInt(1);
                 p.idCliente = rset.getInt(2);
                 p.unidad = rset.getString(3);
-                p.costo = rset.getInt(4);
+                p.costo = rset.getDouble(4);
                 p.tipoUnidad = rset.getInt(5);
                 p.cantidadUnidad = rset.getInt(6);
                 p.fecha = rset.getDate(7);

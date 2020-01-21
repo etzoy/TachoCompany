@@ -210,7 +210,7 @@ public class alertas extends javax.swing.JFrame {
                     } else {
                         actual.tipoUnidad = 3;
                     }
-                    actual.costo = Integer.valueOf(jTable1.getValueAt(row, 3).toString());
+                    actual.costo = Double.parseDouble(jTable1.getValueAt(row, 3).toString());
                     actual.cantidadUnidad = Integer.valueOf(jTable1.getValueAt(row, 5).toString());
                     if (jTable1.getValueAt(row, 7).toString().equals("Si")) {
                         actual.darleSeguimiento = true;
