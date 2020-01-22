@@ -8,12 +8,19 @@ package cleancompany;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JOptionPane;
+import javax.swing.text.InternationalFormatter;
 import modelo.cliente;
 import modelo.modeloTablaServicio;
 import modelo.servicio;
@@ -58,6 +65,44 @@ public class nuevoServicio extends javax.swing.JFrame {
                 visiblePrincipal();
             }
         });
+        
+       // final JFormattedTextField textField1 = new JFormattedTextField(new Float(10.01));
+       
+       
+//       this.jFormattedTextField1.setFormatterFactory(new AbstractFormatterFactory() {
+//
+//        @Override
+//        public AbstractFormatter getFormatter(JFormattedTextField tf) {
+//             
+//            DecimalFormat format = new DecimalFormat("#.00");
+//            format.setMinimumFractionDigits(2);
+//            format.setMaximumFractionDigits(2);
+//            format.setRoundingMode(RoundingMode.HALF_UP);
+//            InternationalFormatter formatter = new InternationalFormatter(format);
+//            formatter.setAllowsInvalid(false);
+//            formatter.setMinimum(0.0);
+//            formatter.setMaximum(1000.00);
+//            return formatter;
+//        }
+//    });
+
+
+//    textField1.setFormatterFactory(new AbstractFormatterFactory() {
+//
+//        @Override
+//        public AbstractFormatter getFormatter(JFormattedTextField tf) {
+//            NumberFormat format = DecimalFormat.getInstance();
+//            format.setMinimumFractionDigits(2);
+//            format.setMaximumFractionDigits(2);
+//            format.setRoundingMode(RoundingMode.HALF_UP);
+//            InternationalFormatter formatter = new InternationalFormatter(format);
+//            formatter.setAllowsInvalid(false);
+//            formatter.setMinimum(0.0);
+//            formatter.setMaximum(1000.00);
+//            return formatter;
+//        }
+//    });
+
     }
 
     public void visiblePrincipal() {
@@ -270,7 +315,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, -1, 40));
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####0.##"))));
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 270, 30));
 
         pack();
@@ -385,7 +430,7 @@ public class nuevoServicio extends javax.swing.JFrame {
         update.nombre = jTextField1.getText();
         update.descripcion = jTextArea1.getText();
         update.unidad = jTextField3.getText();
-        update.costo = Integer.parseInt(jFormattedTextField1.getText());
+        update.costo = Double.parseDouble(jFormattedTextField1.getText());
         if (this.jComboBox1.getSelectedIndex() != 0) {
             update.tipoUnidad = this.jComboBox1.getSelectedIndex();
         }
@@ -447,7 +492,7 @@ public class nuevoServicio extends javax.swing.JFrame {
     public javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    public javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

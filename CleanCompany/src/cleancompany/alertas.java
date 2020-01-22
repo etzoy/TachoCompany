@@ -220,8 +220,9 @@ public class alertas extends javax.swing.JFrame {
                     actual.horaInicio=this.principal.controlRVentaServicio.getHoraInicio(actual.idServicio, actual.idCliente, actual.fecha);
                     actual.horaFin = this.principal.controlRVentaServicio.getHoraFin(actual.idServicio, actual.idCliente, actual.fecha);        
 
-                    modificar(actual, nombreCliente, nombreServicio, jTable1);
                     this.setVisible(false);
+                    modificar(actual, nombreCliente, nombreServicio, jTable1);
+                    
                 }
                 if (boton.getName().equals("e")) {
                     System.out.println("Click Boton Eliminar" + row + column);

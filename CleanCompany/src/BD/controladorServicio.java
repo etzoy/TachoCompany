@@ -120,7 +120,7 @@ public class controladorServicio {
                 p.nombre = rset.getString(2);
                 p.descripcion = rset.getString(3);
                 p.unidad = rset.getString(4);
-                p.costo = rset.getInt(5);
+                p.costo = rset.getDouble(5);
                 p.tipoUnidad = rset.getInt(6);
                 p.cantidadUnidad = rset.getInt(7);
 

@@ -8,6 +8,9 @@ package cleancompany;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.math.RoundingMode;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,8 +19,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.text.InternationalFormatter;
 import modelo.cliente;
 import modelo.modeloTablaRegistroServicio;
 import modelo.servicio;
@@ -61,7 +66,24 @@ public class modVentaServicio extends javax.swing.JFrame {
 //        } catch (Exception ex) {
 //            Logger.getLogger(registroServicio.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+
         texts();
+//        this.jFormattedTextField3.setFormatterFactory(new JFormattedTextField.AbstractFormatterFactory() {
+//
+//        @Override
+//        public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
+//             
+//            DecimalFormat format = new DecimalFormat("#.00");
+//            format.setMinimumFractionDigits(2);
+//            format.setMaximumFractionDigits(2);
+//            format.setRoundingMode(RoundingMode.HALF_UP);
+//            InternationalFormatter formatter = new InternationalFormatter(format);
+//            formatter.setAllowsInvalid(false);
+//            formatter.setMinimum(0.0);
+//            formatter.setMaximum(1000.00);
+//            return formatter;
+//        }
+//    });
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
                 visiblePrincipal();
@@ -581,7 +603,11 @@ public class modVentaServicio extends javax.swing.JFrame {
                     }
 
                     if (validarHora(jFormattedTextField1.getText()) && validarHora(jFormattedTextField2.getText())) {
-                        this.principal.controlRVentaServicio.actualizarRegistro(actual, nuevo);
+                        try {
+                            this.principal.controlRVentaServicio.actualizarRegistro(actual, nuevo);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(modVentaServicio.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         this.principal.agenda.actualizar();
                         this.principal.alertas.actualizar();
                         JOptionPane.showMessageDialog(null, "Venta registrada con exito.", "Exito!", JOptionPane.INFORMATION_MESSAGE);

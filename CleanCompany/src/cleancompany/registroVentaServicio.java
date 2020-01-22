@@ -8,8 +8,10 @@ package cleancompany;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.math.RoundingMode;
 import java.sql.Time;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.text.InternationalFormatter;
 import modelo.cliente;
 import modelo.modeloTablaRegistroServicio;
 import modelo.servicio;
@@ -57,6 +61,26 @@ public class registroVentaServicio extends javax.swing.JFrame {
 //        } catch (Exception ex) {
 //            Logger.getLogger(registroServicio.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+
+// modificacion de numeros Double
+
+//        this.jFormattedTextField3.setFormatterFactory(new JFormattedTextField.AbstractFormatterFactory() {
+//
+//            @Override
+//            public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
+//
+//                DecimalFormat format = new DecimalFormat("#.00");
+//                format.setMinimumFractionDigits(2);
+//                format.setMaximumFractionDigits(2);
+//                format.setRoundingMode(RoundingMode.HALF_UP);
+//                InternationalFormatter formatter = new InternationalFormatter(format);
+//                formatter.setAllowsInvalid(false);
+//                formatter.setMinimum(0.0);
+//                formatter.setMaximum(1000.00);
+//                return formatter;
+//            }
+//        });
+
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
                 visiblePrincipal();
@@ -534,14 +558,14 @@ public class registroVentaServicio extends javax.swing.JFrame {
             getToolkit().beep();
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jTextField5KeyTyped
 
     private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
 
-        if (Character.isLetter(valid)|| evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
+        if (Character.isLetter(valid) || evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
                 || evt.getKeyChar() >= 58 && evt.getKeyChar() <= 96
                 || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
                 || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240

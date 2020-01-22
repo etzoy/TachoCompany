@@ -241,7 +241,7 @@ public class registroServicio extends javax.swing.JFrame {
                     this.nuevo.nombre = jtblListaServicios.getValueAt(row, 0).toString();
                     this.nuevo.descripcion = jtblListaServicios.getValueAt(row, 1).toString();
                     this.nuevo.unidad = jtblListaServicios.getValueAt(row, 2).toString();
-                    this.nuevo.costo = Integer.parseInt(jtblListaServicios.getValueAt(row, 3).toString());
+                    this.nuevo.costo = Double.parseDouble(jtblListaServicios.getValueAt(row, 3).toString());
 
                     if (jtblListaServicios.getValueAt(row, 4).toString().equals("Dia")) {
                         this.nuevo.tipoUnidad = 1;

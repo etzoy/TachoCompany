@@ -111,7 +111,7 @@ public class controladorRegistroVentaServicio {
         }
         return fecha;
     }
-    public void actualizarRegistro(regVentaServicio actual, regVentaServicio update) {
+    public void actualizarRegistro(regVentaServicio actual, regVentaServicio update) throws SQLException {
         String SQL = "UPDATE \"cleanCompany\".\"ProgramacionServicio\"\n"
                 + "	SET \"idServicio\"='" + update.idServicio + "' , \"idCliente\"='" + update.idCliente + "' , \"unidadCostoServicio\"='" + update.unidad + "', \"valorCostoServicio\"='" + update.costo + "', \"tipoUnidadmantenimiento\"='" + update.tipoUnidad + "', \"cantidadTiempoMantenimiento\"='" + update.cantidadUnidad + "', fecha='" + update.fecha + "', \"darleSeguimiento\"='" + update.darleSeguimiento + "'"
                 + " , \"horaInicio\"='"+ update.horaInicio +"', \"horaFin\"='"+update.horaFin+"'"
@@ -134,11 +134,25 @@ public class controladorRegistroVentaServicio {
              pstm = conn.prepareCall(fechaMant);
             rset = pstm.executeQuery();
         } catch (SQLException ex) {
-
+            actualizarFecha(update);
             System.out.println(ex.getMessage());
         } finally {
 
         }
+    }
+    public void actualizarFecha(regVentaServicio update){
+        String fechaMant = "UPDATE \"cleanCompany\".\"ProgramacionServicio\""
+                + "	SET \"fechaMantenimiento\"='" + fechaFin(update)+"'" 
+                + "        WHERE \"idServicio\"= '" + update.idServicio + "' and \"idCliente\" = '" + update.idCliente + "' and \"unidadCostoServicio\" = '" + update.unidad
+                + "' and fecha='" + update.fecha + "'";
+        ResultSet rset = null;
+           try {
+            Connection conn = conexionPostgres.connectDatabase();
+            PreparedStatement pstm = conn.prepareCall(fechaMant);
+            rset = pstm.executeQuery();
+           }catch(SQLException ex){
+                    
+                    }
     }
 
     public void eliminarRegistro(regVentaServicio delete) {
@@ -196,7 +210,7 @@ public class controladorRegistroVentaServicio {
     }
 
     public List<regVentaServicio> listaAgenda() {
-        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha >= current_date and \"darleSeguimiento\"='true') order by (fecha,  \"horaInicio\")";
+        String SQL = "SELECT * FROM \"cleanCompany\".\"ProgramacionServicio\" WHERE (eliminado = '0' and fecha >= current_date ) order by (fecha,  \"horaInicio\")";
 
         java.util.List<regVentaServicio> listaRegistros = null;
 
